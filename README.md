@@ -1,5 +1,5 @@
 # Cup Of Java
-Hallo! Ik ben Dylan Cluyse. Momenteel student aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. Tijdens je eerste jaar zal je in het vak OOSD1 ook een deel ontwerpen krijgen. Dit komt aan bod in een andere repository.
+Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu student aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. Tijdens je eerste jaar zal je in het vak OOSD1 ook een deel ontwerpen krijgen. Dit komt aan bod in een andere repository.
 
 Bij "Cup of Java" wil ik jullie vooral een andere inkijk geven in het vak, andere voorbeelden tonen en ook een mogelijke cheatsheet geven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht.
 
@@ -97,6 +97,102 @@ System.out.printf("Je hebt het getal %s ingegeven.", invoer.nextInt());
 Op deze manier bespaar je ook een variabele. Let wel op dat we hier géén foutcontrole hebben toegepast. Ons programma is met andere woorden niet robuust want als de gebruiker in dit geval een stuk tekst gaat ingeven (of met andere woorden alles behalve een getal), dan gaat onze CUI-applicatie crashen en een foutmelding gaan geven. Hiervoor kunnen we een controlestructuur gebruiken om zo de gebruiker in een lus te zetten zodat hij enkel en alleen de applicatie kan afsluiten wanneer de persoon een correcte waarde heeft ingegeven.
 
 # 2. [Controlestructuren] Loup de la loop. 
+
+Bij Java hebben wij drie soorten structuren: sequentie- , selectie- en herhalingsstructuren.
+
+Een **sequentiestructuur** kan je eigenlijk niet actief toepassen. Dit wordt al passief gedaan door jouw IDE. Met andere woorden gaat jouw programma in de juiste volgorde lijn per lijn het programma uitvoeren. Het programma stopt ook onmiddelijk eenmaal er een fout wordt getroffen in de code. 
+
+**Selectiestructuren** gaan ons helpen om bepaalde paden in ons programma te gaan filteren. Zo kan je bijvoorbeeld een bepaalde actie gaan toepassen als de gebruiker een waarde in heeft gegeven die overeenstemt met of groter/kleiner is dan een andere waarde. De meest essentiële structuur is de if/else structuur. 
+
+Bij If/Else ga je één voorwaarde meegeven. Voldoet een variabele niet aan een bepaalde voorwaarde, dan gaat het programma over gaan naar het "Else" deel. Hieronder zie je dat we bijvoorbeeld twee variabelen hebben. De variabele snelheidWagen en snelheidBeperking. In onze If-lus kijken we of de snelheid van de wagen sneller was dan de beperking. Als dit zo is dan geven we aan de gebruiker mee dat hij/zij een boete krijgt en gaan we met andere woorden alle code gaan uitvoeren die tussen de accolades staat. Is dit niet zo, dan krijgt de gebruiker het lijntje "no problemo" te zien en opnieuw ook alle code uitvoeren die tussen de accolades staan. 
+Let op: we kunnen maar één keer een else gebruiken. We kunnen ons wel nog verdiepen binnen de If-lus.
+
+Extra opmerking: Je bent niet verplicht om een else toe te voegen. Als je geen else uitvoerd zal er vanzelfsprekend wel géén alternatief worden aangeboden. In de meeste gevallen zal het wel handig zijn om toch een Else op te bouwen. 
+
+```
+int snelheidWagen = 45;
+		
+		final int snelheidBeperking = 50;
+		
+		if(snelheidWagen >= snelheidBeperking) {
+			System.out.println("Je reed te snel. Hier is je boete.");
+		} else {
+			System.out.println("No problemo.");
+		}
+		
+```
+
+Stel dat we willen dat de snelheid van de wagen tussen 50 en 70 ligt, dan kunnen we onze eerste voorwaarde als volgt aanpassen:
+
+```
+		if(snelheidWagen >= 50 && snelheidWagen <= 70) {
+			System.out.println("Je reed te snel. Hier is je boete.");
+		} else {
+			System.out.println("No problemo.");
+		}
+		
+```
+
+Twee '&&' tekens betekent een EN-vergelijking. Deze twee voorwaarden (>= 50 EN <= 70) moeten voldoen om een boete te kunnen meegeven. Stel dat de snelheid 75 zou zijn, dan zitten we met het probleem dat ons programma "no problemo" gaat zeggen omdat het getal wél groter is dan 50, maar niet kleiner dan 70. Stel dat je deze EN-vergelijking wilt veranderen naar een OF-vergelijking, dan moet je gebruik maken van '||'. Ons programma is nu wel onlogisch dus we moeten een voorwaarde toevoegen die gaat kijken om een operatie uit te voeren als we met een waarde zitten die groter is dan 70. Hiervoor gebruiken we een Else-If.
+
+We voegen een extra toe aan onze huidige code. Je ziet dat er tussen onze if en onze else een extra lijn is gekomen. Else-If kijkt, net zoals de voorafgaande If, of een waarde voldoet aan de gegeven voorwaarde. Is dit zo? Dan gaat hij, net zoals de If, de code tussen de accolades gaan uitvoeren. Is dit niet zo? Dan gaan we, net zoals de If, rechtstreeks naar de Else.
+
+```
+		if(snelheidWagen >= 50 && snelheidWagen <= 70) {
+			System.out.println("Je reed te snel. Hier is je boete.");
+		} else if(snelheidWagen > 70) {
+			System.out.println("Wow, zo snel rijden in een zone 50. Are you out of your mind?!");
+		} else {
+			System.out.println("No problemo.");
+		}
+		
+```
+
+Stel dat we een programma moeten ontwerpen waarin we een getal mee krijgen die een dag van de week voorstelt (bijvoorbeelde de 6de dag). Voor iedere dag moeten we de dag voluit schrijven in onze console. Je zou in principe meerdere If's kunnen maken, maar dit is niet efficiënt en komt over als een omslachtig.
+
+Daarom kunnen we gebruik maken van de switch structuur. 
+
+_Extra: Hier gebruik ik een Date object. Dit is een object waar een datum wordt bijgehouden en waarvan we waaronder de dag, maand, week, enz. onmiddellijk kunnen opvragen zonder enige omslachtige code._
+
+We starten met een switch() met tussen de ronde haakjes onze parameter waar we zo meteen ons op gaan baseren. Tussen in onze accolades gaan we meerdere "cases" gebruiken. Hier gaan we kijken of de waarde van onze variabele overeenkomt met de waarde die bij de case staat. Als we bvb de tweede dag zijn, dan gaan we _case 1_ negeren, maar wel _case 2_ gaan uitvoeren. 
+
+Maar wat met de rest? De rest wordt niet bekeken door ons programma als we gebruik maken van het **break;** lijntje. Dit gaat zeggen tegen ons programma om direct uit de Switch-lus te gaan. Er is zeker de mogelijkheid dat je meerdere cases kan aanspreken, denk maar bijvoorbeeld als je met groter dan/kleiner dan gaat werken. 
+
+En wat als er géén case is die aangesproken wordt? Dan wordt er ook niets veranderd of getoond... tenzij je een **default: ** lijn gebruikt. Dit gaat zogezegd de standaard operatie zijn mocht er niks aan de voorwaarde voldoen.
+
+```
+
+Date vandaag = new Date();
+		
+		int dagVanWeek = vandaag.getDay();
+		
+		switch(dagVanWeek) {
+		case 1:
+		    System.out.println("Maandag");
+		    break;
+		  case 2:
+		    System.out.println("Dinsdag");
+		    break;
+		  case 3:
+		    System.out.println("Woensdag");
+		    break;
+		  case 4:
+		    System.out.println("Donderdag");
+		    break;
+		  case 5:
+		    System.out.println("Vrijdag");
+		    break;
+		  case 6:
+		    System.out.println("Zaterdag");
+		    break;
+		  case 7:
+		    System.out.println("Zondag");
+		    break;
+		  default:
+			  System.out.println("Maakt niet uit welke dag het is, we chillen vandaag!");
+		}
+
+```
 
 
 
