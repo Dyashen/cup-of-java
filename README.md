@@ -102,6 +102,24 @@ Bij Java hebben wij drie soorten structuren: sequentie- , selectie- en herhaling
 
 Een **sequentiestructuur** kan je eigenlijk niet actief toepassen. Dit wordt al passief gedaan door jouw IDE. Met andere woorden gaat jouw programma in de juiste volgorde lijn per lijn het programma uitvoeren. Het programma stopt ook onmiddelijk eenmaal er een fout wordt getroffen in de code. 
 
+**Korte opfrisser in verband met operatoren en prioriteitsregels**
+
+Voor dit stuk ga je voornamelijk voorwaarden moeten opbouwen. Iets kan gelijk zijn, groter dan of kleiner dan zijn. Logischerwijs typen we dit niet voluit, maar gaan we gebruik maken van volgende operatoren:
+
+'>' : groter dan + '>=' : groter dan of gelijk aan
+'<' : kleiner dan + '<=' : kleiner dan of gelijk aan
+'==' : is gelijk aan
+'!=' : is niet gelijk aan
+
+De prioriteitsregels zijn ook belangrijk bij het opbouwen van deze voorwaarden. De volgende prioriteit moet je weten (van boven naar onder betekent eerst gedaan -> laatst gedaan): 
+
+> haakjes
+> vermenigvuldiging, delen en modulo (rest)
+> optelling en aftrekking
+> operatoren groter dan en kleiner dan
+> operatoren gelijk aan
+> een enkel gelijkheidsteken (-> wordt binnen Java niet gebruikt als operator maar eerder om een variabele te declareren.)
+
 **Selectiestructuren** gaan ons helpen om bepaalde paden in ons programma te gaan filteren. Zo kan je bijvoorbeeld een bepaalde actie gaan toepassen als de gebruiker een waarde in heeft gegeven die overeenstemt met of groter/kleiner is dan een andere waarde. De meest essentiële structuur is de if/else structuur. 
 
 Bij If/Else ga je één voorwaarde meegeven. Voldoet een variabele niet aan een bepaalde voorwaarde, dan gaat het programma over gaan naar het "Else" deel. Hieronder zie je dat we bijvoorbeeld twee variabelen hebben. De variabele snelheidWagen en snelheidBeperking. In onze If-lus kijken we of de snelheid van de wagen sneller was dan de beperking. Als dit zo is dan geven we aan de gebruiker mee dat hij/zij een boete krijgt en gaan we met andere woorden alle code gaan uitvoeren die tussen de accolades staat. Is dit niet zo, dan krijgt de gebruiker het lijntje "no problemo" te zien en opnieuw ook alle code uitvoeren die tussen de accolades staan. 
@@ -195,10 +213,33 @@ Date vandaag = new Date();
 ```
 
 
+Tot nu toe hebben we dus de sequentiestructuur gezien waarin de code lijn per lijn wordt doorlopen. We hebben drie verschillende selectiestructuren gezien (if zonder else, if/else en switch). Stel dat we nu willen dat we één bepaalde actie of operatie een aantal keer willen uitvoeren of uitvoeren tot we een bepaald punt raken in ons programma? Hiervoor gaan we gebruik maken van controlestructuren. Er zijn er drie:
+
+De eerste die ik wil toelichten is While. Letterlijk vertaald is dit een operatie die code gaat uitvoeren zolang een voorwaarde voldaan is. Is de voorwaarde niet voldaan dan gaat de code niet uitgevoerd worden. We starten met het while keyword gevolgd door ronde haakjes met daarin de voorwaarde, daarna ga je dan twee accolades gebruiken met daartussen de code die je wilt uitvoeren in de lus.
+
+
+
+De tweede is heel gelijkaardig aan de While en noemt Do-While. Het verschil hier in is dat je eerst sowieso de code gaat uitvoeren vooraleer je de voorwaarde gaat controleren. Dit in tegenstelling met de While die eerst kijkt of de voorwaarde voldaan is. De structuur is ook logischerwijs anders opgebouwd dan de While-lus. Eerst ga je het do-keyword gebruiken, gevolgd door de accolades met daartussen je code. Na het sluiten van de lus ga je de while-voorwaarde schrijven.
+
+
+
+De laatste is de for-lus. Deze is wat complexer, maar laat wel enkele mogelijkheden toe. Bij de for-lus gaan we werken met drie parameters: de teller, voorwaarde en wat er veranderd nadat een lus is doorlopen. In dit voorbeeld zie je dat we een variabele 'teller' maken die we op 0 plaatsen. De teller moet kleiner zijn dan tien om de lus te doorlopen en nadat de lus is afgerond gaan we de teller verhogen met één. 
+
+
+
+
+
+In het hoofdstuk over arrays ga je dit vaak gebruiken om de inhoud van een array te doorlopen.
+
 
 # 3. [Objecten] What is an object? A miserable little pile of secrets. 
 
 # 4. [Arrays] Programmer May Cry.
+
+
+Array aanmaken + items toevoegen
+
+Hoe een array uitladen --> For-lus + length van array
 
 # 5. [Methodes] By all accounts, it doesn't make any sense.
 
