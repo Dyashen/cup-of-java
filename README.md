@@ -4,7 +4,6 @@ Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu stud
 Bij "Cup of Java" wil ik jullie vooral een andere inkijk geven in het vak, andere voorbeelden tonen en ook een mogelijke cheatsheet geven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht.
 
 No time to waste! Welcome to Java, take a seat, turn on your lo-fi/tech/drum&bass playlist and don't forget your cup of coffee! 
-(I prefer tea 🍵)
 
 # 1. [Introductie] You don't forget your first line of code. 
 
@@ -24,6 +23,8 @@ Nu kunnen we klassen aanmaken binnenin één van de packages. Later gaan we ook 
 
 Eenmaal onze structuur is opgebouwd kunnen we beginnen met ons allereerste lijntje code te schrijven. Ter illustratie heb ik een kort code-blokje opgesteld om de essentials nog eens te doorlopen van wat er allemaal terecht moet komen in een klasse. 
 
+Let op: We kunnen commentaar toe voegen door gebruik te maken van '//' ofwel twee schuine streepjes. Alles na deze twee strepen wordt gezien als commentaar en niet meer als functionele code.
+
 1. Je klasse gaat altijd beginnen met een "**package** x": Dit is een verwijzing naar de package waarin jouw klasse zich bevind. In dit geval zit onze klasse in de package CUI.
 2. **"Import"** verwijst naar bepaalde methodes/functies die onze IDE moet invoeren om diezelfde functies te kunnen uitvoeren bij het compilen. Als dit niet gebeurt zal je een foutmelding krijgen bij het compilen. Hier voeren wij bijvoorbeeld de Scanner functie in om zo invoer te kunnen vragen van de gebruiker.
 3. WillekeurigGetal is een **klasse** die we hebben opgebouwd. Hierin kunnen we meerdere methodes aanmaken waarin we bepaalde zaken kunnen uitvoeren of aanpassen. Hier hebben we enkel en alleen onze "main" methode in staan.
@@ -40,14 +41,14 @@ Eenmaal onze structuur is opgebouwd kunnen we beginnen met ons allereerste lijnt
 7. We hebben als laatste een controlestructuur. De bedoeling van if() is een vergelijking maken tussen twee waarden. Als deze voldoet gaan we een bepaalde operatie uitvoeren, als dit niet zo is gaan we een andere operatie uitvoeren. Hier gaan we in het volgende hoofdstuk verder op in.
 
 
-```
-package cui;
+```java
+package cui; //1
 
-import java.util.Scanner;
+import java.util.Scanner; //2
 
-public class WillekeurigGetal {
+public class WillekeurigGetal { //3
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { //4
 		
 		Scanner invoerVanGebruiker = new Scanner(System.in);
 		
@@ -74,7 +75,7 @@ public class WillekeurigGetal {
 
 Bij programmeren met een command-line interface ga je praktisch altijd een Scanner nodig hebben. Een Scanner is zogezegd een object binnen Java die de waarde gaat bijhouden van hetgeen wat de gebruiker ingeeft. Let op: dit is géén primitief datatype. We kunnen dus niet de waarde van een scanner direct gaan gebruiken voor bijvoorbeeld een integer of een String te gaan declareren. Hiervoor moeten wij een extra methode gebruiken. Ik licht de Scanner even toe in onderstaand voorbeeld, lijntje per lijntje :
 
-```
+```java
 Scanner invoerVanGebruiker = new Scanner(System.in);
 		
 System.out.println("Geef een getal in: ");
@@ -90,7 +91,7 @@ System.out.printf("Je hebt het getal %s ingegeven.");
 3. Het Scanner-object houdt nu een waarde bij. Dit is nog niet bruikbaar voor ons dus moeten we de waarde gaan ophalen vanuit dit Scanner-object. Dit doen we door in de linkerhelft ons variabele te declareren en in de rechterhelft de naam van het Scanner-object in te geven, gevolgd door ".next". Wil je heel specifiek zijn over welk datatype dat je wilt moet je bijvoorbeeld ".nextInt()" gebruiken voor een integer of ".nextLine()" voor een String.
 4. Uiteindelijk kunnen we de waarde gaan uitprinten dat de gebruiker daarnet heeft ingegeven. Je kan de waarde ook direct gaan ophalen door volgende code te gebruiken: 
 
-```
+```java
 System.out.printf("Je hebt het getal %s ingegeven.", invoer.nextInt());
 ```
 
@@ -113,56 +114,57 @@ Voor dit stuk ga je voornamelijk voorwaarden moeten opbouwen. Iets kan gelijk zi
 
 De prioriteitsregels zijn ook belangrijk bij het opbouwen van deze voorwaarden. De volgende prioriteit moet je weten (van boven naar onder betekent eerst gedaan -> laatst gedaan): 
 
-> haakjes
-> vermenigvuldiging, delen en modulo (rest)
-> optelling en aftrekking
-> operatoren groter dan en kleiner dan
-> operatoren gelijk aan
-> een enkel gelijkheidsteken (-> wordt binnen Java niet gebruikt als operator maar eerder om een variabele te declareren.)
+1 haakjes
+2 vermenigvuldiging, delen en modulo (rest)
+3 optelling en aftrekking
+4 operatoren groter dan en kleiner dan
+5 operatoren gelijk aan
+6 een enkel gelijkheidsteken (-> wordt binnen Java niet gebruikt als operator maar eerder om een variabele te declareren.)
 
 **Selectiestructuren** gaan ons helpen om bepaalde paden in ons programma te gaan filteren. Zo kan je bijvoorbeeld een bepaalde actie gaan toepassen als de gebruiker een waarde in heeft gegeven die overeenstemt met of groter/kleiner is dan een andere waarde. De meest essentiële structuur is de if/else structuur. 
 
 Bij If/Else ga je één voorwaarde meegeven. Voldoet een variabele niet aan een bepaalde voorwaarde, dan gaat het programma over gaan naar het "Else" deel. Hieronder zie je dat we bijvoorbeeld twee variabelen hebben. De variabele snelheidWagen en snelheidBeperking. In onze If-lus kijken we of de snelheid van de wagen sneller was dan de beperking. Als dit zo is dan geven we aan de gebruiker mee dat hij/zij een boete krijgt en gaan we met andere woorden alle code gaan uitvoeren die tussen de accolades staat. Is dit niet zo, dan krijgt de gebruiker het lijntje "no problemo" te zien en opnieuw ook alle code uitvoeren die tussen de accolades staan. 
 Let op: we kunnen maar één keer een else gebruiken. We kunnen ons wel nog verdiepen binnen de If-lus.
 
+![Gewone If](https://i.imgur.com/ulwDhjz.png)
+
 Extra opmerking: Je bent niet verplicht om een else toe te voegen. Als je geen else uitvoerd zal er vanzelfsprekend wel géén alternatief worden aangeboden. In de meeste gevallen zal het wel handig zijn om toch een Else op te bouwen. 
 
-```
+```java
 int snelheidWagen = 45;
 		
-		final int snelheidBeperking = 50;
+final int snelheidBeperking = 50;
 		
-		if(snelheidWagen >= snelheidBeperking) {
-			System.out.println("Je reed te snel. Hier is je boete.");
-		} else {
-			System.out.println("No problemo.");
-		}
+if(snelheidWagen >= snelheidBeperking) {
+	System.out.println("Je reed te snel. Hier is je boete.");
+} else {
+	System.out.println("No problemo.");
+}
 		
 ```
 
 Stel dat we willen dat de snelheid van de wagen tussen 50 en 70 ligt, dan kunnen we onze eerste voorwaarde als volgt aanpassen:
 
-```
-		if(snelheidWagen >= 50 && snelheidWagen <= 70) {
-			System.out.println("Je reed te snel. Hier is je boete.");
-		} else {
-			System.out.println("No problemo.");
-		}
-		
+```java
+if(snelheidWagen >= 50 && snelheidWagen <= 70) {
+	System.out.println("Je reed te snel. Hier is je boete.");
+} else {
+	System.out.println("No problemo.");
+}		
 ```
 
 Twee '&&' tekens betekent een EN-vergelijking. Deze twee voorwaarden (>= 50 EN <= 70) moeten voldoen om een boete te kunnen meegeven. Stel dat de snelheid 75 zou zijn, dan zitten we met het probleem dat ons programma "no problemo" gaat zeggen omdat het getal wél groter is dan 50, maar niet kleiner dan 70. Stel dat je deze EN-vergelijking wilt veranderen naar een OF-vergelijking, dan moet je gebruik maken van '||'. Ons programma is nu wel onlogisch dus we moeten een voorwaarde toevoegen die gaat kijken om een operatie uit te voeren als we met een waarde zitten die groter is dan 70. Hiervoor gebruiken we een Else-If.
 
 We voegen een extra toe aan onze huidige code. Je ziet dat er tussen onze if en onze else een extra lijn is gekomen. Else-If kijkt, net zoals de voorafgaande If, of een waarde voldoet aan de gegeven voorwaarde. Is dit zo? Dan gaat hij, net zoals de If, de code tussen de accolades gaan uitvoeren. Is dit niet zo? Dan gaan we, net zoals de If, rechtstreeks naar de Else.
 
-```
-		if(snelheidWagen >= 50 && snelheidWagen <= 70) {
-			System.out.println("Je reed te snel. Hier is je boete.");
-		} else if(snelheidWagen > 70) {
-			System.out.println("Wow, zo snel rijden in een zone 50. Are you out of your mind?!");
-		} else {
-			System.out.println("No problemo.");
-		}
+```java
+if(snelheidWagen >= 50 && snelheidWagen <= 70) {
+	System.out.println("Je reed te snel. Hier is je boete.");
+} else if(snelheidWagen > 70) {
+	System.out.println("Wow, zo snel rijden in een zone 50. Are you out of your mind?!");
+} else {
+	System.out.println("No problemo.");
+}
 		
 ```
 
@@ -178,54 +180,87 @@ Maar wat met de rest? De rest wordt niet bekeken door ons programma als we gebru
 
 En wat als er géén case is die aangesproken wordt? Dan wordt er ook niets veranderd of getoond... tenzij je een **default: ** lijn gebruikt. Dit gaat zogezegd de standaard operatie zijn mocht er niks aan de voorwaarde voldoen.
 
-```
+```java
 
 Date vandaag = new Date();
 		
-		int dagVanWeek = vandaag.getDay();
+int dagVanWeek = vandaag.getDay();
 		
-		switch(dagVanWeek) {
-		case 1:
-		    System.out.println("Maandag");
-		    break;
-		  case 2:
-		    System.out.println("Dinsdag");
-		    break;
-		  case 3:
-		    System.out.println("Woensdag");
-		    break;
-		  case 4:
-		    System.out.println("Donderdag");
-		    break;
-		  case 5:
-		    System.out.println("Vrijdag");
-		    break;
-		  case 6:
-		    System.out.println("Zaterdag");
-		    break;
-		  case 7:
-		    System.out.println("Zondag");
-		    break;
-		  default:
-			  System.out.println("Maakt niet uit welke dag het is, we chillen vandaag!");
-		}
+switch(dagVanWeek) {
+	case 1:
+	    System.out.println("Maandag");
+	    break;
+	  case 2:
+	    System.out.println("Dinsdag");
+	    break;
+	  case 3:
+	    System.out.println("Woensdag");
+	    break;
+	  case 4:
+	    System.out.println("Donderdag");
+	    break;
+	  case 5:
+	    System.out.println("Vrijdag");
+	    break;
+	  case 6:
+	    System.out.println("Zaterdag");
+	    break;
+	  case 7:
+	    System.out.println("Zondag");
+	    break;
+	  default:
+		  System.out.println("Maakt niet uit welke dag het is, we chillen vandaag!");
+	}
 
 ```
 
 
 Tot nu toe hebben we dus de sequentiestructuur gezien waarin de code lijn per lijn wordt doorlopen. We hebben drie verschillende selectiestructuren gezien (if zonder else, if/else en switch). Stel dat we nu willen dat we één bepaalde actie of operatie een aantal keer willen uitvoeren of uitvoeren tot we een bepaald punt raken in ons programma? Hiervoor gaan we gebruik maken van controlestructuren. Er zijn er drie:
 
-De eerste die ik wil toelichten is While. Letterlijk vertaald is dit een operatie die code gaat uitvoeren zolang een voorwaarde voldaan is. Is de voorwaarde niet voldaan dan gaat de code niet uitgevoerd worden. We starten met het while keyword gevolgd door ronde haakjes met daarin de voorwaarde, daarna ga je dan twee accolades gebruiken met daartussen de code die je wilt uitvoeren in de lus.
+De eerste die ik wil toelichten is **While**. Letterlijk vertaald is dit een operatie die code gaat uitvoeren zolang een voorwaarde voldaan is. Is de voorwaarde niet voldaan dan gaat de code niet uitgevoerd worden. We starten met het while keyword gevolgd door ronde haakjes met daarin de voorwaarde, daarna ga je dan twee accolades gebruiken met daartussen de code die je wilt uitvoeren in de lus.
 
 
 
-De tweede is heel gelijkaardig aan de While en noemt Do-While. Het verschil hier in is dat je eerst sowieso de code gaat uitvoeren vooraleer je de voorwaarde gaat controleren. Dit in tegenstelling met de While die eerst kijkt of de voorwaarde voldaan is. De structuur is ook logischerwijs anders opgebouwd dan de While-lus. Eerst ga je het do-keyword gebruiken, gevolgd door de accolades met daartussen je code. Na het sluiten van de lus ga je de while-voorwaarde schrijven.
+De tweede is heel gelijkaardig aan de While en noemt **Do-While**. Het verschil hier in is dat je eerst sowieso de code gaat uitvoeren vooraleer je de voorwaarde gaat controleren. Het programma gaat met andere woorden iets doen zolang dat iets aan een voorwaarde voldoet. Die "iets" gaat heel vaak een variabele zijn. Dit in tegenstelling met de While die eerst kijkt of de voorwaarde voldaan is. De structuur is ook logischerwijs anders opgebouwd dan de While-lus. Eerst ga je het do-keyword gebruiken, gevolgd door de accolades met daartussen je code. Na het sluiten van de lus ga je de while-voorwaarde schrijven. 
+
+Dit gebruik je eerder voor foutcontrole. Beide zijn zeker mogelijk, maar hier heb je een efficientievoordeel omdat je maar je Scanner-statement éénmalig opschrijven.
 
 
 
-De laatste is de for-lus. Deze is wat complexer, maar laat wel enkele mogelijkheden toe. Bij de for-lus gaan we werken met drie parameters: de teller, voorwaarde en wat er veranderd nadat een lus is doorlopen. In dit voorbeeld zie je dat we een variabele 'teller' maken die we op 0 plaatsen. De teller moet kleiner zijn dan tien om de lus te doorlopen en nadat de lus is afgerond gaan we de teller verhogen met één. 
+De laatste is de **for-lus**. Deze is wat complexer, maar laat wel enkele mogelijkheden toe. Bij de for-lus gaan we werken met drie parameters: de teller, voorwaarde en wat er veranderd nadat een lus is doorlopen. In dit voorbeeld zie je dat we een variabele 'teller' maken die we op 0 plaatsen. De teller moet kleiner zijn dan tien om de lus te doorlopen en nadat de lus is afgerond gaan we de teller verhogen met één. 
+
+In onderstaand voorbeeld gaan we vijf sterretjes uitschrijven in onze console. Je ziet dat onze lus start op 0. Tijdens onze lus gaan we een lijntje uitprinten met daarin één sterretje. Na iedere keer dat onze lus doorlopen wordt gaan we met één vermeerderen. 
+
+```java
+for (int teller = 0; teller < 5; teller++) {
+	System.out.println('*');			
+}
+```
+
+# 2.5. [Geneste controlestructure] Loop de la loop dans une loop. 
+
+We kunnen lussen ook gaan nesten. Dit betekent dat we een controlestructuur binnenin een lus gaan plaatsen. Dit kunnen we zogezegd oneindig doen, maar om niet te ver te gaan wil ik toch de geneste for-lus en een geneste if toelichten. Dit zijn de twee die je het vaakst zal tegenkomen.
+
+In onderstaand voorbeeld willen ik opnieuw sterretjes uitprinten, maar in plaats van één per lijn wil ik ze zogezegd laten aftellen van vijf. Dus op het bovenste lijntje gaan er vijf sterretjes staan. Het lijntje eronder gaat er één minder hebben. Dit doen we tot aan het laatste lijntje waar er maar één sterretje is.
+
+Je ziet dat we onze teller gaan laten beginnen op 5 en die gaan verminderen per keer dat we door de lus gaan. We doen dit totdat onze teller
+
+```java
+for (int aantalLijntjes = 5; aantalLijntjes > 0; aantalLijntjes--) {
+
+	String output = "*";
+	
+	for (int aantalSterretjes = 0; aantalSterretjes < aantalLijntjes; aantalSterretjes++) {
+		output += '*';
+	}
+
+	System.out.println(output);
+
+}
+```
 
 
+![Geneste if-lus](https://i.imgur.com/uubq7pG.png)
 
 
 
@@ -234,33 +269,3 @@ In het hoofdstuk over arrays ga je dit vaak gebruiken om de inhoud van een array
 
 # 3. [Objecten] What is an object? A miserable little pile of secrets. 
 
-# 4. [Arrays] Programmer May Cry.
-
-
-Array aanmaken + items toevoegen
-
-Hoe een array uitladen --> For-lus + length van array
-
-# 5. [Methodes] By all accounts, it doesn't make any sense.
-
-# 6. [Pijlers van OO] The end of the beginning.
-
-# 7. [Testen] Testing out the magic.
-
-# 8. [Overerving] Baby Yoda joke
-
-# 9. [Polymorfisme en interfaces] 
-
-# 10. [Lambda] You mean the Half-Life symbol?
-
-# 11. [Exception Handling] More like throwing your computer out of the window.
-
-# 12. [GUI] Goo-ee
-
-# 13. [Collecties] 
-
-# 14. [Streams] Dark Souls music starts playing
-
-# 15. [Strings] Does anyone even read the title anymore?
-
-# 16. [Bestandverwerking] Programmer May Cry 2
