@@ -1,9 +1,7 @@
 # Cup Of Java
-Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu student aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. Tijdens je eerste jaar zal je in het vak OOSD1 ook een deel ontwerpen krijgen. Dit komt aan bod in een andere repository.
+Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu student aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. Tijdens je eerste jaar zal je in het vak OOSD1 ook een deel ontwerpen krijgen. 
 
-Bij "Cup of Java" wil ik jullie vooral een andere inkijk geven in het vak, andere voorbeelden tonen en ook een mogelijke cheatsheet geven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht.
-
-No time to waste! Welcome to Java, take a seat, turn on your lo-fi/tech/drum&bass playlist and don't forget your cup of coffee! 
+Met "Cup of Java" wil ik vooral een andere nadruk leggen op het programmeren dan in de cursus, andere voorbeelden tonen en ook een mogelijke cheatsheet geven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht. Hier wil ik vooral de nadruk leggen op waarom je iets gebruikt.
 
 # 1. [Introductie] You don't forget your first line of code. 
 
@@ -101,7 +99,14 @@ Op deze manier bespaar je ook een variabele. Let wel op dat we hier géén foutc
 
 Bij Java hebben wij drie soorten structuren: sequentie- , selectie- en herhalingsstructuren.
 
-Een **sequentiestructuur** kan je eigenlijk niet actief toepassen. Dit wordt al passief gedaan door jouw IDE. Met andere woorden gaat jouw programma in de juiste volgorde lijn per lijn het programma uitvoeren. Het programma stopt ook onmiddelijk eenmaal er een fout wordt getroffen in de code. 
+Een **sequentiestructuur** kan je eigenlijk niet zelf implementeren in jouw code. Dit wordt namelijk gedaan door jouw IDE. Kort gezegd gaat jouw programma in de juiste volgorde lijn per lijn het programma uitvoeren. Het programma stopt ook onmiddelijk eenmaal er een fout wordt getroffen in de code. Hier moet je wel rekening houden met het declareren van variabelen. Je kan bijvoorbeeld niet een variabele gaan aanpassen als deze nog niet bestaat.
+
+```java
+int som = opteller + opteller2;
+		
+		int opteller = 5;
+		int opteller2 = 10;
+```
 
 **Korte opfrisser in verband met operatoren en prioriteitsregels**
 
@@ -229,13 +234,38 @@ Dit gebruik je eerder voor foutcontrole. Beide zijn zeker mogelijk, maar hier he
 
 De laatste is de **for-lus**. Deze is wat complexer, maar laat wel enkele mogelijkheden toe. Bij de for-lus gaan we werken met drie parameters: de teller, voorwaarde en wat er veranderd nadat een lus is doorlopen. In dit voorbeeld zie je dat we een variabele 'teller' maken die we op 0 plaatsen. De teller moet kleiner zijn dan tien om de lus te doorlopen en nadat de lus is afgerond gaan we de teller verhogen met één. 
 
-In onderstaand voorbeeld gaan we vijf sterretjes uitschrijven in onze console. Je ziet dat onze lus start op 0. Tijdens onze lus gaan we een lijntje uitprinten met daarin één sterretje. Na iedere keer dat onze lus doorlopen wordt gaan we met één vermeerderen. 
+Het grote verschil tussen een for-lus en de while/do-while, is dat deze een einde heeft die we zelf bepalen. We weten met andere woorden wanneer de for-lus gaat stoppen. Als we onze for-lus zo gaan instellen dat dit na vijf herhalingen gaat stoppen, dan gaat dit ook daadwerkelijk na exact vijf keer ook stoppen. Een while/do-while wordt ook eerder gebruikt voor een aantal herhalingen dat we zelf niet kunnen bepalen, zoals bijvoorbeeld invoercontrole waar we wachten op de gebruiker die een correcte invoer moet geven. Dit zou dan één keer, maar ook vijf/tien/twintig keren kunnen zijn. 
+
+Een heel simpel voorbeeld is een programmaatje dat tot tien gaat tellen voor het spel verstoppertje. Zoals het spel gaat, wordt er enkel nadat er tot tien werd geteld het zinnetje "Wie niet weg is, is gezien!" afgeroepen. Voor we naar de code kijken, kunnen we hier al uit afleiden dat ons programma precies tien keer zich moet herhalen. 
+
+```java
+for (int teller = 1; teller < 11; teller++) {
+	System.out.println(teller);			
+}
+
+System.out.println("Wie niet weg is, is gezien!")
+```
+
+Onze output ziet er dan zo uit:
+
+![Simpele For](https://i.imgur.com/1khtibu.png)
+
+
+In onderstaand voorbeeld gaan we vijf sterretjes uitschrijven in onze console. Je ziet dat onze lus start op 0. Persoonlijk vind ik het handiger om te starten met een nulwaarde in plaats van één. Stel dat je toch wilt starten met één, dan ga je het bereik ook met één moeten verhogen (5 wordt dus 6). Tijdens onze lus gaan we een lijntje uitprinten met daarin één sterretje. Na iedere keer dat onze lus doorlopen wordt gaan we met één vermeerderen. 
 
 ```java
 for (int teller = 0; teller < 5; teller++) {
 	System.out.println('*');			
 }
 ```
+
+![Gewone For](https://i.imgur.com/ms6Nm8P.png)
+
+Om de drie herhalingsstructuren nog eens samen te vatten, wil ik onderstaand voorbeeld toelichten. Je ziet hier dat het grote verschil tussen een while en een do-while is dat je bij een while eerst gaat kijken of de page interessant is. Je gaat met andere woorden eerst kijken of iets voldoet aan eisen. Zo ja? Dan ga je verder lezen totdat je het niet meer goed vindt. Dan stopt de lus.
+Bij een do-while ga je eerst lezen en later pas kijken of je het interessant vindt. Vindt je het niet interessant dan stopt de lus.
+Bij de for-lus ga je, net zoals een boek, beginnen bij het eerste hoofdstuk. Als je klaar bent met het eerste hoofdstuk, ga je over naar het volgende. Dit kan je zien als de teller die met andere woorden wordt opgeteld.
+
+![image](https://i.imgur.com/Mdqd8vc.png)
 
 # 2.5. [Geneste controlestructure] Loop de la loop dans une loop. 
 
@@ -260,11 +290,7 @@ for (int aantalLijntjes = 5; aantalLijntjes > 0; aantalLijntjes--) {
 ```
 
 
-![Geneste if-lus](https://i.imgur.com/uubq7pG.png)
-
-
-
-In het hoofdstuk over arrays ga je dit vaak gebruiken om de inhoud van een array te doorlopen.
+![Geneste if-lus](https://i.imgur.com/djqvJJs.png)
 
 
 # 3. [Objecten] What is an object? A miserable little pile of secrets. 
