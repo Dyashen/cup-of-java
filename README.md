@@ -283,3 +283,399 @@ for (int aantalLijntjes = 5; aantalLijntjes > 0; aantalLijntjes--) {
 
 # 3. [Objecten en klassen]
 
+![image](https://user-images.githubusercontent.com/70543493/124633975-1e48bf00-de86-11eb-99db-d02cf7a86bb0.png)
+
+Stel je voor, je bent ergens op vakantie (pic related) en je hebt een kamer gereserveerd.  Iedere kamer is ook anders ingericht, sommige kamers hebben internetbekabeling, sommige kamers zijn luxueuzer en hebben bijvoorbeeld een jacuzzi of ingebouwde sauna. Niet iedere kamer gaat ook even groot zijn want er zijn prijsverschillen voor iedere kamer. Belangrijk om te onthouden is dat je ook één sleutel hebt die bedoelt is om de deur van jouw hotelkamer te openen. Logischerwijs kan je deze sleutel niet gebruiken om bijvoorbeeld de deur van jouw buurman of -vrouw te openen. Hiervoor heb je een andere sleutel nodig. 
+
+Kern: Iedere kamer heeft bepaalde **kenmerken** die het zo **uniek** maakt. Je kan ook bepaalde **acties** gaan uitvoeren binnen bepaalde kamers familievriendelijke activiteiten zoals chillen, relaxen, browsen en meer.
+
+Hieronder zie je bijvoorbeeld vier verschillende hotelkamers gekozen via een willekeurige website. Iedere kamer is anders op zijn eigen manier.
+
+![image](https://i.imgur.com/i4LM8Ec.jpg)
+
+Een kamer gaan we altijd gaan herkennen aan de hand van **kenmerken**. In dit geval heeft iedere kamer:
+
+* Een berekende oppervlakte
+* Wordt er een keycard gebruikt?
+* Is de kamer luxueus?
+* Extra's?
+* Een prijs per nacht.
+
+Eén zo een kamer gaan we een **Object** noemen. Dit is een manier binnen het programmeren waarin we structuur kunnen behouden waar we kenmerken en methoden (ofwel een actie uitvoeren) kunnen gebruiken. We kunnen deze objecten aanspreken en bijvoorbeeld kenmerken gaan opvragen, maar ook om bepaalde acties te gaan uitvoeren. Denk maar bijvoorbeeld aan het relaxen in een kamer of de deur van de kamer openen. 
+
+We kunnen niet zomaar een object aanmaken. Er zijn programmeertalen (bijvoorbeeld JavaScript) waarin je een object kan aanmaken via één actie. Java werkt anders en voor een object aan te maken moet je werken met een soort blueprint of sjabloon dat we een **Klasse** gaan noemen. Deze klassen gaan we nog specifieker domeinklassen gaan noemen, dat vooral met oog op het ontwerpen van applicaties. Dat komt later aan bod.
+
+Domeinklasses maken we enkel en alleen aan in het domein. Op deze manier kunnen we een goed overzicht houden van al onze domeinklassen die we gaan gebruiken voor het maken van objecten. Als we een domeinklasse maken in onze cui-package, dan één in onze persistentielaag en uiteindelijk een aantal in onze domeinlaag, dan gaan we uiteindelijk onze rode draad verliezen en niet meer mee zijn met onze zelf opgebouwde structuur.
+
+Hieronder zie je hoe we een klasse maken. Eerst gaan we alle nodige kenmerken gaan declareren in een variabele. Hou hiermee rekening met het juiste datatype. 
+'String[]' verwijst naar een lijst van strings. Dit komt aan bod in het hoofdstuk rond arrays en moet je je nu nog geen zorgen om maken.
+
+Géén paniek als dit overweldigend overkomt. We overlopen ieder deeltje apart.
+
+```java
+package domein;
+
+import java.util.Arrays;
+
+public class HotelKamer {
+	
+	int nummer;
+	int oppervlakte;
+	boolean keyCardNodig;
+	boolean isLuxueus;
+	String[] extras;
+	double prijs;
+	
+	
+	//1. Constructor met géén default waarden.
+	public HotelKamer(int nummer, int oppervlakte, boolean keyCardNodig, boolean isLuxueus, String[] extras, double prijs) {
+		this.nummer = nummer;
+		this.oppervlakte = oppervlakte;
+		this.keyCardNodig = keyCardNodig;
+		this.isLuxueus = isLuxueus;
+		this.extras = extras;
+		this.prijs = prijs;
+	}
+	
+	
+	//2. Constructor met default waarden.
+	public HotelKamer(int nummer, int oppervlakte, double prijs) {
+		this.nummer = nummer;
+		this.oppervlakte = oppervlakte;
+		this.keyCardNodig = false;
+		this.isLuxueus = false;
+		this.extras = new String[]{"geen"};
+		this.prijs = prijs;
+	}
+	
+	public HotelKamer() {
+		this.nummer = 0;
+		this.oppervlakte = 0;
+		this.keyCardNodig = false;
+		this.isLuxueus = false;
+		this.extras = new String[] {"geen"};
+		this.prijs = 0;
+	}
+
+
+	//3. Getters voor alle kenmerken.
+	public int getNummer() {
+		return nummer;
+	}
+
+
+	public int getOppervlakte() {
+		return oppervlakte;
+	}
+
+
+	public boolean isKeyCardNodig() {
+		return keyCardNodig;
+	}
+
+
+	public boolean isLuxueus() {
+		return isLuxueus;
+	}
+
+
+	public String[] getExtras() {
+		return extras;
+	}
+
+
+	public double getPrijs() {
+		return prijs;
+	}
+	
+	
+	// 4. Setters voor alle kenmerken.
+	private void setNummer(int nummer) {
+		this.nummer = nummer;
+	}
+
+
+	private void setOppervlakte(int oppervlakte) {
+		this.oppervlakte = oppervlakte;
+	}
+
+
+	private void setKeyCardNodig(boolean keyCardNodig) {
+		this.keyCardNodig = keyCardNodig;
+	}
+
+
+	private void setLuxueus(boolean isLuxueus) {
+		this.isLuxueus = isLuxueus;
+	}
+
+
+	private void setExtras(String[] extras) {
+		this.extras = extras;
+	}
+
+
+	private void setPrijs(double prijs) {
+		if(prijs > 0){
+			this.prijs = prijs;
+		}
+	}
+
+	
+	//5. Methoden
+	public void relax() {
+		System.out.println("good vibes.....");
+	}
+	
+	public void browsen() {
+		System.out.println("Instagram: pastalovers, motivationalquotes en .");
+		System.out.println("duolingo: lol!");
+		System.out.println("Bpost App: Jouw pakketje heeft vertraging opgelopen. Onze excuses hiervoor maar we proberen..");
+	}
+
+	@Override
+	public String toString() {
+		return "Kamer " + nummer + " is " + oppervlakte + "m² groot.\n"
+				+ "Keycard nodig? " + keyCardNodig + "\n"
+				+ "Luxueuze suite? " + isLuxueus + "\n" 
+				+ "Extras: " + Arrays.toString(extras) + "\n" 
+				+ "Kostprijs: €" + prijs + "";
+	}
+}
+```
+
+We gaan eerst kijken om al onze kenmerken te verzamelen en deze te gaan declareren. We kennen géén waarde toe tenzij het een variabele is die voor alle objecten hetzelfde gaat zijn.
+
+```java
+int nummer;
+int oppervlakte;
+boolean keyCardNodig;
+boolean isLuxueus;
+String[] extras;
+double prijs;
+```
+
+Om een object te maken van een klasse gaan we gebruik maken van een **constructor**. Deze is de kern van een klasse want zonder een constructor zouden wij geen objecten kunnen aanmaken van deze klasse. Bij een constructor ga je parameters meegeven. Zogezegd ga je een kamer bouwen aan de hand van de kenmerken zoals oppervlakte, prijs, enz.
+
+Het voordeel bij Java is dat je meerdere constructors kan aanmaken om zo heel specifiek te kiezen welke kenmerken we met een standaardwaarde gaan instellen en welke we gaan instellen met de meegegeven waarde. Hieronder zie je drie verschillende constructors: de eerste gebruikt géén standaardwaarden, de tweede gebruikt deels standaardwaarden en de derde en laatste gebruikt enkel en alleen standaardwaarden.
+
+De eerste manier is door een object aan te maken waarin elk kenmerk gelijk staat aan een meegegeven parameter. Met andere woorden zijn alle kenmerken 'ter plaatse' bepaald en er wordt niks van standaardwaarde gebruikt. Je ziet dat we tussen de ronde haakjes ook al onze kenmerken (niet enkel de naam, datatype moet ook inbegrepen zijn!) gaan meegeven.
+Tussen de accolades gaan we dan de parameters gaan toekennen aan de kenmerken. We kunnen niet zomaar 'nummer = nummer' gaan zeggen. We hebben twee variabelen: één behoort tot de klasse, één behoort tot de constructor en is de meegegeven parameter. 
+
+Als we iets willen veranderen aan een kenmerk van een object, dan gebruiken we 'this.' gevolgd door het kenmerk. Willen we de prijs gaan aanpassen, dan gaan we 'this.prijs = prijs' gaan doen waarbij 'this.prijs' het kenmerk prijs is en 'prijs' de meegegeven parameter is.
+
+![image](https://user-images.githubusercontent.com/70543493/124655838-afc52a80-dea0-11eb-80e5-101b867b5a19.png)
+
+
+```java
+//1. Constructor met géén default waarden.
+	public HotelKamer(int nummer, int oppervlakte, boolean keyCardNodig, boolean isLuxueus, String[] extras, double prijs) {
+		this.nummer = nummer;
+		this.oppervlakte = oppervlakte;
+		this.keyCardNodig = keyCardNodig;
+		this.isLuxueus = isLuxueus;
+		this.extras = extras;
+		this.prijs = prijs;
+	}
+```
+
+
+We kunnen ook vooraf bepaalde waarden gaan instellen. Denk maar bijvoorbeeld aan iets dat we zelf nog niet vooraf kunnen weten. Bij een nieuwe kamer kunnen we vragen stellen zoals 'heeft er hier iemand al gewoond?' dat we op false kunnen zetten of 'aantal mensen die hier hebben verbleven' die we beter op 0 zetten. We hoeven dit niet met de constructor mee te geven, maar in de plaats daarvan kunnen we dit al vooraf in te stellen zodat dit niet als een parameter moet worden meegegeven.
+
+Hieronder zie je dat we enkel vragen naar het nummer, de oppervlakte en de prijs. De niet-vernoemde parameters gaan we een standaardwaarde gaan geven. Voor de linkerhelft blijven we het sleutelwoord 'this.' opschrijven, maar op de rechterhelft kunnen we al direct de waarde gaan opschrijven. Bij het kenmerk 'isLuxueus' gaan we dit standaard op false zetten of bij extra's gaan we maar één element in onze array hebben dat 'geen' is.
+
+```java
+	
+	
+	//2. Constructor met default waarden.
+	public HotelKamer(int nummer, int oppervlakte, double prijs) {
+		this.nummer = nummer;
+		this.oppervlakte = oppervlakte;
+		this.keyCardNodig = false;
+		this.isLuxueus = false;
+		this.extras = new String[5];
+		this.prijs = prijs;
+	}
+	
+```
+
+De laatste soort is een constructor waarbij we géén enkele parameter gaan mee geven. Alles is dus een standaardwaarde. In de ronde haakjes moeten we ook géén parameters gaan mee geven.
+	
+```java
+	public HotelKamer() {
+		this.nummer = 0;
+		this.oppervlakte = 0;
+		this.keyCardNodig = false;
+		this.isLuxueus = false;
+		this.extras = new String[] {"geen"};
+		this.prijs = 0;
+	}
+```
+Let wel op! De naam van je constructor moet exact dezelfde zijn zoals jouw klassenaam. 
+
+Wat is nu het verschil tussen een methode en een constructor? Er zijn wel degelijk verschillen tussen deze twee. In onderstaand schema wil ik de belangrijkste nog eens toelichten:
+
+![image](https://i.imgur.com/wntaZtr.jpg)
+
+
+We keren eventjes terug naar ons voorbeeld van hotelkamers. We willen graag het nummer van een kamer weten en ook de bijhorende extras. We willen met andere woorden iets opvragen van een object en dat kunnen we doen met een **getter**. Een getter is niet verplicht, maar wel nodig als je iets wilt opvragen. Voor ieder kenmerk dat je wilt opvragen ga je dus een getter moeten aanmaken.
+
+```java
+
+	//3. Getters voor alle kenmerken.
+	public int getNummer() {
+		return nummer;
+	}
+
+
+	public int getOppervlakte() {
+		return oppervlakte;
+	}
+
+
+	public boolean isKeyCardNodig() {
+		return keyCardNodig;
+	}
+
+
+	public boolean isLuxueus() {
+		return isLuxueus;
+	}
+
+
+	public String[] getExtras() {
+		return extras;
+	}
+
+
+	public double getPrijs() {
+		return prijs;
+	}
+```
+
+Stel dat je de prijs van een kamer wilt aanpassen, dan ga je geen getter kunnen gebruiken. Een getter gaat enkel iets van een bepaald datatype gaan teruggeven. Voor iets te veranderen ofwel de waarde van iets te gaan setten gaan we **setters** gaan gebruiken. We weten ondertussen dat als we iets willen veranderen zonder iets terug te geven dat we gebruik moeten maken van een void methode. 
+
+Hier moet je wel rekening houden dat het datatype van jouw parameter (tussen de ronde haakjes) overeen komt met het datatype dat gebruikt wordt in de klasse. Er zijn wel manieren om datatypes te gaan omzetten, maar dat gaat buiten de inhoud van OOSD1.
+
+```java	
+// 4. Setters voor alle kenmerken.
+private void setNummer(int nummer) {
+	this.nummer = nummer;
+}
+
+
+private void setOppervlakte(int oppervlakte) {
+	this.oppervlakte = oppervlakte;
+}
+
+
+private void setKeyCardNodig(boolean keyCardNodig) {
+	this.keyCardNodig = keyCardNodig;
+}
+
+
+private void setLuxueus(boolean isLuxueus) {
+	this.isLuxueus = isLuxueus;
+}
+
+
+private void setExtras(String[] extras) {
+	this.extras = extras;
+}
+
+
+private void setPrijs(double prijs) {
+	if(prijs > 0){
+		this.prijs = prijs;
+	}
+}
+```
+
+
+We hebben methodes gezien buiten klasses. Je kan ook methodes gaan aanspreken die invloed hebben of gebruik maken van een specifieke object. Simpel gezegd kan je via een methode iets gaan teruggeven, iets gaan wijzigen, enz. Hieronder heb ik twee methodes uitgewerkt. 
+
+Om een klassemethode aan te spreken heb je een object nodig. Je kan deze methode met andere woorden dus niet gaan uitvoeren als je géén object hebt.
+
+
+
+```java
+//5. Methoden
+public void relax() {
+	System.out.printf("good vibes in room %s.....", this.nummer);
+}
+
+@Override
+public String toString() {
+	return "Kamer " + nummer + " is " + oppervlakte + "m² groot.\n"
+			+ "Keycard nodig? " + keyCardNodig + "\n"
+			+ "Luxueuze suite? " + isLuxueus + "\n" 
+			+ "Extras: " + Arrays.toString(extras) + "\n" 
+			+ "Kostprijs: €" + prijs + "";
+	}
+```
+
+Bij relax() ga je een lijn uitprinten in de console die de tekst 'good vibes in room _n_.....' waarbij _n_ het nummer is van dat specifiek object. Bijvoorbeeld bij kamer 343 zal het lijntje 'good vibes in room 343' uitgeprint worden. Bij kamer 404 zal dit dan 'good vibes in room 404' zijn. Omdat er niks wordt teruggegeven gaan we deze methode ook void maken.
+
+toString is een heel belangrijke methode die je ook zelf kan genereren binnen in Eclipse. '@Override' komt later aan bod, maar simpel gezegd gaan we eigenlijk de methode anders gaan maken dan dat die aan ons wordt gegeven. Als we deze methode niet in onze klasse steken, krijgen we een heel andere uitvoer. Dit heeft wel géén effect op de kenmerken van ons object, die blijven namelijk het zelfde. Enkel de uitvoer zal anders zijn.
+
+Bij toString gaan we een String teruggeven, let ook op want nu is het niet meer void maar wel String, met daarin tekst waarin we al de kenmerken van ons object aan bod laten komen. Een voorbeelduitvoer van kamer 666 zal dan bijvoorbeeld zijn: 
+
+```Kamer 666 is 31m² groot.
+Keycard nodig? true
+Luxeus? false
+Extras: ['Aanwezigheid van demons']
+Kostprijs: €66
+```
+
+
+Nu hebben we ons sjabloon om objecten te gaan aanmaken. Buiten deze klasse gaan we enkele kamers gaan aanmaken. Een object aanmaken is nog vrij logisch.
+
+1. We starten ons lijntje met de klassenaam mee te geven. We willen een object aanmaken van de klasse HotelKamer dus we gebruiken ook deze naam.
+2. Vervolgens gaan we ons object een naam gaan geven. We gaan eerst van kamer 343 een object maken, dus we noemen dit 'room343'. De naam speelt, net zoals bij een variabele, van weinig belang, maar het is wel essentieel dat je een logische naam gaat toekennen om verwarring te voorkomen.
+3. Het is een nieuw object dus we gebruiken het keyword 'new'.  
+
+![image](https://i.imgur.com/PCj1P8y.jpg)
+
+```java
+	//object aanmaken met constructor die géén standaardwaarden gebruikt
+	HotelKamer room343 = new HotelKamer(343, 28, true, true, new String[]{"xbox"}, 56);
+
+	//object aanmaken met constructor die standaardwaarden gebruikt
+	HotelKamer room404 = new HotelKamer(404, 24, 44);
+		
+	//object aanmaken met lege constructor
+	HotelKamer roomUnknown = new HotelKamer();
+		
+	//geeft alle kenmerken terug van kamer 343
+	System.out.println(room343.toString());
+				
+	//print uit: 'good vibes in room 404.....'
+	room404.relax();
+		
+	//print de oppervlakte uit van de kamer met 0 als oppervlakte
+	System.out.println(roomUnknown.getOppervlakte());
+}
+```
+
+
+
+3.5 [Repositories]
+
+We kunnen nu allerlei objecten aanmaken, maar we houden ze niet echt bij. Alles is zogezegd los in ons programma. Om objecten te gaan verzamelen en bij te houden gaan we gebruik maken van repositories ofwel een klasse die objecten gaat bijhouden in een lijst. 
+
+Let op: dit is géén databank. Een databank gaat gegevens bijhouden die blijven bestaan zelfs al wordt ons programma afgesloten. Een repository wordt aangevuld/verminderd/geleegd enkel en alleen als ons programma draait en als we het afsluiten wordt er ook niks bewaard. Met andere woorden, is onze repository leeg bij het opstarten van het programma, dan zal die ook leeg zijn als we het programma een volgende keer gaan opstarten
+
+Over de naamgeving: Als we een lijst willen bijhouden van hotelkamers gaan we dit HotelKamerRepository noemen. De naam is niet zo belangrijk, maar het is wel van belang dat je duidelijk kunt maken dat dit een lijst gaat bijhouden van allerlei hotelkamers. "Hotel" is zeker een mogelijk en geeft ook duidelijk aan dat het een verzameling is van bepaalde kamers. 
+
+Andere voorbeelden:
+* Klasse Bier -> BierWinkel / BierRepository
+* Klasse Dvd -> DvdWinkel / DvdRepository
+* Klasse FitnessApparaat -> Fitness / FitnessApparaatRepository
+
+
+
+
+
+
+
+
