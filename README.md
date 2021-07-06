@@ -3,7 +3,7 @@ Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu stud
 
 Met "Cup of Java" wil ik vooral een andere nadruk leggen op het programmeren dan in de cursus, andere voorbeelden tonen en ook een mogelijke cheatsheet geven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht. Hier wil ik vooral de nadruk leggen op waarom je iets gebruikt.
 
-# 1. [Introductie] You don't forget your first line of code. 
+# 1. [Inleiding] 
 
 Voor het programmeren in Java heb je verschillende IDE's. Een IDE is een editor die wordt gebruikt om code op te bouwen en later te kunnen uitvoeren. Een functie bij de meeste IDE's is om te zien of je fouten hebt gemaakt in je code. Deze worden dan rood onderstreept en is vergelijkbaar met spellingsfouten bij het programma Word.
 
@@ -27,16 +27,16 @@ Let op: We kunnen commentaar toe voegen door gebruik te maken van '//' ofwel twe
 2. **"Import"** verwijst naar bepaalde methodes/functies die onze IDE moet invoeren om diezelfde functies te kunnen uitvoeren bij het compilen. Als dit niet gebeurt zal je een foutmelding krijgen bij het compilen. Hier voeren wij bijvoorbeeld de Scanner functie in om zo invoer te kunnen vragen van de gebruiker.
 3. WillekeurigGetal is een **klasse** die we hebben opgebouwd. Hierin kunnen we meerdere methodes aanmaken waarin we bepaalde zaken kunnen uitvoeren of aanpassen. Hier hebben we enkel en alleen onze "main" methode in staan.
 4. De **main** methode zit binnen in onze klasse. Deze gaat worden gebruikt om het programma op te kunnen starten. Extra info: args bevat de meegegeven command-line argumenten die worden opgeslagen in een array van String-objecten. Hier moet je vooral geen rekening mee houden en dit gaan we ook niet veranderen want anders gaat ons programma niet meer goed functioneren.
-5. We willen een variabele **declareren** en hier een waarde aan toewijzen. De Scanner komt later aan bod, maar voor de uitleg van declareren ga ik het voorbeeld van het willekeurigGetal gaan gebruiken. Als we binnen Java iets willen declareren MOETEN we eerst meegeven van welk primitief datatype deze variabele is. Binnen Java werken we met 
+5. We willen een variabele **declareren** en hier een waarde aan toewijzen. De Scanner komt later aan bod, maar voor de uitleg van declareren ga ik het voorbeeld van het willekeurigGetal gaan gebruiken. Als we binnen Java een variabele willen declareren MOETEN we eerst meegeven van welk primitief datatype deze variabele is. Binnen Java werken we met 
 * integers (int = reële getallen die we gebruiken voor op te tellen)
 * strings (String => enkel tekst + hoofdlettergevoelig!)
 * double (Double => ook rekenen en wordt gebruikt voor kommagetallen)
 * booleaanse waarden (Boolean => enkel true/false)
 * float (float => uitbreiding op Double en wordt gebruikt voor kommagetallen met grotere waarden na de komma)
-6. Als we iets willen uitprinten in onze console maken we gebruik van "System.out.println()" met tussenin de twee ronde haakjes tekst. De tekst begin en eindig je met een dubbele aanhalingsteken. We kunnen echter géén variabele meegeven zoals bij JavaScript waar we gebruik maken van ${variabeleNaam}. Hier moeten we een ander soort functie gaan gebruiken en die noemt System.out.printf(). Tussen de haakjes zijn we verplicht om minstens twee argumenten mee te geven. 
+6. Als we iets willen **uitprinten** in onze console maken we gebruik van "System.out.println()" met tussenin de twee ronde haakjes tekst. De tekst begin en eindig je met een dubbele aanhalingsteken. We kunnen echter géén variabele meegeven zoals bij JavaScript waar we gebruik maken van ${variabeleNaam}. Hier moeten we een ander soort functie gaan gebruiken en die noemt _System.out.printf()_. Tussen de haakjes zijn we verplicht om minstens twee argumenten mee te geven. 
 * Het eerste is de tekst die we willen dat ons programmaatje uit print. In dit geval willen we dat ons programma zegt "Jouw ingegeven getal is 'x'" waarbij x het getal is dat de gebruiker daarnet heeft ingegeven. Voor iedere variabele gebruiken we %s. 
-* Onze volgende argument(en) zijn de variabelen die we willen meegeven. We gebruiken de naam van de variabele die we willen uitprinten. Als je meerdere variabelen wilt gebruiken (zoals verder in de code) kan je ze opsommen. Hou rekening met de volgorde waarin je de argumenten aanspreekt.
-7. We hebben als laatste een controlestructuur. De bedoeling van if() is een vergelijking maken tussen twee waarden. Als deze voldoet gaan we een bepaalde operatie uitvoeren, als dit niet zo is gaan we een andere operatie uitvoeren. Hier gaan we in het volgende hoofdstuk verder op in.
+* Onze volgende argument(en) zijn de variabelen die we willen meegeven. We gebruiken de naam van de variabele die we willen uitprinten. Als je meerdere variabelen wilt gebruiken (zoals verder in de code) kan je ze opsommen door na iedere variabele een komma te plaatsen. Hou rekening met de volgorde waarin je de argumenten aanspreekt.
+7. We hebben als laatste een controlestructuur. De bedoeling van if() is een vergelijking maken tussen twee waarden. Als deze voldoet gaan we een bepaalde operatie uitvoeren, als dit niet zo is gaan we een andere operatie uitvoeren. Dit komt in het tweede hoofdstuk aan bod.
 
 
 ```java
@@ -48,28 +48,28 @@ public class WillekeurigGetal { //3
 
 	public static void main(String[] args) { //4
 		
-		Scanner invoerVanGebruiker = new Scanner(System.in);
+		Scanner invoerVanGebruiker = new Scanner(System.in); //5
 		
-		System.out.println("Waag een gokje!");
+		System.out.println("Waag een gokje!"); //6
 		
 		int getalGebruiker = invoerVanGebruiker.nextInt();
 		invoerVanGebruiker.close();
 		
-		double willekeurigGetal = Math.floor(Math.random());
+		double willekeurigGetal = Math.floor(Math.random()); //5
 		
 		System.out.printf("%s", getalGebruiker);
 		
-		if(willekeurigGetal == getalGebruiker) {
-			System.out.printf("Goed gegokt!");
+		if(willekeurigGetal == getalGebruiker) { //7
+			System.out.printf("Goed gegokt!"); //6
 		} else {
-			System.out.printf("Je gokte %s en het juiste antwoord was %s", getalGebruiker, willekeurigGetal);
+			System.out.printf("Je gokte %s en het juiste antwoord was %s", getalGebruiker, willekeurigGetal); //6
 		}
 
 	}
 
 }
 ```
-# 1.5. [Scanner] Commandline customer service.
+# 1.5. [Scanner]
 
 Bij programmeren met een command-line interface ga je praktisch altijd een Scanner nodig hebben. Een Scanner is zogezegd een object binnen Java die de waarde gaat bijhouden van hetgeen wat de gebruiker ingeeft. Let op: dit is géén primitief datatype. We kunnen dus niet de waarde van een scanner direct gaan gebruiken voor bijvoorbeeld een integer of een String te gaan declareren. Hiervoor moeten wij een extra methode gebruiken. Ik licht de Scanner even toe in onderstaand voorbeeld, lijntje per lijntje :
 
@@ -95,43 +95,31 @@ System.out.printf("Je hebt het getal %s ingegeven.", invoer.nextInt());
 
 Op deze manier bespaar je ook een variabele. Let wel op dat we hier géén foutcontrole hebben toegepast. Ons programma is met andere woorden niet robuust want als de gebruiker in dit geval een stuk tekst gaat ingeven (of met andere woorden alles behalve een getal), dan gaat onze CUI-applicatie crashen en een foutmelding gaan geven. Hiervoor kunnen we een controlestructuur gebruiken om zo de gebruiker in een lus te zetten zodat hij enkel en alleen de applicatie kan afsluiten wanneer de persoon een correcte waarde heeft ingegeven.
 
-# 2. [Controlestructuren] Loup de la loop. 
+# 2. [Controlestructuren]
 
 Bij Java hebben wij drie soorten structuren: sequentie- , selectie- en herhalingsstructuren.
 
-Een **sequentiestructuur** kan je eigenlijk niet zelf implementeren in jouw code. Dit wordt namelijk gedaan door jouw IDE. Kort gezegd gaat jouw programma in de juiste volgorde lijn per lijn het programma uitvoeren. Het programma stopt ook onmiddelijk eenmaal er een fout wordt getroffen in de code. Hier moet je wel rekening houden met het declareren van variabelen. Je kan bijvoorbeeld niet een variabele gaan aanpassen als deze nog niet bestaat.
+De **sequentiestructuur** kan je eigenlijk niet zelf implementeren in jouw code. Dit wordt namelijk gedaan door jouw IDE. Kort gezegd gaat jouw programma in de juiste volgorde lijn per lijn het programma uitvoeren. Het programma stopt ook onmiddelijk eenmaal er een fout wordt getroffen in de code. Hier moet je wel rekening houden met het declareren van variabelen. Je kan bijvoorbeeld niet een variabele gaan aanpassen als deze nog niet bestaat.
+
+In onderstaand voorbeeld willen we de som van twee optellers gaan berekenen. We krijgen een foutmelding te zien omdat we deze twee variabelen pas na onze berekening gaan een waarde geven.
 
 ```java
-int som = opteller + opteller2;
-		
-		int opteller = 5;
-		int opteller2 = 10;
+int som = opteller + opteller2;		
+int opteller = 5;
+int opteller2 = 10;
 ```
 
 **Korte opfrisser in verband met operatoren en prioriteitsregels**
 
-Voor dit stuk ga je voornamelijk voorwaarden moeten opbouwen. Iets kan gelijk zijn, groter dan of kleiner dan zijn. Logischerwijs typen we dit niet voluit, maar gaan we gebruik maken van volgende operatoren:
+![image](https://i.imgur.com/L1PiTBx.png)
 
-'>' : groter dan + '>=' : groter dan of gelijk aan
-'<' : kleiner dan + '<=' : kleiner dan of gelijk aan
-'==' : is gelijk aan
-'!=' : is niet gelijk aan
-
-De prioriteitsregels zijn ook belangrijk bij het opbouwen van deze voorwaarden. De volgende prioriteit moet je weten (van boven naar onder betekent eerst gedaan -> laatst gedaan): 
-
-1 haakjes
-2 vermenigvuldiging, delen en modulo (rest)
-3 optelling en aftrekking
-4 operatoren groter dan en kleiner dan
-5 operatoren gelijk aan
-6 een enkel gelijkheidsteken (-> wordt binnen Java niet gebruikt als operator maar eerder om een variabele te declareren.)
 
 **Selectiestructuren** gaan ons helpen om bepaalde paden in ons programma te gaan filteren. Zo kan je bijvoorbeeld een bepaalde actie gaan toepassen als de gebruiker een waarde in heeft gegeven die overeenstemt met of groter/kleiner is dan een andere waarde. De meest essentiële structuur is de if/else structuur. 
 
+![Gewone If](https://i.imgur.com/NtCX5T2.jpg)
+
 Bij If/Else ga je één voorwaarde meegeven. Voldoet een variabele niet aan een bepaalde voorwaarde, dan gaat het programma over gaan naar het "Else" deel. Hieronder zie je dat we bijvoorbeeld twee variabelen hebben. De variabele snelheidWagen en snelheidBeperking. In onze If-lus kijken we of de snelheid van de wagen sneller was dan de beperking. Als dit zo is dan geven we aan de gebruiker mee dat hij/zij een boete krijgt en gaan we met andere woorden alle code gaan uitvoeren die tussen de accolades staat. Is dit niet zo, dan krijgt de gebruiker het lijntje "no problemo" te zien en opnieuw ook alle code uitvoeren die tussen de accolades staan. 
 Let op: we kunnen maar één keer een else gebruiken. We kunnen ons wel nog verdiepen binnen de If-lus.
-
-![Gewone If](https://i.imgur.com/ulwDhjz.png)
 
 Extra opmerking: Je bent niet verplicht om een else toe te voegen. Als je geen else uitvoerd zal er vanzelfsprekend wel géén alternatief worden aangeboden. In de meeste gevallen zal het wel handig zijn om toch een Else op te bouwen. 
 
@@ -267,7 +255,7 @@ Bij de for-lus ga je, net zoals een boek, beginnen bij het eerste hoofdstuk. Als
 
 ![image](https://i.imgur.com/Mdqd8vc.png)
 
-# 2.5. [Geneste controlestructure] Loop de la loop dans une loop. 
+# 2.5. [Geneste controlestructure]
 
 We kunnen lussen ook gaan nesten. Dit betekent dat we een controlestructuur binnenin een lus gaan plaatsen. Dit kunnen we zogezegd oneindig doen, maar om niet te ver te gaan wil ik toch de geneste for-lus en een geneste if toelichten. Dit zijn de twee die je het vaakst zal tegenkomen.
 
@@ -293,5 +281,5 @@ for (int aantalLijntjes = 5; aantalLijntjes > 0; aantalLijntjes--) {
 ![Geneste if-lus](https://i.imgur.com/djqvJJs.png)
 
 
-# 3. [Objecten] What is an object? A miserable little pile of secrets. 
+# 3. [Objecten en klassen]
 
