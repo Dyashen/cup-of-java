@@ -1,7 +1,9 @@
 # Cup Of Java
 Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu student aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. Tijdens je eerste jaar zal je in het vak OOSD1 ook een deel ontwerpen krijgen. 
 
-Met "Cup of Java" wil ik vooral een andere nadruk leggen op het programmeren dan in de cursus, andere voorbeelden tonen en ook een mogelijke cheatsheet geven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht. Hier wil ik vooral de nadruk leggen op waarom je iets gebruikt.
+Met deze page wil ik andere klemtonen leggen op het programmeren vergeleken met de officiële cursus van Hogent. Hier worden onder meer andere voorbeelden tonen en ook een mogelijke cheatsheet gegeven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht. Het is één en dezelfde materie, maar op een gedeeltelijk andere manier.
+
+Mocht je vragen hebben over deze cursus, laat me gerust weten!
 
 # 1. [Inleiding] 
 
@@ -69,6 +71,12 @@ public class WillekeurigGetal { //3
 
 }
 ```
+
+
+We gaan voornamelijk gebruik maken van variabelen/constanten en methoden. Hieronder nog even een schema om de twee wat te verduidelijken. Over methodes komt nog meer aan bod in een later hoofdstuk.
+
+![image](https://i.imgur.com/nra1wFs.jpg)
+
 # 1.5. [Scanner]
 
 Bij programmeren met een command-line interface ga je praktisch altijd een Scanner nodig hebben. Een Scanner is zogezegd een object binnen Java die de waarde gaat bijhouden van hetgeen wat de gebruiker ingeeft. Let op: dit is géén primitief datatype. We kunnen dus niet de waarde van een scanner direct gaan gebruiken voor bijvoorbeeld een integer of een String te gaan declareren. Hiervoor moeten wij een extra methode gebruiken. Ik licht de Scanner even toe in onderstaand voorbeeld, lijntje per lijntje :
@@ -657,11 +665,40 @@ Nu hebben we ons sjabloon om objecten te gaan aanmaken. Buiten deze klasse gaan 
 }
 ```
 
+# 4. [Arrays]
+
+Stel: Ieder jaar krijg je een rapport met daarin alle scores per opleidingsonderdeel. Alle scores worden samen bij elkaar gehouden om zo enige structuur te kunnen maken. Het zou vrij verwarrend en omslachtig worden mochten we voor iedere score apart gaan bijhouden. Ieder onderdeel wordt ook in een voorbepaalde **volgorde** geplaatst. Dit kan bijvoorbeeld alfabetisch zijn.
+
+Bij het programmeren kunnen we gebruik maken van een soort datastructuur dat we **arrays** gaan noemen. Een array is een container waarin je verschillende elementen kan samen gaan houden. Deze elementen hebben een specifieke volgorde die ook wel de **index van een element** wordt genoemd. Een belangrijk puntje is dat de index altijd vanaf **nul** begint. Het eerste element in een array zal dus altijd nul als index hebben.
+
+Op iedere index van een array hangt er een waarde vast. Arrays binnen Java zijn homogeen wat betekent dat je enkel en alleen maar één datatype mag gebruiken in een array. Je kan dus niet een array bouwen die bestaat uit integers gevolgd door een String en dan weer een integer enz. Alle elementen in de array **moet** van hetzelfde datatype zijn.
+
+Binnen Java hebben alle arrays een bepaald aantal elementen die in de array passen. Als je een array aanmaakt waar je maximaal vijf elementen in kan plaatsen, dan kan je logischerwijs ook geen zeven elementen erin plaatsen. Dit is met andere woorden buiten het bereik van de array.
+
+We kunnen een array als volgt declareren. 
+In de linkerhelft moet je het datatype meegeven gevolgt door vierkante haakjes, hier is dit een array van integers. Daarna geef je dan de naam van de array mee, in dit geval 'hotelkamerNummers'.
+In de rechterhelft gaan we het keyword 'new' gebruiken gevolgd door opnieuw het datatype waaruit onze array gaat bestaan. Tussen de vierkante haakjes merk je waarschijnlijk al een getal op. '6' betekent hier de grootte van onze array. Er kunnen dus hoogstens zes elementen in de array geplaatst worden.
+
+```java
+int[] hotelkamerNummers = new int[6];
+```
+
+Nu hebben we de structuur opgebouwd voor onze array. Enkel bevat deze array nog geen waarden. We gaan hier verandering in brengen door waarden te gaan toevoegen aan de array. De linkerhelft blijft praktisch gelijk, maar in de rechterhelft gaan we enkel accolades gaan gebruiken met daarin alle waarden die we gaan mee geven. 
+
+We zijn niet verplicht om alle plaatsen in de array te gaan gebruiken. Het is zeker mogelijk om lege plaatsen over te laten. Het omgekeerde daarentegen is wat moeilijker en hier moet je zeker rekening mee houden. Stel dat we zeven waarden in de accolades zouden schrijven, dan zullen we hoogstwaarschijnlijk een foutmelding krijgen omdat we zogezegd 'out-of-bounds' gaan ofwel buiten het bereik van onze array. 
+
+```java
+int[] hotelkamerNummers = {343, 101, 404, 666, 314}
+```
 
 
-3.5 [Repositories]
 
-We kunnen nu allerlei objecten aanmaken, maar we houden ze niet echt bij. Alles is zogezegd los in ons programma. Om objecten te gaan verzamelen en bij te houden gaan we gebruik maken van repositories ofwel een klasse die objecten gaat bijhouden in een lijst. 
+![image](https://i.imgur.com/uiNZ1Jh.jpg)
+
+
+# 5. [Repositories]
+
+We kunnen allerlei objecten aanmaken, maar we houden ze niet echt bij. Alles is zogezegd los in ons programma. Bij arrays hebben we gezien hoe we waarden binnen één bepaalde structuur kunnen bijhouden. Dit kunnen we ook doen bij objecten en hiervoor gaan we die lijst van objecten gaan gebruiken. Om objecten te gaan verzamelen en bij te houden gaan we gebruik maken van repositories ofwel een klasse die objecten gaat bijhouden in een lijst van objecten. 
 
 Let op: dit is géén databank. Een databank gaat gegevens bijhouden die blijven bestaan zelfs al wordt ons programma afgesloten. Een repository wordt aangevuld/verminderd/geleegd enkel en alleen als ons programma draait en als we het afsluiten wordt er ook niks bewaard. Met andere woorden, is onze repository leeg bij het opstarten van het programma, dan zal die ook leeg zijn als we het programma een volgende keer gaan opstarten
 
@@ -671,7 +708,6 @@ Andere voorbeelden:
 * Klasse Bier -> BierWinkel / BierRepository
 * Klasse Dvd -> DvdWinkel / DvdRepository
 * Klasse FitnessApparaat -> Fitness / FitnessApparaatRepository
-
 
 
 
