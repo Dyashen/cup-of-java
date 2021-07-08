@@ -716,7 +716,7 @@ De belangrijkste methoden zijn de volgende:
 ![image](https://i.imgur.com/MnqLiAV.png)
 
 ```java
-lijstHotels.add("Overlook Hotel");
+lijstHotels.add("Overlook Hotel"); //Voeg achteraan de array "Overlook Hotel" toe
 ```
 
 '.set(index, nieuweWaarde)' gaat een element op een specifieke plaats in de array gaan aanpassen. Het is van belang dus dat je meegeeft waar je iets gaat aanpassen en ook wat de nieuwe waarde wordt. In onderstaande afbeelding zie je een voorbeeld van zo een ArrayList. We geven de index mee (4) wat betekent dat we het element op index 4 gaan aanpassen met de nieuwe waarde, in dit geval wordt dit "Ice Hotel".
@@ -724,13 +724,13 @@ lijstHotels.add("Overlook Hotel");
 ![image](https://i.imgur.com/fQZvSJo.png)
 
 ```java
-lijstHotels.set(4, "Ice Hotel");
+lijstHotels.set(4, "Ice Hotel"); //Verander de waarde van het element, dat index '4' heeft, naar "Ice Hotel"
 ```
 
 '.remove(index)' is een methode die het element op de meegegeven index gaat verwijderen. Let op! De waarde wordt niet enkel leeggemaakt, de opeenvolgende cellen gaan worden doorgeschoven en de index van iedere cel gaat dus ook veranderen.
 
 ```java
-lijstHotels.remove(2);
+lijstHotels.remove(2); //Verwijder het element dat index '2' heeft
 ```
 
 ![image](https://i.imgur.com/FRKVkKh.png)
@@ -741,6 +741,7 @@ lijstHotels.remove(2);
 ```java
 lijstHotels.clear();
 ```
+![image](https://i.imgur.com/87TxiCS.png)
 
 '.size()' is ook een methode die geen parameters vereist en die gelijkaardig is aan de '.length()' methode die we hebben gezien bij arrays. Als je '.size()' gaat gebruiken krijg je het aantal elementen in een ArrayList te zien, of kortgezegd de 'grootte' van de ArrayList.
 
@@ -750,7 +751,7 @@ lijstHotels.size(); //5
 
 Als laatste kunnen we ook onze ArrayList gaan doorlopen om zo alle waarden uit te gaan printen of om ze te gaan gebruiken. Eigenlijk gelden de zelfde principes op twee veranderingen na.
 
-Allereerst gaan we niet '.lenght()' gaan gebruiken om de limiet te weten, maar we gebruiken hiervoor de vooraf genoemde '.size()'.
+Allereerst gaan we niet '.length()' gaan gebruiken om de limiet te weten, maar we gebruiken hiervoor de vooraf genoemde '.size()'.
 Als tweede kunnen we ook niet 'arrayList[index]' gaan gebruiken. Hiervoor moeten we werken met de '.get' methode.
 
 ```java
@@ -767,7 +768,7 @@ for(String hotel : lijstHotels){
 }
 ```
 
-![image](https://i.imgur.com/87TxiCS.png)
+
 
 
 
