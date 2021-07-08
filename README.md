@@ -1,9 +1,7 @@
-# Cup Of Java
-Hallo! Ik ben Dylan Cluyse. Washed-up student van de lerarenopleiding en nu student aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. Tijdens je eerste jaar zal je in het vak OOSD1 ook een deel ontwerpen krijgen. 
+# Cup Of Java ☕
+Hallo! Ik ben Dylan Cluyse. Washed-up student leerkracht secundair onderwijs en nu student Toegepaste Informatica aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. 
 
-Met deze page wil ik andere klemtonen leggen op het programmeren vergeleken met de officiële cursus van Hogent. Hier worden onder meer andere voorbeelden tonen en ook een mogelijke cheatsheet gegeven voor wanneer je de inhoud moet toepassen in een praktijkgebonden opdracht. Het is één en dezelfde materie, maar op een gedeeltelijk andere manier.
-
-Mocht je vragen hebben over deze cursus, laat me gerust weten!
+Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden onder meer andere voorbeelden tonen en een nadruk op aanschouwelijke schema's en structuren. De page is nog volledig work-in-progress. Mocht je vragen of opmerkingen hebben, laat me gerust weten via Discord!
 
 # 1. [Inleiding] 
 
@@ -565,6 +563,8 @@ Stel dat je de prijs van een kamer wilt aanpassen, dan ga je geen getter kunnen 
 
 Hier moet je wel rekening houden dat het datatype van jouw parameter (tussen de ronde haakjes) overeen komt met het datatype dat gebruikt wordt in de klasse. Er zijn wel manieren om datatypes te gaan omzetten, maar dat gaat buiten de inhoud van OOSD1.
 
+ 
+
 ```java	
 // 4. Setters voor alle kenmerken.
 private void setNummer(int nummer) {
@@ -590,12 +590,16 @@ private void setLuxueus(boolean isLuxueus) {
 private void setExtras(String[] extras) {
 	this.extras = extras;
 }
+```
 
+Bij onze setters kunnen we ook invoercontrole gaan toepassen. We gebruiken hiervoor een If/else. Bij prijs zie je bijvoorbeeld dat het een positief getal moet zijn. Als dit zo is, dan gaan we de nieuwe prijs gaan doorvoeren. Als dit niet zo is, dan gaan we een foutmelding 'gooien' die ons programma later zal 'opvangen'. Zo een zelf ingestelde foutmelding noemen wij een **exception** en dit komt verder aan bod in het deel van OOSD2. 
 
+```java
 private void setPrijs(double prijs) {
 	if(prijs > 0){
 		this.prijs = prijs;
-	}
+	} else {
+		throw new IllegalArgumentException("Prijs moet positief zijn!");
 }
 ```
 
@@ -636,11 +640,12 @@ Kostprijs: €66
 ```
 
 
-Nu hebben we ons sjabloon om objecten te gaan aanmaken. Buiten deze klasse gaan we enkele kamers gaan aanmaken. Een object aanmaken is nog vrij logisch.
+Nu hebben we zogezegd ons sjabloon om objecten te gaan aanmaken. Buiten deze klasse gaan we enkele kamers gaan aanmaken. Een object aanmaken is nog vrij logisch.
 
 1. We starten ons lijntje met de klassenaam mee te geven. We willen een object aanmaken van de klasse HotelKamer dus we gebruiken ook deze naam.
 2. Vervolgens gaan we ons object een naam gaan geven. We gaan eerst van kamer 343 een object maken, dus we noemen dit 'room343'. De naam speelt, net zoals bij een variabele, van weinig belang, maar het is wel essentieel dat je een logische naam gaat toekennen om verwarring te voorkomen.
-3. Het is een nieuw object dus we gebruiken het keyword 'new'.  
+3. Het is een nieuw object van een bepaalde klasse, dus we gaan het keyword 'new' gevolgd door de klassenaam gaan schrijven.
+4. De parameters die je meegeeft zijn afhankelijk van de constructor die je gebruikt. Heb je een constructor die géén parameters vraagt, dan kan je de ronde haakjes leeg laten. Het hangt er vooral van af welke gegevens het object zeker moeten bevatten dus kijk vooral naar de constructor die daar rekening mee houdt;
 
 ![image](https://i.imgur.com/PCj1P8y.jpg)
 
@@ -683,6 +688,7 @@ In de rechterhelft gaan we het keyword 'new' gebruiken gevolgd door opnieuw het 
 int[] hotelkamerNummers = new int[6];
 ```
 
+
 Nu hebben we de structuur opgebouwd voor onze array. Enkel bevat deze array nog geen waarden. We gaan hier verandering in brengen door waarden te gaan toevoegen aan de array. De linkerhelft blijft praktisch gelijk, maar in de rechterhelft gaan we enkel accolades gaan gebruiken met daarin alle waarden die we gaan mee geven. 
 
 We zijn niet verplicht om alle plaatsen in de array te gaan gebruiken. Het is zeker mogelijk om lege plaatsen over te laten. Het omgekeerde daarentegen is wat moeilijker en hier moet je zeker rekening mee houden. Stel dat we zeven waarden in de accolades zouden schrijven, dan zullen we hoogstwaarschijnlijk een foutmelding krijgen omdat we zogezegd 'out-of-bounds' gaan ofwel buiten het bereik van onze array. 
@@ -691,9 +697,78 @@ We zijn niet verplicht om alle plaatsen in de array te gaan gebruiken. Het is ze
 int[] hotelkamerNummers = {343, 101, 404, 666, 314}
 ```
 
+![image](https://i.imgur.com/amZj7Ej.jpg)
 
 
-![image](https://i.imgur.com/uiNZ1Jh.jpg)
+
+Het nadeel aan het gebruik van arrays is dat we met een limiet zitten. Echter kunnen we binnen Java gebruik maken van **ArrayLists**. Dit zijn op papier ook gewoon arrays, maar hebben een dynamische grootte en laten het ook makkelijker toe om objecten toe te voegen en te verwijderen. Als we niet weten hoe groot onze array kan worden, dan is het beter om te werken met een ArrayList. Weten we wél hoe groot onze array maximaal wordt, dan gebruiken we gewone arrays met een vooraf bepaalde limiet.
+
+![image](https://i.imgur.com/BqwZuGB.jpg)
+
+
+
+Arrays zijn datastructuren die je in bijna iedere programmeertaal gaat terugvinden. Een ArrayList is een speciale klasse in Java die ook zijn eigen methoden heeft. Deze methoden laten je bijvoorbeeld toe om elementen te kunnen verwijderen, toevoegen en te veranderen. Dat is iets dat je niet, of ten minste in beperkte mate, kan doen bij gewone arrays.
+
+De belangrijkste methoden zijn de volgende:
+
+'.add(waarde)' gaat een element achteraan de array gaan toevoegen. De enige parameter die je moet meegeven is de waarde van het element dat je wilt toevoegen aan de array. Hou hierbij rekening dat je enkel en alleen elementen kan toevoegen die van hetzelfde datatype zijn. Je kan met andere woorden géén String toevoegen aan een ArrayList van integers of een integer toevoegen aan een ArrayList van doubles.
+
+![image](https://i.imgur.com/MnqLiAV.png)
+
+```java
+lijstHotels.add("Overlook Hotel");
+```
+
+'.set(index, nieuweWaarde)' gaat een element op een specifieke plaats in de array gaan aanpassen. Het is van belang dus dat je meegeeft waar je iets gaat aanpassen en ook wat de nieuwe waarde wordt. In onderstaande afbeelding zie je een voorbeeld van zo een ArrayList. We geven de index mee (4) wat betekent dat we het element op index 4 gaan aanpassen met de nieuwe waarde, in dit geval wordt dit "Ice Hotel".
+
+![image](https://i.imgur.com/fQZvSJo.png)
+
+```java
+lijstHotels.set(4, "Ice Hotel");
+```
+
+'.remove(index)' is een methode die het element op de meegegeven index gaat verwijderen. Let op! De waarde wordt niet enkel leeggemaakt, de opeenvolgende cellen gaan worden doorgeschoven en de index van iedere cel gaat dus ook veranderen.
+
+```java
+lijstHotels.remove(2);
+```
+
+![image](https://i.imgur.com/FRKVkKh.png)
+
+
+'.clear()' is een methode die geen parameters vereist en die simpelweg de gehele ArrayList gaat leegmaken. De ArrayList wordt niet verwijderd, maar wel elke cel die zich in de ArrayList bevindt. Als je een nieuwe element gaat toevoegen zal deze dus index 0 krijgen, of met andere woorden de eerste element in de ArrayList. 
+
+```java
+lijstHotels.clear();
+```
+
+'.size()' is ook een methode die geen parameters vereist en die gelijkaardig is aan de '.length()' methode die we hebben gezien bij arrays. Als je '.size()' gaat gebruiken krijg je het aantal elementen in een ArrayList te zien, of kortgezegd de 'grootte' van de ArrayList.
+
+```java
+lijstHotels.size(); //5
+```
+
+Als laatste kunnen we ook onze ArrayList gaan doorlopen om zo alle waarden uit te gaan printen of om ze te gaan gebruiken. Eigenlijk gelden de zelfde principes op twee veranderingen na.
+
+Allereerst gaan we niet '.lenght()' gaan gebruiken om de limiet te weten, maar we gebruiken hiervoor de vooraf genoemde '.size()'.
+Als tweede kunnen we ook niet 'arrayList[index]' gaan gebruiken. Hiervoor moeten we werken met de '.get' methode.
+
+```java
+for (int teller = 0; teller < lijstHotels.size(); teller++){
+	System.out.println(lijstHotels.get(teller); // print de naam van het hotel uit op een lijntje
+}
+```
+
+Ook komt de enhanced-for lus hier opnieuw van pas. Beide zijn even goede en functionerende mogelijkheden. In onderstaand voorbeeld doorlopen we een array van Strings. 
+
+```java
+for(String hotel : lijstHotels){
+	System.out.println(hotel); // gebruikt géén '.get()' omdat dit al de waarde is uit de array
+}
+```
+
+![image](https://i.imgur.com/87TxiCS.png)
+
 
 
 # 5. [Repositories]
@@ -709,6 +784,11 @@ Andere voorbeelden:
 * Klasse Dvd -> DvdWinkel / DvdRepository
 * Klasse FitnessApparaat -> Fitness / FitnessApparaatRepository
 
+# 6. [Methodes]
+
+static/non-static
+bibliotheekklasse Math
+params doorgeven in een methode
 
 
 
