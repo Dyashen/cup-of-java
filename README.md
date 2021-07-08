@@ -71,7 +71,48 @@ public class WillekeurigGetal { //3
 ```
 
 
-We gaan voornamelijk gebruik maken van variabelen/constanten en methoden. Hieronder nog even een schema om de twee wat te verduidelijken. Over methodes komt nog meer aan bod in een later hoofdstuk.
+We gaan voornamelijk gebruik maken van variabelen/constanten en methoden. Hieronder nog even een schema om de twee wat te verduidelijken. Over methodes komt nog meer aan bod in een later hoofdstuk, maar ik wel toch nog even aanhalen hoe we een methode kunnen aanmaken en ook kunnen oproepen vanuit de main-klasse.
+
+We maken een methode die simpelweg 'Hallo' gevolgd door een gegeven naam gaat teruggeven aan het systeem. 
+
+De naam kan variëren dus deze moeten we mee geven als parameter. Parameters komen tussen de ronde haakjes. De naam maakt niet zo zeer uit, maar het datatype (in dit geval String) is wel zeer belangrijk. Je kan meerdere parameters opvragen in een methode. Dit kunnen Strings, integers, doubles, enz. zijn maar de volgorde speelt wel een belangrijke rol.
+
+Dit stukje tekst moet teruggegeven worden aan het systeem. Dit betekent dat we iets moeten terugsturen en daarvoor gaan we vóór de naam van onze methode het datatype zetten dat wordt teruggestuurd. Hier is dit een String dat we gaan terugsturen. Mochten we een integer terugsturen, dan zou dit 'int begroeting(String naam)' zijn. 
+De 'return' is hier ook zeer belangrijk. Alles dat na 'return' komt is ook hetgeen dat wordt teruggestuurd. Vaak gaat dit een variabele zijn, maar het is van belang dat wat je ook na return gaat plaatsen, dat dit overeenstemt met het gevraagde datatype. Geef je géén return mee, dan zal jouw IDE ook een foutmelding geven.
+
+Je merkt waarschijnlijk ook op dat het woordje 'static' hier ook nog staat. Dit komt later aan bod, maar is voorlopig wel essentieel voor de opbouw van onze methode.
+
+```java
+public static String begroeting(String naam) {
+	return String.format("Hallo %s!", naam);
+}
+```
+
+Het aanroepen van de methode gaat dan als volgt. We schrijven de naam van onze methode, hier dus 'begroeting', gevolgd door twee ronde haakjes. De methode verwacht dat we een String mee geven, dus geven we hier eender welke naam in. Let wel op dat je hier gebruik maakt van dubbele aanhalingstekens. Anders gaat de compiler dit niet als een String zien en dit fout rekenen.
+
+We weten dat deze methode een String teruggeeft. Het enige wat we moeten doen is deze nog uitprinten en hiervoor gebruiken we dus 'System.out.println()' met tussen de ronde haakjes onze begroeting-methode.
+
+```java
+public static void main(String[] args) {
+	System.out.println(begroeting("Dylan"));
+}
+```
+
+We kunnen ook een methode opbouwen die direct het lijntje gaat uitprinten zonder iets terug te geven aan het systeem. Als er niks wordt teruggegeven, dan gaan we niet het datatype gaan mee geven maar gaan we hiervan een 'void-methode' maken. Je ziet waarschijnlijk ook al dat er géén return-keyword te zien is in de methode.
+
+```java
+public static void begroeting(String naam) {
+	System.out.printf("hallo %s!");
+}
+```
+
+Nu hoeven we bij het aanspreken enkel en alleen de methode te schrijven inclusief de enkele parameter.
+
+```java
+public static void main(String[] args) {
+	begroeting("Dylan");
+}
+```
 
 ![image](https://i.imgur.com/nra1wFs.jpg)
 
