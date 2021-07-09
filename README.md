@@ -3,6 +3,10 @@ Hallo! Ik ben Dylan Cluyse. Washed-up student leerkracht secundair onderwijs en 
 
 Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden onder meer andere voorbeelden tonen en een nadruk op aanschouwelijke schema's en structuren. De page is nog volledig work-in-progress. Mocht je vragen of opmerkingen hebben, laat me gerust weten via Discord!
 
+Handige websites:
+- JavaTpoint
+- W3schools
+
 # 1. [Inleiding] 
 
 Voor het programmeren in Java heb je verschillende IDE's. Een IDE is een editor die wordt gebruikt om code op te bouwen en later te kunnen uitvoeren. Een functie bij de meeste IDE's is om te zien of je fouten hebt gemaakt in je code. Deze worden dan rood onderstreept en is vergelijkbaar met spellingsfouten bij het programma Word.
@@ -1075,13 +1079,19 @@ for(int getal : arrOppervlaktes) {
 
 Onze methodes zien er zo uit:
 
-De onderstaande methode ga je een array opvragen. Deze array wordt door de for-lus doorlopen 
+De onderstaande methode ga je een array opvragen. Deze array wordt door de for-lus doorlopen en we gaan iedere oppervlakte gaan uitprinten. Iedere oppervlakte zal gehalveerd zijn.
 
 ```java
 public static void downsizeArrOppervlakte(int[] arrOppervlakte){
 	for(int teller = 0; teller < arrOppervlakte.length; teller++){
 		arrOppervlakte[teller]*=2;
 	}
+}
+```
+```java
+//de gehele array doorlopen
+for(int getal : arrOppervlaktes) {
+	System.out.println(getal); //oppervlakte gehalveerd
 }
 ```
 
@@ -1122,6 +1132,234 @@ De uitvoer ziet er als volgt uit:
 70
 ```
 
+# Recursie
+
+# 7. Pijlers van OO.
+
+# Inkapseling
+Dit is een soort van techniek waarbij je data, ofwel jouw variabelen, en code die op de data gaat reageren, ofwel jouw methoden, gaat inwikkelen tot één bepaalde eenheid. Je wilt met andere woorden dus er voor zorgen dat andere klassen géén toegang hebben tot methoden of variabelen van andere klassen.
+
+Hiervoor gebruik je het 'private' keyword. Al jouw variabelen van een klasse ga je op private zetten zodat enkel binnen de klasse met deze variabelen kunnen gewerkt worden. Dit doen we om ongeauthoriseerd gebruik van andere klassen te voorkomen. 
+
+```
+private int kamerNr;
+private boolean isLuxueus;
+private String[] extras;
+
+private void setKamerNr(int kamerNr){
+	this.kamerNr = kamerNr;
+}
+
+private void setIsLuxueus(boolean isLuxueus){
+	this.IsLuxueus = isLuxueus;
+}
+```
+
+Als laatste moet je er voor zorgen dat jouw getters wél op publiek staan. Op deze manier kan je vanuit een andere klasse of uit de main-methode toch nog informatie over een object gaan ophalen.
+
+# Abstractie
+Bij abstractie ga je de complexiteit van code eigenlijk gaan maskeren of verbergen en eerder ga je gaan focussen op de functionaliteit voor de gebruiker. Je zorgt er met andere woorden voor dat je enkel de belangrijke zaken gaat tonen aan de gebruiker en alle interne details eigenlijk niet zichtbaar zijn.
+
+Bij het sturen van een Discord-bericht ga je enkel kijken naar het sturen en/of ontvangen, maar je gaat zelf niet stil staan 'hoe' dat dit proces verloopt. De nadruk hier ligt vooral op **wat** een object doet in Object-Oriented ontwikkeling in de plaats van hoe het iets moet doen.
+
+In OOSD2 komen interfaces en abstracte klassen aan bod.
+
+# Overerving
+Overerving is een techniek die vooral de nadruk legt op herbruikbaarheid. Stel dat we twee héél gelijkaardige klassen hebben met één of meerdere verschillen, dan zou het overbodig zijn om zoveel code opnieuw te gaan uittypen. We kunnen eigenlijk gaan werken met een klasse die methoden en variabelen gaat overnemen.
+
+![image](https://user-images.githubusercontent.com/70543493/125122223-60c40300-e0f5-11eb-9a1b-5f985e9e6ec9.png)
+
+Hieronder hebben we drie klassen. De klasse 'Resto' is zogezegd de parent-klasse. Dit betekent dat alle subklassen of klassen onder 'Resto' alles (variabelen en methoden) gaan overnemen zonder dat deze inhoud opnieuw moet geschreven worden. 
+
+Klasse 'Pizzeria' en 'Frituur' gaan dus de drie variabelen (naam, kapitaal en locatie) én de twee methoden (serveerEten en geefRekening) gaan overnemen. Zij hebben wél ook hun eigen methoden die ze aan de al bestaande inhoud gaan toevoegen.
+
+Een object van de klasse 'Pizzeria' heeft alle methoden van de klasse 'Resto', maar ook nog een extra variabele 'diameterGrootstePizza' die kan gebruikt worden. Ook zijn er de methoden throwPizzaInAir, add- en removePineapple.
+Een object van de klasse 'Frituur' heeft alle methoden van de klasse 'Resto', maar ook een array van Strings 'soortenDirtyFries' en ook een methode 'bakFrietjes'.
+
+Je kan wel niet met een object van klasse 'Frituur' bijvoorbeeld de methode 'addPineapple' aanspreken. Dit gaat niet lukken omdat dit enkel voor de subklasse 'Pizzeria' werkt. Ook omgekeerd waar een object van 'Pizzeria' bijvoorbeeld niet 'soortenDirtyFries' gaat hebben.
+
+In code ziet het er als volgt uit.
+
+Bij de klasse Resto, of in dit geval de parent-klasse, moeten we eigenlijk niks aanpassen. Hier gebruiken we twee constructors en we voorzien publieke getters en setters. Als laatste voorzien we ook een toString methode. De override is hier noodzakelijk.
+
+```Klasse Resto```
+```java
+public class Resto {
+	
+	String naam;
+	int kapitaal;
+	String locatie;
+	
+	public Resto(String naam, int kapitaal, String locatie) {
+		this.naam = naam;
+		this.kapitaal = kapitaal;
+		this.locatie = locatie;
+	}
+	
+	public Resto() {
+		this.naam = "Example";
+		this.kapitaal = 0;
+		this.locatie = "";
+	}
+	
+	private void serveerEten() {
+		System.out.println("Bestelling is klaar!");
+	}
+	
+	private void geefRekening() {
+		System.out.println("");
+	}
+
+	public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+
+	public int getKapitaal() {
+		return kapitaal;
+	}
+
+	public void setKapitaal(int kapitaal) {
+		this.kapitaal = kapitaal;
+	}
+
+	public String getLocatie() {
+		return locatie;
+	}
+
+	public void setLocatie(String locatie) {
+		this.locatie = locatie;
+	}
+	
+	@Override
+	public String toString() {
+		return naam + " heeft een kapitaal van €" + kapitaal + " en is gevestigd te " + locatie + ".";
+	}
+
+}
+```
+
+Hieronder zie je één van de twee subklassen. Om er voor te zorgen dat we alles over erven van de klasse Resto gaan we bij 'public class Pizzeria' achteraan het keyword 'extends Resto' gaan schrijven. We voegen dus 'extends' gevolgd door de klassenaam van waar we willen overerven toe.
+
+Voor de constructor kunnen we ook makkelijker te werk gaan. We gaan hiervoor werken met 'super()'. In de ronde haakjes gaan we alle parameters opgeven die óók worden gebruikt in de constructor van de parentklasse. Bij een lege constructor hoeven we ook niets in de 'super' methode te plaatsen.
+
+Bij toString hoeven we ook niet alles opnieuw uit te schrijven. We kunnen eigenlijk verdergaan van waar de toString van Resto eindigde. In bepaalde gevallen is het toch beter om vanaf nul terug te beginnen. Dan heb je 'super.toString()' niet meer nodig.
+
+```Klasse Pizzeria```
+```java
+package domein;
+
+public class Pizzeria extends Resto {
+
+	int diameterGrootstePizza;
+
+	public Pizzeria() {
+		super();
+		this.diameterGrootstePizza = 0;
+	}
+
+	public Pizzeria(String naam, int kapitaal, String locatie, int diameterGrootstePizza) {
+		super(naam, kapitaal, locatie);
+		this.diameterGrootstePizza = diameterGrootstePizza;
+	}
+	
+	public int getDiameterGrootstePizza() {
+		return diameterGrootstePizza;
+	}
+
+	public void setDiameterGrootstePizza(int diameterGrootstePizza) {
+		this.diameterGrootstePizza = diameterGrootstePizza;
+	}
+
+	private void throwPizzaInAir() {
+		if(Math.random() < 0.5) {
+			System.out.println("Nice!");
+		} else {
+			System.out.println("Oops!");
+		}	
+	}
+	
+	private void addPineapple() {
+		System.out.println("");
+	}
+	
+	private void removePineapple() {
+		System.out.println("");
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\n Deze vestiging heeft een speciale pizza die " + diameterGrootstePizza + " groot is.";
+	}
+}
+```
+
+Bij de tweede subklasse gelden de zelfde regels.
+
+1. 'extends Resto'
+2. 'super()' gebruiken bij constructor
+3. 'super.toString()' gebruiken indien nuttig bij jouw toString() methode.
+
+```Klasse Frituur```
+```java
+package domein;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Frituur extends Resto {
+	
+	List<String> soortenDirtyFries;
+
+	public Frituur() {
+		super();
+		this.soortenDirtyFries = new ArrayList<>();
+	}
+
+	public Frituur(String naam, int kapitaal, String locatie, List<String> soortenDirtyFries) {
+		super(naam, kapitaal, locatie);
+		this.soortenDirtyFries = soortenDirtyFries;
+	}
+	
+	private void bakFrietjes() {
+		//
+	}
+}
+
+```
+
+
+We kunnen dit eens uittesten door wat dummy-objecten aan te maken.
+
+```java
+public static void main(String[] args) {
+	List<String> soortenDFries = new ArrayList<>();
+	soortenDFries.add("boulaintje");
+	soortenDFries.add("romboutje");
+	
+	Resto bijMoeke = new Resto("Bij Moeke", 100000, "Moedersesteenweg 225");
+	Pizzeria alDente = new Pizzeria("Al Dente", 20000, "Dentestraat 24", 50);
+	Frituur hetHoekske = new Frituur("Het Hoekske", 50000, "Hoekstraat 1", soortenDFries);
+		
+	System.out.println(bijMoeke.toString());
+	System.out.println(alDente.toString());
+	System.out.println(hetHoekske.toString());	
+}
+```
+
+```Uitvoer:```
+```
+Bij Moeke heeft een kapitaal van €100000 en is gevestigd te Moedersesteenweg 225.
+Al Dente heeft een kapitaal van €20000 en is gevestigd te Dentestraat 24.
+ Deze vestiging heeft een speciale pizza die 50 groot is.
+Het Hoekske heeft een kapitaal van €50000 en is gevestigd te Hoekstraat 1.
+ Als specialiteiten heeft dit etablissement ook: [boulaintje, romboutje]
+```
+
+# Polymorfisme
 
 
 
