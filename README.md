@@ -726,20 +726,65 @@ In de linkerhelft moet je het datatype meegeven gevolgt door vierkante haakjes, 
 In de rechterhelft gaan we het keyword 'new' gebruiken gevolgd door opnieuw het datatype waaruit onze array gaat bestaan. Tussen de vierkante haakjes merk je waarschijnlijk al een getal op. '6' betekent hier de grootte van onze array. Er kunnen dus hoogstens zes elementen in de array geplaatst worden.
 
 ```java
+//lege array maken
 int[] hotelkamerNummers = new int[6];
 ```
 
-
-Nu hebben we de structuur opgebouwd voor onze array. Enkel bevat deze array nog geen waarden. We gaan hier verandering in brengen door waarden te gaan toevoegen aan de array. De linkerhelft blijft praktisch gelijk, maar in de rechterhelft gaan we enkel accolades gaan gebruiken met daarin alle waarden die we gaan mee geven. 
+Elementen kan je toevoegen aan de array door de naam van de array te typen gevolgd door rechte haakjes met daarin de index. Deze index is belangrijk want hier gaat de waarde van het element, dat je wilt toevoegen, opgevuld worden. Onder de code vind je een schema van hoe de array er zogezegd dan uit ziet.
 
 We zijn niet verplicht om alle plaatsen in de array te gaan gebruiken. Het is zeker mogelijk om lege plaatsen over te laten. Het omgekeerde daarentegen is wat moeilijker en hier moet je zeker rekening mee houden. Stel dat we zeven waarden in de accolades zouden schrijven, dan zullen we hoogstwaarschijnlijk een foutmelding krijgen omdat we zogezegd 'out-of-bounds' gaan ofwel buiten het bereik van onze array. 
 
 ```java
-int[] hotelkamerNummers = {343, 101, 404, 666, 314}
+//elementen toevoegen aan de array
+hotelkamerNummers[0] = 343;
+hotelkamerNummers[1] = 101;
+hotelkamerNummers[3] = 404;
 ```
+
+![image](https://user-images.githubusercontent.com/70543493/125082007-f4caa600-e0c6-11eb-87d7-065e3dfa9baf.png)
+
+
+Er is ook een directe manier om een array op te vullen. Alleen geef je hier juist niet de limiet handmatig mee, maar wordt die berekend aan de hand van hoeveel gegevens je doorgeeft. De linkerhelft blijft praktisch gelijk, maar in de rechterhelft gaan we enkel accolades gaan gebruiken met daarin alle waarden die we gaan mee geven. 
+
+
+
+```java
+int[] hotelkamerNummers = {343, 101, 404, 666, 314};
+```
+
+![image](https://user-images.githubusercontent.com/70543493/125082210-3b200500-e0c7-11eb-845f-8d1ceaeadb93.png)
+
 
 ![image](https://i.imgur.com/amZj7Ej.jpg)
 
+
+Nu houden we enkel de nummers bij van hotelkamers, maar zou het niet mogelijk zijn om het gehele object van de klasse Hotelkamer? Het antwoord op die vraag is ja!
+
+Als voorbeeld gaan we drie hotelkamers toevoegen aan een array. We zorgen er voor dat er hoogstens vier objecten in deze array kunnen geplaats worden. Eerst zorgen we ervoor dat deze objecten aangemaakt worden. Eenmaal aangemaakt kunnen we ze in de array gaan plaatsen. Hiervoor zijn beide manieren mogelijk.
+
+```java
+//Eerst maken we drie HotelKamer-objecten aan.
+HotelKamer room343 = new HotelKamer(343, 28, true, true, new String[]{"xbox"}, 56);
+HotelKamer room404 = new HotelKamer(404, 24, 44);
+HotelKamer roomUnknown = new HotelKamer();
+
+//We gebruiken niet meer int[] of String[], maar wel de naam van de klasse gevolgd door vierkante haakjes '[]'.
+
+//Manueel opvullen
+HotelKamer[] hotelkamers = new HotelKamer[4];
+hotelkamers[0] = room343;
+hotelkamers[1] = room404;
+hotelkamers[3] = roomUnknown;
+```
+![image](https://user-images.githubusercontent.com/70543493/125085532-f7c79580-e0ca-11eb-821c-3e8e689ddc51.png)
+
+Hieronder gaan we direct na het declareren de array opvullen. We laten géén lege plaats tussen. Met andere woorden krijgen we hier een array van maximaal drie elementen. 
+
+```java
+//Direct opvullen
+HotelKamer[] hotelkamers2 = {room343, room404, roomUnknown};
+```
+![image](https://user-images.githubusercontent.com/70543493/125085777-3f4e2180-e0cb-11eb-9103-5081143fdcf3.png)
 
 
 Het nadeel aan het gebruik van arrays is dat we met een limiet zitten. Echter kunnen we binnen Java gebruik maken van **ArrayLists**. Dit zijn op papier ook gewoon arrays, maar hebben een dynamische grootte en laten het ook makkelijker toe om objecten toe te voegen en te verwijderen. Als we niet weten hoe groot onze array kan worden, dan is het beter om te werken met een ArrayList. Weten we wél hoe groot onze array maximaal wordt, dan gebruiken we gewone arrays met een vooraf bepaalde limiet.
@@ -809,10 +854,35 @@ for(String hotel : lijstHotels){
 }
 ```
 
+We hebben gezien hoe we primaire datatypes zoals Strings, integers, booleans, enz. bij elkaar kunnen houden, maar we kunnen, net zoals bij gewone arrays, ook ArrayLists gaan gebruiken om objecten te gaan verzamelen. Hiervoor moeten we enkel en alleen de naam van het object in de eerste diamond-operator.
+
+```java
+//Eerst maken we een HotelKamer-object aan.
+HotelKamer room343 = new HotelKamer(343, 28, true, true, new String[]{"xbox"}, 56)
+
+//Hier maken we de ArrayList aan.
+List<HotelKamer> hotel = new ArrayList<>();
+``` 
+
+Nu kunnen we de hotelkamers gaan toevoegen. Hieronder toon ik twee verschillende manieren. We kunnen kiezen om een al gemaakte object te gaan toevoegen door de naam van het object mee te geven:
 
 
 
+```java
+//kamer toevoegen
+hotel.add(room343);
+```
 
+We kunnen daarentegen ook het object aanmaken en direct toevoegen aan de ArrayList. We nemen in principe de rechterhelft van het aanmaken van een object en plaatsen die in onze '.add()'. Dit werkt bij eender welke constructor die je gaat gebruiken.
+
+```java
+//kamer aanmaken + direct toevoegen
+hotel.add(new HotelKamer(404, 24, 44);
+
+//kamer toevoegen met enkel defaultwaarden
+hotel.add(new HotelKamer());
+```
+	
 # 5. [Repositories]
 
 We kunnen allerlei objecten aanmaken, maar we houden ze niet echt bij. Alles is zogezegd los in ons programma. Bij arrays hebben we gezien hoe we waarden binnen één bepaalde structuur kunnen bijhouden. Dit kunnen we ook doen bij objecten en hiervoor gaan we die lijst van objecten gaan gebruiken. Om objecten te gaan verzamelen en bij te houden gaan we gebruik maken van repositories ofwel een klasse die objecten gaat bijhouden in een lijst van objecten. 
@@ -828,12 +898,135 @@ Andere voorbeelden:
 
 # 6. [Methodes]
 
-static/non-static
-bibliotheekklasse Math
-params doorgeven in een methode
+In dit hoofdstuk gaan we wat verder op methodes in. Je hebt gezien hoe je een methode kan aanmaken en aanspreken. We hebben ook al gezien hoe we een methode van een object/klasse kunnen aanmaken en aanspreken. Als we werken met methodes van klassen moeten we goed het onderscheid houden tussen een static en een non-static methode.
+
+# Static en non-static methodes.
+
+Een **non-static methode** is een methode die we enkel en alleen kunnen gebruiken als we een object van een klasse hebben. Bijvoorbeeld bij hotels kunnen we de methode 'relax()' aanspreken die de zin 'good vibes in room x' gaat uitprinten waar 'x' staat voor een specifieke kamer. Deze methode is met andere woorden uniek per object.
+
+```java
+public void relax() {
+	System.out.printf("good vibes in room %s.....", this.nummer);
+}
+```
+
+We spreken de methode aan in de main-klasse. Bij non-static methodes hebben we een object van de klasse nodig. Deze maken we eerst aan (room404) en we spreken hierop de methode 'relax()' aan.
+
+```java
+public static void main(String[] args) {	
+	//object aanmaken
+	HotelKamer room404 = new HotelKamer(404, 24, 44);
+	
+	//print uit: 'good vibes in room 404.....'
+	room404.relax();
+}
+```
+
+Een **static methode** is een methode waar je helemaal géén object van een klasse nodig hebt. Hier wordt er vaak géén gebruik gemaakt van unieke waarden zoals bijvoorbeeld het nummer van de kamer zoals in het vorige voorbeeld. Bij het aanmaken van een static methode ben je verplicht om het keyword 'static' voor de naam van de methode te plaatsen. Anders zal Java deze methode herkennen als een non-static methode en dan heb je wél een object nodig.
+
+```java
+public static void browsen() {	
+	System.out.println("Instagram: motivationalquotes, davidattenborough en woutvanaert hebben iets op hun verhaal geplaatst.");	
+}
+```
+
+De methode aanspreken in de main-klasse doen we anders in vergelijking met een non-static methode. In de plaats van een object aan te maken en deze aan te spreken gaan we eerder direct de klasse opschrijven, in dit geval 'HotelKamer', en hierop de methode aanspreken.
+
+```java
+public static void main(String[] args) {	
+	HotelKamer.browsen();
+}
+```
+
+![image](https://user-images.githubusercontent.com/70543493/125093027-3745b000-e0d2-11eb-80b7-ec7cee04a4d5.png)
+
+# Math
+
+Binnen Java hebben we verschillende bibliotheekklassen. Een bibliotheekklasse voorziet methoden die we tot nu toe al eigenlijk onbewust gebruikt hebben. Specifiek wil ik de klasse Math nog eens toelichten. Deze klasse zal voornamelijk voor wiskundige bewerkingen gebruikt worden.
+
+1. 'abs' zal de absolute waarde teruggeven. 
+
+```java
+Math.abs(-7,2); // -> 7.2
+```
+
+2. 'ceil' gaat een double afronden naar boven. 'floor' gaat een double afronden naar beneden.
+
+```java
+Math.ceil(5.1); // -> 6.0
+Math.floor(5.6); // -> 5.0
+```
+
+4. 'cos', 'sin' en 'tan' komen van pas als we een eigenschap van een gemeten hoek willen berekenen. Deze drie functies staan respectievelijk voor cosinus, sinus en tangent.
+
+```java
+Math.cos(37); //  0.7654140519453434
+Math.sin(37); // -0.6435381333569995
+Math.tan(37); // -0.8407712554027597
+```
+
+5. 'pow' wordt gebruikt voor machtberekening waar je twee parameters meegeeft. Eerst het getal waar je de macht op gaat berekenen en dan het exponent dat je wilt gebruiken.
+
+```java
+Math.pow(5.0, 2.0); // 25.0
+Math.pow(2.0, 3.0); // 8.0
+```
+
+6. 'exp' wordt gebruikt voor machtberekening waar je enkel het exponent meegeeft als parameter. Hier ga je het Euler-getal (of getal 'e') tot de macht van het meegeven exponent gaan berekenen. Bijvoorbeeld als je 2 meegeeft zal dit E^2 zijn ofwel 'E tot de macht 2'. 
+
+```java
+Math.exp(2.0); // 7.38905609893065
+```
+
+7. 'sqrt' wordt gebruikt om de vierkantswortel van een meegegeven getal te gaan berekenen. Je geeft enkel één parameter mee en dat is het getal waar je de vierkantswortel op gaat berekenen.
+
+```java
+Math.sqrt(25.0); // 5.0
+Math.sqrt(36.0); // 6.0
+```
+
+8. 'min' wordt gebruikt om het kleinste getal van twee meegegeven getallen te gaan berekenen. 'max' gaat het grootste getal van twee meegegeven getallen gaan berekenen.
+
+```java
+Math.min(4.2, 6.1); // 4.2
+Math.max(4.2, 6.1); // 6.1
+```
+
+# Pass-by-value
+
+Bij het gebruik van methodes is het verstandig om te weten dat Java in zijn geheel een taal is die voornamelijk werkt met het **pass-by-value** principe. Dit wilt zeggen dat bij het ingeven van een variabele, als parameter in een methode, dat Java enkel de waarde gaat onthouden. Het omgekeerde van pass-by-value is **pass-by-reference** waarbij je juist een verwijzing naar een variabele gaat opslaan.
+
+Onderstaande animatie zou het principe duidelijk moeten maken. We spreken een methode aan die het kopje gaat vullen met koffie. Je ziet dat we van beide kopjes een kopie gaan maken, maar bij de linkerkant zie je dat iedere aanpassing aan het variabele ook wordt doorgevoerd naar de originele variabele. Rechts zie je dat dit niet het geval is en dat enkel de kopie wordt veranderd.
+
+![pass-by-reference-vs-pass-by-value-animation](https://user-images.githubusercontent.com/70543493/125106839-682ce180-e0e0-11eb-91a7-33f59e81d0f7.gif)
+
+Een tof weetje om te onthouden. Bij Java is het niet van belang om te weten waar jouw variabelen worden opgeslagen in het geheugen. Bij lower-level programmeertalen zoals C of Assembler is het juist omgekeerd en wel van noodzaak dat je weet waar jouw variabelen zijn opgeslagen in het geheugen.
+
+Onderstaand is een extra voorbeeld om het principe nog te verduidelijken. We gaan een kleine methode maken die het geboortejaar berekent van iemand. De enige parameter is de leeftijd van een persoon. In de methode gaan we het geboortejaar gaan berekenen door het huidige jaar (een constante waarde) te gaan verminderen met de meegegeven leeftijd.
 
 
+```java
+public int berekenGeboortejaar(int leeftijd) {
+ 	return geboorteJaar = CURRENT_YEAR – leeftijd;
+}
 
+public static void main(){
+	int mijnLeeftijd = 23;
+	berekenGeboortejaar(mijnLeeftijd);
+}
+```
 
+Er zijn hier twee leeftijd-variabelen (leeftijd en mijnLeeftijd), maar omdat we hier werken met pass-by-value worden deze op twee verschillende locaties opgeslagen in het geheugen. Alles wat er gebeurt met 'leeftijd' zal niets veranderen aan 'mijnLeeftijd' ofwel de originele variabele.
 
+Om dit nog te verduidelijken gaan we 'mijnLeeftijd' gaan verhogen met één. 'Leeftijd' zal niet veranderen en zal blijven op 23 in tegenstelling tot 'mijnLeeftijd' die wel degelijk zal verhogen met één en zo de waarde '24' zal hebben. 
 
+```java
+public void verhoogLeeftijd(int leeftijd){
+	return leeftijd + 1; //23 + 1
+}
+
+public static void main(){
+	int mijnLeeftijd = 23; //23
+	verhoogLeeftijd(mijnLeeftijd); //24
+}
+```
