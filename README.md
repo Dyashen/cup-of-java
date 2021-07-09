@@ -996,11 +996,13 @@ Math.max(4.2, 6.1); // 6.1
 
 Bij het gebruik van methodes is het verstandig om te weten dat Java in zijn geheel een taal is die voornamelijk werkt met het **pass-by-value** principe. Dit wilt zeggen dat bij het ingeven van een variabele, als parameter in een methode, dat Java enkel de waarde gaat onthouden. Het omgekeerde van pass-by-value is **pass-by-reference** waarbij je juist een verwijzing naar een variabele gaat opslaan.
 
+De nadruk van dit hoofdstuk ligt vooral bij het begrijpen en inzien hoe Java werkt in vergelijking met andere programmeertalen. Er zijn géén extra methoden of variabelen die gekend moeten worden.
+
 Onderstaande animatie zou het principe duidelijk moeten maken. We spreken een methode aan die het kopje gaat vullen met koffie. Je ziet dat we van beide kopjes een kopie gaan maken, maar bij de linkerkant zie je dat iedere aanpassing aan het variabele ook wordt doorgevoerd naar de originele variabele. Rechts zie je dat dit niet het geval is en dat enkel de kopie wordt veranderd.
 
 ![pass-by-reference-vs-pass-by-value-animation](https://user-images.githubusercontent.com/70543493/125106839-682ce180-e0e0-11eb-91a7-33f59e81d0f7.gif)
 
-Een tof weetje om te onthouden. Bij Java is het niet van belang om te weten waar jouw variabelen worden opgeslagen in het geheugen. Bij lower-level programmeertalen zoals C of Assembler is het juist omgekeerd en wel van noodzaak dat je weet waar jouw variabelen zijn opgeslagen in het geheugen.
+Een tof weetje om te onthouden. Bij Java is het niet van belang om te weten waar jouw variabelen worden opgeslagen in het geheugen. Bij lower-level programmeertalen zoals C of Assembler is het juist omgekeerd en wel van noodzaak dat je weet waar jouw variabelen zijn opgeslagen in het geheugen. Soms is er de '&'-operator waarbij je de locatie van jouw variabele, die op het geheugen staat, kan achterhalen.
 
 Onderstaand is een extra voorbeeld om het principe nog te verduidelijken. We gaan een kleine methode maken die het geboortejaar berekent van iemand. De enige parameter is de leeftijd van een persoon. In de methode gaan we het geboortejaar gaan berekenen door het huidige jaar (een constante waarde) te gaan verminderen met de meegegeven leeftijd.
 
@@ -1030,3 +1032,97 @@ public static void main(){
 	verhoogLeeftijd(mijnLeeftijd); //24
 }
 ```
+
+Dit werkt eveneens ook zo bij objecten. We nemen het voorbeeld van HotelKamer er weer even bij. We gaan via een methode een eigenschap van een gemaakt object gaan aanpassen. Er is maar één parameter bij deze methode en dat is een object van de klasse HotelKamer.
+
+In de methode 'downgrade()' wordt de waarde van de eigenschap 'isLuxueus' verandert naar 'false' bij het meegegeven object. Deze aanpassing wordt direct aangepast aan het originele object.
+
+```java
+public static void main(){
+	// we maken een object HotelKamer aan
+	HotelKamer room343 = new HotelKamer(343, 28, true, true, new String[]{"xbox"}, 56);
+	System.out.println(room343.getIsLuxueus()); //true
+
+	// de eigenschap isLuxueus gaan we op false zetten via een methode 'downgrade'
+	downgrade(room343);
+	System.out.println(room343.getIsLuxueus()); //false
+}
+
+// we vragen een object van de klasse HotelKamer op als parameter
+// via de setter gaan we de eigenschap 'isLuxueus' gaan vervangen naar 'false'
+public void downgrade(HotelKamer hotelkamer){
+	hotelkamer.setIsLuxueus(false);
+}
+```
+
+We kunnen, als laatste deel van pass-by-value, ook arrays meegeven als parameter in een methode.
+
+```java
+int[] arrOppervlaktes = {21, 32, 45, 70};
+		
+wijzigOppervlakte(arrOppervlaktes[2]);
+		
+wijzigArrOppervlaktes(arrOppervlaktes);
+		
+//kijken of de oppervlakte van de waarde op index 2 verandert is
+System.out.println(arrOppervlaktes[2]);
+		
+//de gehele array doorlopen
+for(int getal : arrOppervlaktes) {
+	System.out.println(getal);
+}
+```
+
+Onze methodes zien er zo uit:
+
+De onderstaande methode ga je een array opvragen. Deze array wordt door de for-lus doorlopen 
+
+```java
+public static void downsizeArrOppervlakte(int[] arrOppervlakte){
+	for(int teller = 0; teller < arrOppervlakte.length; teller++){
+		arrOppervlakte[teller]*=2;
+	}
+}
+```
+
+Nu merk je iets anders op. We geven één element mee uit onze array en gebruiken die als parameter op de methode 'wijzigOppervlakte'. Deze zou normaal gezien gehalveerd moeten worden, maar hier gaat dit niet het geval zijn. We geven namelijk een waarde mee, maar Java weet niet van waar die waarde komt dus dit zal dan ook niet worden aangepast in de oorspronkelijke array.
+
+Het grote verschil is dat je hier een waarde meegeeft uit een array tegenover hierboven waar je bij 'downsizeArrOppervlakte' de gehele array gaat veranderen binnen de methode.
+
+```java
+downsizeOppervlakte(arrOppervlaktes[2]);
+
+//kijken of de oppervlakte van de waarde op index 2 verandert is
+System.out.println(arrOppervlaktes[2]);
+```
+```java
+public static void downsizeOppervlakte(int element) {
+	element *= 0.5; // blijft 45, wordt niet gehalveerd
+}
+```
+
+Hoe lossen we dit op? We kunnen de array-methode veranderen zodanig dat we enkel het element op index 2 gaan wijzigen. Dat ziet er als volgt uit:
+
+```java
+public static void downsizeArrOppervlakte(int[] arrOppervlakte){
+	for(int teller = 0; teller < arrOppervlakte.length; teller++){
+		if(teller == 2){
+			arrOppervlakte[teller]*=2;
+		}
+	}
+}
+```
+
+De uitvoer ziet er als volgt uit:
+
+```
+21
+32
+22
+70
+```
+
+
+
+
+
