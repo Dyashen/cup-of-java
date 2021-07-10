@@ -9,19 +9,37 @@ Handige websites:
 
 # 1. [Inleiding] 
 
+# Opbouw binnen een IDE
+
 Voor het programmeren in Java heb je verschillende IDE's. Een IDE is een editor die wordt gebruikt om code op te bouwen en later te kunnen uitvoeren. Een functie bij de meeste IDE's is om te zien of je fouten hebt gemaakt in je code. Deze worden dan rood onderstreept en is vergelijkbaar met spellingsfouten bij het programma Word.
 
-Vooraleer we kijken naar de code moeten we eerst een structuur opbouwen in onze compiler. Hiervoor maken we gebruik van packages waar we onze klassen/interfaces/enums gaan opslaan. Een klasse is een soortgelijk sjabloon waarin we later meer gebruik van gaan maken eenmaal we ons gaan focussen op object-geörienteerd programmeren. Een package maak je als volgend aan: Eerst selecteer je de source map, daarna maak je iets nieuws aan en dat nieuwe onderdeel is een package. Je geeft je een package een bijpassende naam, maar zoals je misschien al weet moeten we ons houden aan het verplichte drielagenmodel.
+Vooraleer we kijken naar de code moeten we eerst een structuur opbouwen in onze compiler. Hiervoor maken we gebruik van packages waar we onze klassen/interfaces/enums gaan opslaan. 
 
-* Domein: Alle domeinklassen komen hier in. Later zal je zien dat dit alle klassen zullen zijn die we in het DCD hebben opgesteld.
-* Persistentie: Dit zijn de klassen die een rechtstreekse verbinding gaan maken met een persistente bron. Dit is een bron die zijn inhoud niet gaat verliezen eenmaal we het programma afsluiten in tegenstelling tot het domein waarin de ingegeven inhoud verloren raakt eenmaal je je programma afsluit. 
-* CUI: In het begin van programmeren gaan we voornamelijk werken met de CUI ofwel de commandline-based interface of console van je IDE.
-* GUI: Vanaf het tweede semester zal je een GUI opbouwen. Hierin ga je alle klassen gaan bewaren die code bevatten van JavaFX of dergelijke grafische structuren afhankelijk van de IDE die je gebruikt.
-* Main: Dit is de package waar je voornamelijk maar één klasse gaat hebben en dat is de StartUp klasse. Dit is de klasse die de eerste CUI/GUI klasse gaat aanspreken van je programma en is essentieel voor een goed werkend programma. 
+Een **klasse** is een soortgelijk sjabloon waarin we later meer gebruik van gaan maken eenmaal we ons gaan focussen op object-geörienteerd programmeren. Meerdere klassen gaan we opslaan in een package om structuur te behouden.
+
+Een package maak je als volgend aan: Eerst selecteer je de source map, daarna maak je iets nieuws aan en dat nieuwe onderdeel is een package. Je geeft je een package een toepasselijke naam.
 
 ![Package aanmaken in Eclipse.](https://i.imgur.com/kSac0T8.png)
 
+# Drielagenmodel
+
 Nu kunnen we klassen aanmaken binnenin één van de packages. Later gaan we ook zien dat we ook enums en interfaces kunnen aanmaken, maar dat komt pas later aan bod. We volgen de zelfde stappen, maar selecteren "Class" in plaats van "Package". 
+
+We mogen wel klasses niet zomaar in eender welke package gaan plaatsen. We moeten rekening houden met het drielagenmodel. Dit is één van de vier pijlers van object-georiënteerd programmeren waar er ook gedurende deze cursus rekening mee zal worden gehouden. Het drielagenmodel wordt gebruikt om structuur te behouden binnen onze applicatie.
+
+![image](https://user-images.githubusercontent.com/70543493/125161421-995dee00-e182-11eb-8d7c-a3755c8f528f.png)
+
+Naast de drie vermelde lagen heb je ook nog de **main-klasse**. Dit is het aanspreekpunt om de applicatie op te starten. Het is van belang dat we een main-klasse hebben, want anders kunnen we ons programmaatje niet opstarten.
+
+```java
+//programma die bij het opstarten een lijntje tekst in de console gaat schrijven
+public static void main(String[] args) {
+	System.out.println("Hallo!");
+}
+```
+
+
+# Opbouw van een klasse.
 
 Eenmaal onze structuur is opgebouwd kunnen we beginnen met ons allereerste lijntje code te schrijven. Ter illustratie heb ik een kort code-blokje opgesteld om de essentials nog eens te doorlopen van wat er allemaal terecht moet komen in een klasse. 
 
@@ -74,6 +92,7 @@ public class WillekeurigGetal { //3
 }
 ```
 
+# Methoden: basis
 
 We gaan voornamelijk gebruik maken van variabelen/constanten en methoden. Hieronder nog even een schema om de twee wat te verduidelijken. Over methodes komt nog meer aan bod in een later hoofdstuk, maar ik wel toch nog even aanhalen hoe we een methode kunnen aanmaken en ook kunnen oproepen vanuit de main-klasse.
 
@@ -120,7 +139,7 @@ public static void main(String[] args) {
 
 ![image](https://i.imgur.com/nra1wFs.jpg)
 
-# 1.5. [Scanner]
+# Scanner / Input via console
 
 Bij programmeren met een command-line interface ga je praktisch altijd een Scanner nodig hebben. Een Scanner is zogezegd een object binnen Java die de waarde gaat bijhouden van hetgeen wat de gebruiker ingeeft. Let op: dit is géén primitief datatype. We kunnen dus niet de waarde van een scanner direct gaan gebruiken voor bijvoorbeeld een integer of een String te gaan declareren. Hiervoor moeten wij een extra methode gebruiken. Ik licht de Scanner even toe in onderstaand voorbeeld, lijntje per lijntje :
 
