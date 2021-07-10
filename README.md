@@ -1346,6 +1346,11 @@ public class Frituur extends Resto {
 	private void bakFrietjes() {
 		//
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "\n Als specialiteiten heeft dit etablissement ook: " + this.soortenDirtyFries;
+	}
 }
 
 ```
@@ -1373,13 +1378,64 @@ public static void main(String[] args) {
 ```
 Bij Moeke heeft een kapitaal van €100000 en is gevestigd te Moedersesteenweg 225.
 Al Dente heeft een kapitaal van €20000 en is gevestigd te Dentestraat 24.
- Deze vestiging heeft een speciale pizza die 50 groot is.
+ Deze vestiging heeft een speciale pizza die 50 cm groot is.
 Het Hoekske heeft een kapitaal van €50000 en is gevestigd te Hoekstraat 1.
  Als specialiteiten heeft dit etablissement ook: [boulaintje, romboutje]
 ```
 
+Op het vlak van overerving kan je hier héél ver in gaan. Je kan met andere woorden een oneindig aantal klassen laten overerven van één parentklasse, maar ook een stamboom van klassen creëren die keer op keer gaan overerven van een parent-klasse.
+
+
 # Polymorfisme
 
+Bij het ontwerpen van applicaties is het van belang om ook vooruit te denken. Aanpassingen maken aan ons domein zou zo simpel en niet al te omslachtig mogen zijn. Stel dat we een nieuwe subklasse aan de klasse 'Resto' zouden toevoegen, dan zouden we praktisch niet eens aan één van de klassen mogen komen tenzij als die klasse rechtstreeks te maken heeft met de klasse die we willen toevoegen.
 
+We nemen het voorbeeld van daarnet nog eens. We hebben drie objecten: één Resto, één Pizzeria en één Frituur. In principe kunnen we de referentie helemaal vooraan (voor de naam van het object) ook veranderen naar 'Resto' bij alle drie de objecten.  Het is perfect oké om eerst de objecten als een parent-klasse te gaan aanmaken en dan later te gaan specifiëren naar de gekozen subklasse.
 
+In mensentaal: je kan eerst drie restaurants gaan maken en dan later gaan zeggen welk soort restaurant het is.
 
+```java
+Resto bijMoeke = new Resto("Bij Moeke", 100000, "Moedersesteenweg 225");
+Resto alDente = new Pizzeria("Al Dente", 20000, "Dentestraat 24", 50);
+Resto hetHoekske = new Frituur("Het Hoekske", 50000, "Hoekstraat 1", soortenDFries);
+```
+
+Stel dat Pizzeria 'Al Dente' opeens een grote verandering in koers wilt nemen. Nu wilt het jarenlange familiebedrijf veranderen naar een frituur waar ze Italiaanse frituursnacks aanbieden. We kunnen het object 'alDente' gaan aanpassen naar een object van een andere klasse.
+
+```java
+//voor de verandering
+Resto alDente = new Pizzeria("Al Dente", 20000, "Dentestraat 24", 50);
+
+//veranderen naar een andere subklasse
+alDente = new Frituur("Al Dente", 20000, "Dentestraat 24", ['Arancini', 'Panzerotti']);
+```
+
+Stel dat we nu een specifieke methode gaan aanspreken die enkel en alleen bij de klasse Pizzeria werkt, bijvoorbeeld throwPizzaInAir(), dan krijgen we wél degelijk een compilatiefout. Dit komt omdat er in de subklasse Frituur géén methode is van die naam.
+
+Maar oude tradities verleren die wijze Italianen niet, we willen een manier zoeken om toch nog die methode aan te spreken, zelfs al zitten onze vrienden van de laars met een frituur aan hun been. We kunnen namelijk een object gaan **downcasten**. Dit wil zeggen dat we de klasse van het object behouden (deze blijft een Frituur), máár we veranderen de verwijzing wél.
+
+Hieronder merk je op dat we in de linkerhelft het object gaan maken zoals we gewoon zijn, maar in de rechterhelft nemen wij het object van de klasse Frituur en gaan wij '(Pizzeria)' er voor plaatsen. Zogezegd een soort masker dat we gaan plakken op ons object. Als wij nu de methode aanspreken, dan gaat dit wél lukken.
+
+De linkerhelft is wel degelijk belangrijk. We kunnen niét downcasten als we in de linkerhelft gaan verwijzen naar de klasse Frituur. Dit moet zeker op 'Pizzeria' staan.
+
+```java
+alDente = new Frituur("Al Dente", 20000, "Dentestraat 24", ['Arancini', 'Panzerotti']);
+Pizzeria alDente = (Pizzeria) alDente;
+alDente.throwPizzaInAir();
+```
+
+Stel dat we nu een methode willen die vraagt naar een Resto-object en om het even welk object het is, het wil een pizza in de lucht gooien. We moeten dus kunnen achterhalen of een object van de klasse Pizzeria is of niet. Hiervoor kunnen we **instanceof** gebruiken.
+
+We hebben dus de methode 'gooiPizzaInLucht'. Dit gaat eender welk object als parameter gaan oppakken en áls dit een Pizzeria is gaan we direct de methode 'throwPizzaInAir()' gaan aanspreken. Is dit géén object van het type Pizzeria, dan gaan we eerst dit object moeten downcasten zodanig dat we deze methode wél kunnen aanspreken.
+
+```java
+public void gooiPizzaInLucht(Resto restoObject){
+
+	if(restoObject instanceof Pizzeria){
+		restoObject.throwPizzaInAir();
+	} else {
+		Pizzeria restoObject = (Pizzeria) restoObject;
+		restoObject.throwPizzaInAir();
+	}
+}
+```
