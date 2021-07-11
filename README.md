@@ -165,6 +165,48 @@ System.out.printf("Je hebt het getal %s ingegeven.", invoer.nextInt());
 
 Op deze manier bespaar je ook een variabele. Let wel op dat we hier géén foutcontrole hebben toegepast. Ons programma is met andere woorden niet robuust want als de gebruiker in dit geval een stuk tekst gaat ingeven (of met andere woorden alles behalve een getal), dan gaat onze CUI-applicatie crashen en een foutmelding gaan geven. Hiervoor kunnen we een controlestructuur gebruiken om zo de gebruiker in een lus te zetten zodat hij enkel en alleen de applicatie kan afsluiten wanneer de persoon een correcte waarde heeft ingegeven.
 
+# Type Casting
+
+Type casting is eigenlijk het gaan omzetten van het ene primaire datatype naar een ander. We kunnen dit op twee manieren: narrowing (manueel) of upcasting (automatisch). Vanzelfsprekend lukt het ook niet altijd om van het ene datatype naar het andere te gaan. Denk maar bijvoorbeeld aan een String naar een boolean te gaan. Of van een String naar een integer.
+
+![image](https://static.javatpoint.com/core/images/type-casting-in-java.png)
+
+Hieronder zie je een voorbeeld van upcasting. We gaan een integer, ofwel een reëel getal, gaan omzetten naar een double, ofwel een kommagetal. Dit kunnen we automatisch doen omdat integer hoger dan double staat op ons lijstje.
+
+```java
+int reëelGetal = 5;
+System.out.println(reëelGetal);
+		
+double kommaGetal = reëelGetal;
+System.out.println(kommaGetal);
+```
+
+De uitvoer ziet er dan als volgt uit:
+
+```
+5
+5.0
+```
+
+Omgekeerd gaat dit niet lukken. We krijgen een foutmelding in onze IDE als we van double naar integer proberen te gaan. Dit omdat we naar een groter datatype willen omzetten. Hiervoor gaan we downcasting moeten gebruiken.
+
+Downcasting wilt juist het omgekeerde zeggen. Hier gaan we een double naar een integer omzetten. Hiervoor moeten we in de rechterhelft iets extra schrijven, namelijk '(naam van datatype)'. Tussen de ronde haakjes moet dus het datatype komen wat je wilt converteren. Hieronder willen we dus van een double naar een integer getal gaan:
+
+```java
+double kommaGetal = 5.6;
+System.out.printf("kommagetal: %s", kommaGetal);
+		
+int reëelGetal = (int) kommaGetal;
+System.out.printf("reëel getal: %s", reëelGetal);
+```
+
+De uitvoer ziet er als volgt uit. Bij een double gaan we 
+
+```
+5.6
+5
+```
+
 # 2. [Controlestructuren]
 
 Bij Java hebben wij drie soorten structuren: sequentie- , selectie- en herhalingsstructuren.
