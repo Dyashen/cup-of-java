@@ -1,7 +1,9 @@
 # Cup Of Java ☕
 Hallo! Ik ben Dylan Cluyse. Washed-up student leerkracht secundair onderwijs en nu student Toegepaste Informatica aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. 
 
-Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden onder meer andere voorbeelden tonen en een nadruk op aanschouwelijke schema's en structuren. De page is nog volledig work-in-progress. Mocht je vragen of opmerkingen hebben, laat me gerust weten via Discord!
+Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden onder meer andere voorbeelden tonen en een nadruk op aanschouwelijke schema's en structuren. De structuur is ook redelijk anders, maar volgt volledig dezelfde inhoud. 
+
+!! De page is nog volledig work-in-progress. Mocht je vragen of opmerkingen hebben, laat me gerust weten via Discord!
 
 Handige websites:
 - JavaTpoint
@@ -10,7 +12,7 @@ Handige websites:
 
 # 1. [Inleiding] 
 
-# Opbouw binnen een IDE
+# Opbouw van een simpele applicatie binnen een IDE
 
 Voor het programmeren in Java heb je verschillende IDE's. Een IDE is een editor die wordt gebruikt om code op te bouwen en later te kunnen uitvoeren. Een functie bij de meeste IDE's is om te zien of je fouten hebt gemaakt in je code. Deze worden dan rood onderstreept en is vergelijkbaar met spellingsfouten bij het programma Word.
 
@@ -1077,6 +1079,122 @@ hotel.add(new HotelKamer(404, 24, 44);
 //kamer toevoegen met enkel defaultwaarden
 hotel.add(new HotelKamer());
 ```
+
+Tot nu toe hebben we enkel arrays gezien waarbij je enkel met een rij werkt. De data staat zogezegd 'naast elkaar' en gaat een bepaalde positie in die rij gaan bijhouden.
+Bij objecten hebben we ook gezien hoe we op een bepaalde manier verschillende data op één zo een blokje kunnen krijgen. Binnen arrays kunnen we ook met een soortgelijke grid-structuur werken. Hier gaan we niet enkel één rij hebben, maar kunnen we zelf kiezen om een array op te bouwen uit een gekozen aantal rijen en kolommen. Dit noemen we een tweedimensionale array.
+
+# Tweedimensionale Arrays
+
+We gebruiken tweedimensionale arrays voornamelijk als we in twee richtingen bepaalde data willen gaan bijhouden. Ik leg dit eventjes uit aan de hand van het gekende computerspel: Minesweeper. Minesweeper is een spelletje waarbij je een raster te zien krijgt. Je moet strategisch blokjes gaan selecteren om zo te kunnen achterhalen waar wél en waar géén bom zit. Raak je de bom, dan ben je dood!
+
+We maken een tweedimensionale array lichtjes anders dan bij een gewone array. In plaats van één paar vierkante haakjes (rijen) gaan we twee paar vierkante haakjes gebruiken bij het declareren (rij + kolom). 
+
+![image](https://user-images.githubusercontent.com/70543493/125513926-9febb554-569f-4dca-b8d2-4a1ab9e59921.png)
+
+Onze twee dimensionale array ziet er als volgt uit. Eigenlijk is het zo dat je een array hebt met in iedere 'cel' een array van elementen. Voorlopig is ons spelbord nog leeg en is er géén waarde toegekend. Dit is dus bij alles '0'.
+
+```
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+```
+
+Bij een eendimensionale array konden we kijken welke element er was op een bepaalde positie in een array. We kunnen dit eveneens ook hier doen:
+
+```java
+System.out.println(spelbord[3]);
+```
+
+We zien nu dat we eigenlijk een array krijgen met alle elementen die zich op de derde rij bevinden.
+```
+Output:
+[0,0,0,0,0,0,0,0]
+```
+
+Stel dat we de waarde willen weten van het vijfde blokje van links op diezelfde rij, dan kunnen we dat als volgt gaan opvragen:
+
+```java
+System.out.println(spelbord[6][3]);
+```
+
+We krijgen dus de waarde van het element dat zich op die specifieke plaats in de array bevindt. In dit geval is dat dus nul.
+
+```
+Output:
+0
+```
+
+Nu is ons spelbord nog bommenvrij, we kunnen daar verandering in brengen door een bommetje (ofwel een element met waarde 1) te gaan plaatsen in de array. Dit gaat gelijkaardig als met een eendimensionale array. We gaan een bommetje plaatsen op de derde kolom van zesde rij.
+
+```java
+spelbord[6][3] = 1;
+```
+
+Ons bord ziet er dan als volgt uit:
+
+```
+     '
+     '  
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+[0,0,1,0,0,0,0,0] <-----
+[0,0,0,0,0,0,0,0]
+[0,0,0,0,0,0,0,0]
+```
+
+Een tweedimensionale array doorlopen is een stukje ingewikkelder, maar volgt een heel gelijkaardig principe. Hieronder zie je nog eens hoe we een gewone eendimensionale array kunnen doorlopen:
+
+```java
+int[] rijVanArray = new int[5];
+
+// voor zolang er elementen in de array zijn, blijven doorlopen
+// teller met één optellen --> naar het volgende blokje in de array gaan
+for (int teller = 0; teller < rijVanArray.length; teller++)
+{
+	System.out.println(rijVanArray[teller]; // de waarde uitprinten van het element dat zich op die positie in de array bevindt
+}
+```
+
+Dit is hoe we te werk gaan bij een tweedimensionale array. We gaan werken met twee for-lussen. Eén voor de rijen en daarbinnen één voor alle kolommen binnen een rij te gaan doorlopen.
+
+```java
+int[][] spelbord = new int[8][8];
+	
+// bommetjes plaatsen op spelbord, we geven de coördinaten mee [kolom][rij]
+mineSweeper[4][2] = 1;
+mineSweeper[3][4] = 1;
+
+
+// we doorlopen alle rijen
+for(int rij = 0; rij < spelbord.length; rij++) {
+	
+	// we doorlopen alle kolommen van de rij waar we op dit moment zitten
+	for(int kolom = 0; kolom < spelbord[rij].length; kolom++) {		
+		
+		// is er een bommetje op deze plek/coördinaten? 
+		// zo ja --> vierkante haakjes met sterretje
+		// anders --> vierkante haakjes met lege ruimte er tussen
+		if(spelbord[rij][kolom] == 1) {
+			System.out.print("[*]");
+		} else {
+			System.out.print("[ ]");
+		}						
+	}
+
+	//gedaan met alles van deze rij, naar de volgende rij & nieuw lijntje
+	System.out.println();
+
+}
+```
+
 	
 # 5. [Repositories]
 
@@ -1323,11 +1441,9 @@ De uitvoer ziet er als volgt uit:
 70
 ```
 
-# Recursie
-
 # 7. Pijlers van OO.
 
-# Inkapseling
+# Pijler 1: Inkapseling
 Dit is een soort van techniek waarbij je data, ofwel jouw variabelen, en code die op de data gaat reageren, ofwel jouw methoden, gaat inwikkelen tot één bepaalde eenheid. Je wilt met andere woorden dus er voor zorgen dat andere klassen géén toegang hebben tot methoden of variabelen van andere klassen.
 
 Hiervoor gebruik je het 'private' keyword. Al jouw variabelen van een klasse ga je op private zetten zodat enkel binnen de klasse met deze variabelen kunnen gewerkt worden. Dit doen we om ongeauthoriseerd gebruik van andere klassen te voorkomen. 
@@ -1348,14 +1464,14 @@ private void setIsLuxueus(boolean isLuxueus){
 
 Als laatste moet je er voor zorgen dat jouw getters wél op publiek staan. Op deze manier kan je vanuit een andere klasse of uit de main-methode toch nog informatie over een object gaan ophalen.
 
-# Abstractie
+# Pijler 2: Abstractie
 Bij abstractie ga je de complexiteit van code eigenlijk gaan maskeren of verbergen en eerder ga je gaan focussen op de functionaliteit voor de gebruiker. Je zorgt er met andere woorden voor dat je enkel de belangrijke zaken gaat tonen aan de gebruiker en alle interne details eigenlijk niet zichtbaar zijn.
 
 Bij het sturen van een Discord-bericht ga je enkel kijken naar het sturen en/of ontvangen, maar je gaat zelf niet stil staan 'hoe' dat dit proces verloopt. De nadruk hier ligt vooral op **wat** een object doet in Object-Oriented ontwikkeling in de plaats van hoe het iets moet doen.
 
 In OOSD2 komen interfaces en abstracte klassen aan bod.
 
-# Overerving
+# Pijler 3: Overerving
 Overerving is een techniek die vooral de nadruk legt op herbruikbaarheid. Stel dat we twee héél gelijkaardige klassen hebben met één of meerdere verschillen, dan zou het overbodig zijn om zoveel code opnieuw te gaan uittypen. We kunnen eigenlijk gaan werken met een klasse die methoden en variabelen gaat overnemen.
 
 ![image](https://user-images.githubusercontent.com/70543493/125122223-60c40300-e0f5-11eb-9a1b-5f985e9e6ec9.png)
@@ -1558,7 +1674,7 @@ Het Hoekske heeft een kapitaal van €50000 en is gevestigd te Hoekstraat 1.
 Op het vlak van overerving kan je hier héél ver in gaan. Je kan met andere woorden een oneindig aantal klassen laten overerven van één parentklasse, maar ook een stamboom van klassen creëren die keer op keer gaan overerven van een parent-klasse.
 
 
-# Polymorfisme
+# Pijler 4: Polymorfisme
 
 Bij het ontwerpen van applicaties is het van belang om ook vooruit te denken. Aanpassingen maken aan ons domein zou zo simpel en niet al te omslachtig mogen zijn. Stel dat we een nieuwe subklasse aan de klasse 'Resto' zouden toevoegen, dan zouden we praktisch niet eens aan één van de klassen mogen komen tenzij als die klasse rechtstreeks te maken heeft met de klasse die we willen toevoegen.
 
