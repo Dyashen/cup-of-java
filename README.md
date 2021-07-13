@@ -6,6 +6,7 @@ Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden on
 Handige websites:
 - JavaTpoint
 - W3schools
+- Jenkov Tutorials
 
 # 1. [Inleiding] 
 
@@ -92,6 +93,132 @@ public class WillekeurigGetal { //3
 }
 ```
 
+# Variabelen
+
+Als we een programma gaan laten draaien (of runnen) wordt er een deel van ons geheugen gebruikt. We kunnen ook gebruik maken van het geheugen om gegevens tijdelijk te gaan opslaan. Aan deze gegevens kunnen we één of meerdere waarden gaan toekennen die gedurende het proces kunnen veranderen. Deze gegevens gaan we ook variabelen gaan noemen.
+
+Om het proces wat te visualiseren zie je hieronder een tabel. Dit is een visuele weergaven van hoe ons computergeheugen werkt. Je ziet dat er op dit moment nog niks opgeslagen is in ons geheugen.
+
+Opmerking: Java is een programmeertaal die niet specifiek moet weten waar een variabele zich bevindt. Dit wordt wel zo opgeslagen in het geheugen en heeft géén direct effect op het opslaan van variabelen, maar het is simpelweg iets dat niet echt van belang is voor de compiler/IDE. Dit in tegenstelling tot programmeertalen zoals bijvoorbeeld C++.
+
+| Plaats  | Waarde |
+| ------------- | ------------- |
+| 101  |   |
+| 102  |   |
+| 103  |   |
+| 104  |   |
+| 105  |   |
+| 106  |   |
+| 107  |   |
+| 108  |   |
+
+We gaan nu eens een variabele 'leeftijd' gaan aanmaken. Dit is een numerieke waarde, dus dit gaan we gaan opslaan als een 'integer'. Je ziet hieronder dat er op een willekeurige plaats in ons geheugen nu de waarde '23' wordt opgeslagen.
+
+```java
+int leeftijd = 23;
+```
+| Plaats  | Waarde |
+| ------------- | ------------- |
+| 101  |   |
+| 102  |   |
+| 103  |  23 |
+| 104  |   |
+| 105  |   |
+| 106  |   |
+| 107  |   |
+| 108  |   |
+
+We gaan een tweede variabele gaan opslaan. Dit keer een stukje tekst met daarin onze naam. Tekst gaan we in 99% van de gevallen gaan opslaan als een String.
+
+```java
+int leeftijd = 23;
+String naam = "Dylan";
+```
+
+Je ziet dat we nu twee plaatsjes hebben opgebruikt in ons geheugen. Eén daarvan is de leeftijd, die wordt opgeslagen als een integer, en de tweede variabele is de naam, die wordt opgeslagen als een String.
+
+| Plaats  | Waarde |
+| ------------- | ------------- |
+| 101  |   |
+| 102  |   |
+| 103  | 23   |
+| 104  |   |
+| 105  |   |
+| 106  | "Dylan" |
+| 107  |   |
+| 108  |   |
+
+Stel dat we de leeftijd nu verkeerd hebben ingegeven. Dit zou 27 moeten zijn. We kunnen na het aanmaken van een variabele er nog altijd voor kiezen om een andere waarde toe te kennen. Dit doen we hieronder. Hier gebruiken wij de vorige waarde van 'leeftijd' en gaan we dit gaan optellen met 4. We kunnen verschillende dingen doen met variabelen. In principe zijn dit waarden die onder een bepaalde naam opgeslagen worden. Deze waarden kunnen zo gedurende de draaitijd/runtime van een programma gebruikt worden.
+
+```java
+//twee variabelen aanmaken
+int leeftijd = 23;
+String naam = "Dylan";
+
+//waarde veranderen van leeftijd
+leeftijd = leeftijd + 4;
+```
+
+Bij een optelling/aftrekking/vermenigvuldiging of deling kunnen wij eigenlijk nog korter te werk gaan:
+
+```java
+//declaratie
+int leeftijd = 23;
+
+//bewerkingen
+leeftijd += 4; // vorige waarde wordt opgeteld met 4        --> 23 + 4 = 27
+leeftijd -= 4; // vorige waarde wordt afgetrokken met 4     --> 23 - 4 = 19
+leeftijd *= 4; // vorige waarde wordt vermenigvuldigd met 4 --> 23 * 4 = 92
+leeftijd /= 4; // vorige waarde wordt gedeeld door 4        --> 23 / 4 = 5
+leeftijd %= 4; // restwaarde berekenen van leeftijd met 4   --> 23 % 4 = 3
+leeftijd ^= 4; // machtberekening met 4 als exponent        --> 23 ^ 4 = 279 841
+
+//let op!
+leeftijd += 1.1; // --> foutmelding want '1.1' is een double terwijl 'leeftijd' een integer is
+```
+
+We zien dat de waarde mee verandert. Er is géén nieuw plaatsje opgebruikt als we een bestaande variabele een andere waarde gaan toekennen.
+
+| Plaats  | Waarde |
+| ------------- | ------------- |
+| 101  |   |
+| 102  |   |
+| 103  | 27   |
+| 104  |   |
+| 105  |   |
+| 106  | "Dylan" |
+| 107  |   |
+| 108  |   |
+
+
+
+Het omgekeerde van een variabele is een constante, een waarde die éénmaal aangemaakt niet meer zal veranderen. We willen een constante bijhouden van de minimumleeftijd, ofwel de waarde 18. Een constante aanmaken in Java doe je als volgt:
+
+Opmerking: Je hoeft géén constante waarden in hoofdletters te schrijven. Het is géén verplichting voor Java, maar wel iets dat in de praktijk nog vaak voorkomt.
+
+```java
+final static int MINIMUMLEEFTIJD = 18;
+```
+
+'final' is zeer belangrijk bij de declaratie van een constante. Zonder 'final' zal je een gewone variabele aanmaken die nog steeds veranderd kan worden.. Simpel gezegd ken je de finale of laatst mogelijke waarde toe aan een variabele. Je kan het datatype vanzelfsprekend ook niet meer veranderen.
+
+'static' wilt eerder zeggen dat dit een waarde is die we over grenzen heen kunnen gebruiken. Dit wilt zeggen dat we buiten de huidige klasse nog steeds kunnen werken met deze constante waarde.
+
+Deze constante krijgt ook een plaats in ons geheugen.
+
+| Plaats  | Waarde |
+| ------------- | ------------- |
+| 101  |   |
+| 102  |   |
+| 103  | 27   |
+| 104  | 18  |
+| 105  |   |
+| 106  | "Dylan" |
+| 107  |   |
+| 108  |   |
+
+
+
 # Methoden: basis
 
 We gaan voornamelijk gebruik maken van variabelen/constanten en methoden. Hieronder nog even een schema om de twee wat te verduidelijken. Over methodes komt nog meer aan bod in een later hoofdstuk, maar ik wel toch nog even aanhalen hoe we een methode kunnen aanmaken en ook kunnen oproepen vanuit de main-klasse.
@@ -136,6 +263,9 @@ public static void main(String[] args) {
 	begroeting("Dylan");
 }
 ```
+
+
+# Nog een korte samenvatting van variabelen en methoden: 
 
 ![image](https://i.imgur.com/nra1wFs.jpg)
 
