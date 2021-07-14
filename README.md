@@ -1142,7 +1142,7 @@ Ons bord ziet er dan als volgt uit:
      '  
 [0,0,0,0,0,0,0,0]
 [0,0,0,0,0,0,0,0]
-[0,0,0,0,0,0,0,0]
+[0,0,0,1,0,0,0,0]
 [0,0,0,0,0,0,0,0]
 [0,0,0,0,0,0,0,0]
 [0,0,1,0,0,0,0,0] <-----
@@ -1163,7 +1163,17 @@ for (int teller = 0; teller < rijVanArray.length; teller++)
 }
 ```
 
-Dit is hoe we te werk gaan bij een tweedimensionale array. We gaan werken met twee for-lussen. Eén voor de rijen en daarbinnen één voor alle kolommen binnen een rij te gaan doorlopen.
+Dit is hoe we te werk gaan bij een tweedimensionale array. We gaan werken met een geneste for-lus. We gebruiken een for-lus om alle rijen te doorlopen. Bij iedere rij gaan we dan met een for-lus alle kolommen binnen die specifieke rij gaan doorlopen.
+
+De for-lus werkt dan als volgt:
+
+rij 0 => for-lus waar je de kolommen van 0 -> 7 gaat doorlopen; stoppen met for-lus van de kolommen dus op naar de volgende rij --> teller van de rij verhogen
+rij 1 => for-lus waar je de kolommen van 0 -> 7 gaat doorlopen; stoppen met for-lus van de kolommen dus op naar de volgende rij --> teller van de rij verhogen
+rij 2 => for-lus waar je de kolommen van 0 -> 7 gaat doorlopen; stoppen met for-lus van de kolommen dus op naar de volgende rij --> teller van de rij verhogen
+...
+rij 7 => kolommen 0 -> 7; we verhogen de teller niet meer omdat we op de laatste rij zijn aangekomen, we doorlopen alle kolommen van de laatste rij en sluiten de for-lus af 
+
+![image](https://user-images.githubusercontent.com/70543493/125654153-ea3ef37f-9302-4c44-a711-507b4da0b97a.png)
 
 ```java
 int[][] spelbord = new int[8][8];
@@ -1727,3 +1737,8 @@ public void gooiPizzaInLucht(Resto restoObject){
 	}
 }
 ```
+
+# 8. Applicaties testen
+
+Gedurende deze cursus zal je ongetwijfeld wel al eens een fout of ongevraagde 
+
