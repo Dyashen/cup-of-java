@@ -1740,5 +1740,70 @@ public void gooiPizzaInLucht(Resto restoObject){
 
 # 8. Applicaties testen
 
-Gedurende deze cursus zal je ongetwijfeld wel al eens een fout of ongevraagde 
+# Assertions
+
+We kunnen heel specifiek gaan testen wanneer er een exception wel of niet wordt gegooid binnen ons programma. Hiervoor gaan we assertions gaan gebruiken. Bij een assertion wordt er gevraagd naar een bepaalde boolean als parameter. Als deze boolean niét overeenstemt met de assertion, dan zal er een exception gegooid worden. 
+
+Zo kunnen we bijvoorbeeld gaan kijken of een bepaalde waarde bijvoorbeeld null is, denk maar aan het ingeven van de naam voor een object. Of van een vorig voorbeeld, een hotelkamer-object aanmaken met een lege kamernaam. Dit kunnen we voorkomen door bijvoorbeeld een exception in ons programma te schrijven.
+
+assertEquals: Bij deze assertion wordt er gekeken of twee waarden met elkaar overeenkomen. Als dit zo is, dan faalt onze test.
+
+```java
+@Test
+public void whenAssertingEquality_thenEqual() {
+    String expected = "Baeldung";
+    String actual = "Baeldung";
+
+    assertEquals(expected, actual);
+}
+```
+
+Je kan bij assertions ook een stukje tekst toevoegen die wordt getoond enkel wanneer de test faalt:
+
+```java
+@Test
+public void whenAssertingEquality_thenEqual() {
+    String expected = "Baeldung";
+    String actual = "Baeldung";
+
+    assertEquals("failure - strings are not equal", expected, actual);
+}
+```
+
+assertArrayEquals: Hier wordt er gekeken of twee bepaalde arrays met elkaar overeenstemmen. Als dit niet zo is, dan faalt de test.
+
+```java
+@Test
+public void whenAssertingArraysEquality_thenEqual() {
+    char[] expected = {'J','u','n','i','t'};
+    char[] actual = "Junit".toCharArray();
+    
+    assertArrayEquals(expected, actual);
+}
+```
+
+assertNull kijkt of iets gelijk staat aan null.
+
+```java
+@Test
+public void whenAssertingNull_thenTrue() {
+    Object hotelKamer = null;
+    
+    assertNull("De hotelkamer mag niet een null-object zijn.", hotelKamer);
+}
+```
+
+Als we het omgekeerde willen weten, kunnen we te werk gaan met assertNotNull.
+
+```java
+@Test
+public void whenAssertingNotNull_thenTrue() {
+    HotelKamer hotelKamer = new HotelKamer();
+    
+    assertNotNull("De hotelkamer moet een null object zijn.", hotelKamer);
+}
+```
+
+
+
 
