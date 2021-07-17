@@ -1205,6 +1205,131 @@ for(int rij = 0; rij < spelbord.length; rij++) {
 }
 ```
 
+# Andere datastructuren
+
+Dit hoofdstuk is voornamelijk optioneel, maar wel handig als je de richting van Development kiest in de toekomst van jouw Informatica-studies. Arrays zijn maar één van de vele soorten datastructuren, ofwel manieren om gegevens te gaan bijhouden in een logische structuur die je kan gebruiken binnen Java (en vele andere soorten programmeertalen). De belangrijkste worden hieronder nog eens opgesomd, maar een aantal van deze komen ook aan bod in het tweede deel van Cup of Java.
+
+Stack
+
+Een stack wordt gebruikt om een verzameling van objecten of elementen te gaan opslaan. Via een push-bewerking kunnen items toegevoegd worden aan de stack. De werking kan je vergelijken met een stapel papieren. Het papier dat bovenaan de stapel ligt, wordt eerst verwerkt of behandeld. 
+
+![image](https://user-images.githubusercontent.com/70543493/126044761-594eac3c-82c2-42ae-ba99-db87c3da41c2.png)
+
+```java
+//een nieuwe stack aanmaken
+Stack<int> verzamelingVanHotelKamerNummers = new Stack<>();
+
+//is dit een lege stack?
+System.out.println(verzamelingVanHotelKamerNummers.empty());
+
+//nummers van hotelkamers toevoegen aan de stack
+verzamelingVanHotelKamerNummers.push(20);
+verzamelingVanHotelKamerNummers.push(13);
+verzamelingVanHotelKamerNummers.push(89);
+verzamelingVanHotelKamerNummers.push(90);
+verzamelingVanHotelKamerNummers.push(11);
+verzamelingVanHotelKamerNummers.push(45);
+verzamelingVanHotelKamerNummers.push(18);
+
+//18 is als laatste toegevoegd, dit is dus het element dat bovenaan de stapel ligt
+
+//element dat bovenaan de stapel ligt gaan verwijderen
+verzamelingVanHotelKamerNummers.pop();
+
+//element tonen dat bovenaan de stapel ligt
+System.out.println(verzamelingVanHotelKamerNummers.peek()); // 45 want dit ligt nu bovenaan de stapel
+
+//op welke positie in de stack staat 90?
+System.out.println(verzamelingVanHotelKamerNummers.search(90)); // 3
+
+//stack doorlopen
+for(int nummer : verzamelingVanHotelKamerNummers)
+{
+	System.out.println(nummer);
+}
+```
+
+Queue
+
+Een queue is letterlijk vertaald een wachtrij en de werking is heel gelijkaardig. Sta je als eerste in de wachtrij? Dan ben je ook als eerste aan de beurt. Dit is dus in tegenstelling tot de werking van een stack waarbij het enkel het laatste element is dat aan de beurt komt.
+
+Het verschil met een stack is dat je van Queue géén objecten kan maken. Queue is een interface, een aspect dat voornamelijk aan bod komt in OOSD2. Er is géén directe manier om een Queue object aan te maken, maar we kunnen wel gebruik maken van klassen die afgeleid zijn van de Queue-interface. De meest voor de handliggende is de PriorityQueue klasse.
+
+```java
+//de Queue aanmaken
+Queue<String> residentEvilGames = new PriorityQueue<String>();
+
+//leerlingen toevoegen aan de Queue
+residentEvilGames.add("Resident Evil");
+residentEvilGames.add("Resident Evil 2");
+residentEvilGames.add("Resident Evil 3: Nemesis");
+residentEvilGames.add("Resident Evil Survivor");
+residentEvilGames.add("Resident Evil Gaiden");
+residentEvilGames.add("Resident Evil Code: Veronica");
+
+//leerlingen toevoegen: extra manier
+residentEvilGames.offer("");
+
+//Eerste leerling is behandeld dus die gaan we verwijderen uit de wachtrij:
+residentEvilGames.remove(); //
+
+//Queue uitprinten
+for(String gameNaam : residentEvilGames)
+{
+	System.out.println(gameNaam);
+}
+```
+
+Linked List
+
+Een linked list is anders opgebouwd dan eender van de voorbij getoonde datastructuren. Voornamelijk bestaat een Linked List niet uit blokken die elkaar aansluiten zoals bij een array, maar hier wordt er gewerkt met verwijzingen naar ier ga je rekening moeten houden dat er twee zaken worden bijgehouden: De positie
+
+```java
+//
+	LinkedList<String> perioden = new LinkedList<String>();
+  
+        // Adding elements to the linked list
+        perioden.add("Klassieke Oudheid");
+	perioden.add("Nieuwe Tijd");
+        perioden.addLast("Eigen Tijd");
+        perioden.addFirst("Prehistorie");
+        perioden.add(2, "Middeleeuwen");
+  
+        System.out.println(perioden); // ["Prehistorie", "Klassieke Oudheid", "Middeleeuwen", "Nieuwe Tijd", "Eigen Tijd"];
+	
+	perioden.removeFirst(); //Prehistorie wordt verwijderd
+	perioden.removeLast(); //Eigen Tijd wordt verwijderd
+	
+	System.out.println(perioden); // ["Klassieke Oudheid", "Middeleeuwen", "Nieuwe Tijd"];
+	
+	perioden.remove(1); // Middeleeuwen wordt verwijderd
+	perioden.remove("Nieuwe Tijd"); // Nieuwe Tijd wordt verwijderd
+	
+```
+
+Hash
+
+Een Hash is zeer toepasselijk wanneer je gegevens wilt opslaan waarvan er géén enkel gegeven twee of meerdere keren voorkomt. Daarnaast wordt ieder gegeven niet op index bewaard, maar met een "key". Deze key kan eender welke waarde hebben, maar is ook uniek in de lijst. Het object dat we gaan gebruiken is HashMap.
+
+```java
+hashmap
+```
+
+Stel dat je toch een unieke lijst wilt hebben zonder het gebruik van keys, dan kan je gebruik maken van een HashSet.
+
+```java
+HashSet<String> cars = new HashSet<String>();
+cars.add("Volvo");
+cars.add("BMW");
+cars.add("Ford");
+cars.add("BMW"); // is al in de lijst --> niet toevoegen
+cars.add("Mazda");
+System.out.println(cars); // ["Volvo", "BMW", "Ford", "Mazda"]
+```
+
+
+
+
 	
 # 5. [Repositories]
 
