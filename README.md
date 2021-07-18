@@ -1865,70 +1865,287 @@ public void gooiPizzaInLucht(Resto restoObject){
 
 # 8. Applicaties testen
 
+# Waarom via Unit-testen?
+
+We kunnen eindeloos applicaties gaan uittesten door deze te laten draaien en vervolgens dan een foute combinatie in te geven om zo een bepaalde fout of error te triggeren. Het nadeel is dat dit proces moeizamer zal verlopen eenmaal we gaan werken aan grote applicaties. Ook voelt het vaak aan door in het wild wat rond te slaan, hopend op een foutmelding of bepaalde exception die wordt gegooid.
+
+
+Als laatste onderdeel van OOSD1 wordt er gesproken over testen, meer specifiek het testen via JUnit ofwel Unit-testen. Hier gaan we testmethodes gaan opbouwen die ons gaan helpen om het resultaat van een methode te gaan analyseren aan de hand van zelf ingegeven waarden.
+
+We gaan altijd eerst de test schrijven van de methode die we willen uittesten en dan pas de code of _body_ binnenin die methode. Op deze manier kunnen we ook stapgewijs gaan achterhalen wat er nog eventueel ontbreekt in de huidige code qua exceptions, parameters, vergelijking, enz.
+
+# Opbouw
+
+Een testmethode ziet er praktisch gelijkaardig uit als eender welke methode. De naamgeving bestaat uit drie onderdelen:
+
+	1 De naam van de methode die we willen testen. Als je een constructor wilt uittesten, dan kan je gebruik maken van _maak_ gevolgd door de naam van jouw Klasse.
+	2 De bewering of _assertion_. Klopt een bepaald scenario, of juist niet, bij een bepaald resultaat.
+	3 Het resultaat dat de methode **moet** teruggeven.
+	
+We bekijken een voorbeeld van een test. Hiervoor werken we met een nieuwe klasse _Frisco_. Dit is een klasse die een object gaat aanmaken dat een ijsje voorstelt. Hier houdewn we de prijs, naam en smaken bij. Zoals je ziet hebben we weinig tot nog géén code ingevoerd in de body. We gaan eerst stapgewijs kijken waar onze applicatie zeker rekening mee moet houden
+
+```java
+//gebruikte variabelen
+String naam;
+double prijs;
+String[] smaken = new String[5];
+
+//constructor
+public Frisco(String naam, double prijs, String[] smaken){
+
+}
+
+
+//setter voor de naam
+private void setNaam(String naam){
+	
+}
+
+//setter voor prijs
+private void setPrijs(double prijs){
+	
+}
+
+//setter voor de smaken van een ijsje
+private void setSmaken(String[] smaken){
+	
+}
+
+//deze methode gaan we gebruiken om te kijken of de prijs wél correct is
+private boolean controleerPrijs(double prijs){
+
+}
+
+private boolean controleerSmaken(String[] smaken){
+
+}
+
+private boolean controleerPrijs(double prijs){
+
+}
+
+```
+
+
 # Assertions
 
 We kunnen heel specifiek gaan testen wanneer er een exception wel of niet wordt gegooid binnen ons programma. Hiervoor gaan we assertions gaan gebruiken. Bij een assertion wordt er gevraagd naar een bepaalde boolean als parameter. Als deze boolean niét overeenstemt met de assertion, dan zal er een exception gegooid worden. 
 
+We gebruiken testen specifiek om te zien of er bij een bepaalde waarde of omstandigheid een foutmelding wordt gegeven aan de gebruiker.
+
 Zo kunnen we bijvoorbeeld gaan kijken of een bepaalde waarde bijvoorbeeld null is, denk maar aan het ingeven van de naam voor een object. Of van een vorig voorbeeld, een hotelkamer-object aanmaken met een lege kamernaam. Dit kunnen we voorkomen door bijvoorbeeld een exception in ons programma te schrijven.
 
-assertEquals: Bij deze assertion wordt er gekeken of twee waarden met elkaar overeenkomen. Als dit zo is, dan faalt onze test.
+Bij het opbouwen van testmethoden gaan we werken met de drie A opdeling. Dit zijn drie deeltjes die je zeker terug moet vinden als je een testmethode opbouwt.
+
+
+
+**assertEquals**: Zijn de waarden met elkaar gelijk? Zo ja, dan testen we of er een exception wordt gegooid.
 
 ```java
 @Test
-public void whenAssertingEquality_thenEqual() {
-    String expected = "Baeldung";
-    String actual = "Baeldung";
-
-    assertEquals(expected, actual);
-}
-```
-
-Je kan bij assertions ook een stukje tekst toevoegen die wordt getoond enkel wanneer de test faalt:
-
-```java
-@Test
-public void whenAssertingEquality_thenEqual() {
-    String expected = "Baeldung";
-    String actual = "Baeldung";
-
-    assertEquals("failure - strings are not equal", expected, actual);
-}
-```
-
-assertArrayEquals: Hier wordt er gekeken of twee bepaalde arrays met elkaar overeenstemmen. Als dit niet zo is, dan faalt de test.
-
-```java
-@Test
-public void whenAssertingArraysEquality_thenEqual() {
-    char[] expected = {'J','u','n','i','t'};
-    char[] actual = "Junit".toCharArray();
+public void setPrijs_prijsGelijkAanNul_retourneertTrue() {
     
-    assertArrayEquals(expected, actual);
+    //Eerste A: We zetten alle benodigdheden klaar voor de test. We hebben sowieso een prijs nodig en ook een object van de klasse Frisco
+    Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+    double prijs = 0.00;
+    
+    //Tweede A: We spreken de methode aan die we willen gebruiken. De methode geeft een boolean terug en die gaan we opslaan.
+    nieuweFrisco.setPrijs(prijs);
+    
+    //Derde A: We gebruiken de methode assertTrue om te kijken of dit ook daadwerkelijk zo is. Als de prijs onder nul is, dan zal de test correct zijn.
+    assertEquals(prijs, 0);
+    
 }
 ```
 
-assertNull kijkt of iets gelijk staat aan null.
+De nieuwe methode ziet er dan als volgt uit. Als je de test opnieuw doet zal je zien dat je een ander resultaat zal krijgen. Dit komt omdat er wél een error wordt gegooid.
+
+```java
+private void setPrijs(double prijs){
+	if(prijs == 0)
+		throw new IllegalArgumentException("Prijs mag niet nul zijn!");
+	else
+		this.prijs = prijs;
+}
+```
+
+**assertArrayEquals**: Komen de arrays met elkaar overeen? Hebben beide arrays dezelfde inhoud en grootte?
 
 ```java
 @Test
-public void whenAssertingNull_thenTrue() {
-    Object hotelKamer = null;
+public void setSmaken_arraySmakenIsLeeg_retourneertTrue() {
+    //Eerste A
+    Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+    String[] smaken = new String[1]{""};
     
-    assertNull("De hotelkamer mag niet een null-object zijn.", hotelKamer);
+    //Tweede A
+    nieuweFrisco.setSmaken(smaken);
+    
+    //Derde A
+    assertArrayEquals(smaken, new String[1]{""});
 }
 ```
 
-Als we het omgekeerde willen weten, kunnen we te werk gaan met assertNotNull.
+De nieuwe methode ziet er dan als volgt uit:
+
+```java
+private void setSmaken(String[] smaken){
+	if(smaken == new String[]{""})
+		throw new IllegalArgumentException("Je moet minstens één smaak ingeven!");
+	else
+		this.smaken = smaken;
+}
+```
+
+**assertNull**: Heeft het object een null-waarde? Is dit een object dat null is? 
 
 ```java
 @Test
-public void whenAssertingNotNull_thenTrue() {
-    HotelKamer hotelKamer = new HotelKamer();
+public void controleerNaam_naamIsNull_retourneertTrue() {
     
-    assertNotNull("De hotelkamer moet een null object zijn.", hotelKamer);
+    //Eerste A
+    Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+    String naam = null;
+    
+    //Tweede A
+    nieuweFrisco.controleerNaam(naam);
+    
+    //Derde A
+    assertNull(naam);
 }
 ```
 
+De nieuwe methode ziet er dan als volgt uit:
+
+```java
+private void setNaam(String naam){
+
+	if(naam == null)
+		throw new IllegalArgumentException("Geef iets in!");
+	else
+		this.naam = naam;
+}
+
+```
+
+**assertNotNull** Heeft dit object wél een waarde? Kan gebruikt worden als alternatief voor assertNull.
+
+
+**assertTrue** en **assertFalse** komen hier heel goed van pas. Bij assertTrue gaat er gekeken worden of de meegegeven boolean op true staat. Bij assertFalse gaat er gekeken worden of de boolean op false staat.
+
+```java
+@Test
+public void controleerPrijs_prijsOnderNul_retourneertTrue(){
+//Eerste A
+Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+double prijs = -2.34;
+	
+//Tweede A
+boolean result = nieuweFrisco.controleerPrijs(prijs);
+	
+//Derde A
+assertTrue(result);
+	
+//tweede mogelijke oplossing
+//aangezien controleerPrijs een boolean teruggeeft kunnen we deze direct in de assertTrue plaatsen
+	assertTrue(nieuweFrisco.controleerPrijs(prijs), "De prijs mag niet kleiner dan nul zijn!")
+}
+```
+
+```java
+private void setPrijs(double prijs){
+	if(controleerPrijs == true)
+		this.prijs = prijs;
+}
+
+private boolean controleerPrijs(double prijs){
+	if(prijs == 0){
+		throw new IllegalArgumentException("Prijs mag niet gelijk zijn aan nul!");
+		return false;
+	} elseif(prijs >= 0){
+		throw new IllegalArgumentException("Prijs mag niet onder nul zijn!");
+		return false;
+	} else {
+		return true;
+	}
+	
+}
+```
+
+
+
+We kunnen bij assertTrue/False en assertNull ook nog een stukje tekst meegeven. Deze zal enkel en alleen getoond worden als de stelling fout is.
+
+```java
+Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+double prijs = -2.34;
+
+//mogelijkheid één:
+boolean result = nieuweFrisco.controleerPrijs(prijs);
+
+assertTrue(result, "De prijs mag niet kleiner dan nul zijn!"); //Tekst wordt getoond.
+```
+
+ # Before Each
+ Je hebt waarschijnlijk al opgemerkt dat we héél vaak het volgende lijntje gebruiken:
+ 
+ ```java
+ Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+ ```
+ 
+ Hierin maken we een gewoon dummy-object van de klasse Frisco aan. Dit gebruiken we in iedere testmethode. We kunnen gebruik maken van een **Before Each**. Zoals de naam al deels meegeeft is het een stukje code dat bij iedere testmethode wordt herhaald. Dit betekent dat we dit maar eenmalig moeten meegeven en dat we dit stukje code kunnen weglaten uit onze testklasse.
+ 
+ ```java
+ @BeforeEach
+ public void before(){
+ 	Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+ }
+ 
+ @Test
+public void controleerPrijs_prijsOnderNul_retourneertTrue(){
+ 	double prijs = -2.34;
+	
+boolean result = nieuweFrisco.controleerPrijs(prijs);
+	
+assertTrue(result);
+}
+```
+
+# Geparameteriseerde testen
+
+Hierboven hebben we telkens maar één parameter meegegeven. We kunnen hier verder op in gaan en er voor zorgen dat we één testmethode hebben waar we meerdere parameters kunnen meegeven.
+
+Om een methode als een geparameteriseerde test te laten herkennen zijn we verplicht om @ParameterizedTest mee te geven. 
+
+@ValueSource is belangrijk bij het geparameteriseerde testen. Alles binnen de array van objecten zijn waarden waar onze testmethode op gaat testen. We krijgen achteraf dan ook een lijst te zien van welke waarden wél en niet door de test zijn geraakt.
+
+Stel dat we ook willen testen op null en/of lege waarden (""), dan kunnen we @NullAndEmptySource mee geven. Dan moeten we dit ook niet meer mee geven bij @ValueSource.
+
+Hieronder zie je een herwerkt voorbeeld voor setNaam. We gaan meerdere parameters mee geven waaronder ook null-waarden en lege velden.
+
+```java
+ @BeforeEach
+ public void before(){
+ 	Frisco nieuweFrisco = new Frisco("test", 1, [""]);
+ }
+ 
+ @ParameterizedTest
+ @NullAndEmptySource
+ @ValueSource(strings = {"        ", "a", "A"})
+ public void setNaam_ongeldigeParameters_gooitException(String naam){
+ 	Assertions.assertThrows(IllegalArgumentException.class, () -> {nieuweFrisco.setNaam(naam); } );
+ }
+ 
+ 
+ @ParameterizedTest
+ @NullAndEmptySource
+ @ValueSource(doubles = {1.00, -2.34, 0.00, -0.01})
+ public void setPrijs_ongeldigeParameters_gooitException(double prijs){
+ 	Assertions.assertThrows(IllegalArgumentException.class, () -> {nieuweFrisco.setPrijs(prijs); } );
+ }
+ 
+ 
+```
 
 
 
