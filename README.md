@@ -1,5 +1,5 @@
 # Cup Of Java ☕
-Hallo! Ik ben Dylan Cluyse. Washed-up student leerkracht secundair onderwijs en nu student Toegepaste Informatica aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021. 
+Hallo! Ik ben Dylan Cluyse. Washed-up student leerkracht secundair onderwijs en nu student Toegepaste Informatica aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021 en omvat zowel "OOSD1" als "OOSD2".
 
 Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden onder meer andere voorbeelden tonen en een nadruk op aanschouwelijke schema's en structuren. De structuur is ook redelijk anders, maar volgt volledig dezelfde inhoud. 
 
@@ -10,9 +10,14 @@ Handige websites:
 - W3schools
 - Jenkov Tutorials
 
+
+
+
+
+
 # 1. [Inleiding] 
 
-# Opbouw van een simpele applicatie binnen een IDE
+## Opbouw van een simpele applicatie binnen een IDE
 
 Voor het programmeren in Java heb je verschillende IDE's. Een IDE is een editor die wordt gebruikt om code op te bouwen en later te kunnen uitvoeren. Een functie bij de meeste IDE's is om te zien of je fouten hebt gemaakt in je code. Deze worden dan rood onderstreept en is vergelijkbaar met spellingsfouten bij het programma Word.
 
@@ -24,7 +29,7 @@ Een package maak je als volgend aan: Eerst selecteer je de source map, daarna ma
 
 ![Package aanmaken in Eclipse.](https://i.imgur.com/kSac0T8.png)
 
-# Drielagenmodel
+## Drielagenmodel
 
 Nu kunnen we klassen aanmaken binnenin één van de packages. Later gaan we ook zien dat we ook enums en interfaces kunnen aanmaken, maar dat komt pas later aan bod. We volgen de zelfde stappen, maar selecteren "Class" in plaats van "Package". 
 
@@ -42,7 +47,7 @@ public static void main(String[] args) {
 ```
 
 
-# Opbouw van een klasse.
+## Opbouw van een klasse.
 
 Eenmaal onze structuur is opgebouwd kunnen we beginnen met ons allereerste lijntje code te schrijven. Ter illustratie heb ik een kort code-blokje opgesteld om de essentials nog eens te doorlopen van wat er allemaal terecht moet komen in een klasse. 
 
@@ -95,7 +100,7 @@ public class WillekeurigGetal { //3
 }
 ```
 
-# Variabelen
+## Variabelen
 
 Als we een programma gaan laten draaien (of runnen) wordt er een deel van ons geheugen gebruikt. We kunnen ook gebruik maken van het geheugen om gegevens tijdelijk te gaan opslaan. Aan deze gegevens kunnen we één of meerdere waarden gaan toekennen die gedurende het proces kunnen veranderen. Deze gegevens gaan we ook variabelen gaan noemen.
 
@@ -221,7 +226,7 @@ Deze constante krijgt ook een plaats in ons geheugen.
 
 
 
-# Methoden: basis
+## Methoden: basis
 
 We gaan voornamelijk gebruik maken van variabelen/constanten en methoden. Hieronder nog even een schema om de twee wat te verduidelijken. Over methodes komt nog meer aan bod in een later hoofdstuk, maar ik wel toch nog even aanhalen hoe we een methode kunnen aanmaken en ook kunnen oproepen vanuit de main-klasse.
 
@@ -267,11 +272,11 @@ public static void main(String[] args) {
 ```
 
 
-# Nog een korte samenvatting van variabelen en methoden: 
+## Nog een korte samenvatting van variabelen en methoden: 
 
 ![image](https://i.imgur.com/nra1wFs.jpg)
 
-# Scanner / Input via console
+## Scanner / Input via console
 
 Bij programmeren met een command-line interface ga je praktisch altijd een Scanner nodig hebben. Een Scanner is zogezegd een object binnen Java die de waarde gaat bijhouden van hetgeen wat de gebruiker ingeeft. Let op: dit is géén primitief datatype. We kunnen dus niet de waarde van een scanner direct gaan gebruiken voor bijvoorbeeld een integer of een String te gaan declareren. Hiervoor moeten wij een extra methode gebruiken. Ik licht de Scanner even toe in onderstaand voorbeeld, lijntje per lijntje :
 
@@ -297,7 +302,7 @@ System.out.printf("Je hebt het getal %s ingegeven.", invoer.nextInt());
 
 Op deze manier bespaar je ook een variabele. Let wel op dat we hier géén foutcontrole hebben toegepast. Ons programma is met andere woorden niet robuust want als de gebruiker in dit geval een stuk tekst gaat ingeven (of met andere woorden alles behalve een getal), dan gaat onze CUI-applicatie crashen en een foutmelding gaan geven. Hiervoor kunnen we een controlestructuur gebruiken om zo de gebruiker in een lus te zetten zodat hij enkel en alleen de applicatie kan afsluiten wanneer de persoon een correcte waarde heeft ingegeven.
 
-# Type Casting
+## Type Casting
 
 Type casting is eigenlijk het gaan omzetten van het ene primaire datatype naar een ander. We kunnen dit op twee manieren: narrowing (manueel) of upcasting (automatisch). Vanzelfsprekend lukt het ook niet altijd om van het ene datatype naar het andere te gaan. Denk maar bijvoorbeeld aan een String naar een boolean te gaan. Of van een String naar een integer.
 
@@ -499,7 +504,7 @@ Bij de for-lus ga je, net zoals een boek, beginnen bij het eerste hoofdstuk. Als
 
 ![image](https://i.imgur.com/Mdqd8vc.png)
 
-# 2.5. [Geneste controlestructure]
+## Geneste controlestructuren
 
 We kunnen lussen ook gaan nesten. Dit betekent dat we een controlestructuur binnenin een lus gaan plaatsen. Dit kunnen we zogezegd oneindig doen, maar om niet te ver te gaan wil ik toch de geneste for-lus en een geneste if toelichten. Dit zijn de twee die je het vaakst zal tegenkomen.
 
@@ -1205,7 +1210,7 @@ for(int rij = 0; rij < spelbord.length; rij++) {
 }
 ```
 
-# Andere datastructuren
+## Andere datastructuren
 
 Dit hoofdstuk is voornamelijk optioneel, maar wel handig als je de richting van Development kiest in de toekomst van jouw Informatica-studies. Arrays zijn maar één van de vele soorten datastructuren, ofwel manieren om gegevens te gaan bijhouden in een logische structuur die je kan gebruiken binnen Java (en vele andere soorten programmeertalen). De belangrijkste worden hieronder nog eens opgesomd, maar een aantal van deze komen ook aan bod in het tweede deel van Cup of Java.
 
@@ -1348,7 +1353,7 @@ Andere voorbeelden:
 
 In dit hoofdstuk gaan we wat verder op methodes in. Je hebt gezien hoe je een methode kan aanmaken en aanspreken. We hebben ook al gezien hoe we een methode van een object/klasse kunnen aanmaken en aanspreken. Als we werken met methodes van klassen moeten we goed het onderscheid houden tussen een static en een non-static methode.
 
-# Static en non-static methodes.
+## Static en non-static methodes.
 
 Een **non-static methode** is een methode die we enkel en alleen kunnen gebruiken als we een object van een klasse hebben. Bijvoorbeeld bij hotels kunnen we de methode 'relax()' aanspreken die de zin 'good vibes in room x' gaat uitprinten waar 'x' staat voor een specifieke kamer. Deze methode is met andere woorden uniek per object.
 
@@ -1388,7 +1393,7 @@ public static void main(String[] args) {
 
 ![image](https://user-images.githubusercontent.com/70543493/125093027-3745b000-e0d2-11eb-80b7-ec7cee04a4d5.png)
 
-# Math
+## Math
 
 Binnen Java hebben we verschillende bibliotheekklassen. Een bibliotheekklasse voorziet methoden die we tot nu toe al eigenlijk onbewust gebruikt hebben. Specifiek wil ik de klasse Math nog eens toelichten. Deze klasse zal voornamelijk voor wiskundige bewerkingen gebruikt worden.
 
@@ -1440,7 +1445,7 @@ Math.min(4.2, 6.1); // 4.2
 Math.max(4.2, 6.1); // 6.1
 ```
 
-# Pass-by-value
+## Pass-by-value
 
 Bij het gebruik van methodes is het verstandig om te weten dat Java in zijn geheel een taal is die voornamelijk werkt met het **pass-by-value** principe. Dit wilt zeggen dat bij het ingeven van een variabele, als parameter in een methode, dat Java enkel de waarde gaat onthouden. Het omgekeerde van pass-by-value is **pass-by-reference** waarbij je juist een verwijzing naar een variabele gaat opslaan.
 
@@ -1578,7 +1583,7 @@ De uitvoer ziet er als volgt uit:
 
 # 7. Pijlers van OO.
 
-# Pijler 1: Inkapseling
+## Pijler 1: Inkapseling
 Dit is een soort van techniek waarbij je data, ofwel jouw variabelen, en code die op de data gaat reageren, ofwel jouw methoden, gaat inwikkelen tot één bepaalde eenheid. Je wilt met andere woorden dus er voor zorgen dat andere klassen géén toegang hebben tot methoden of variabelen van andere klassen.
 
 Hiervoor gebruik je het 'private' keyword. Al jouw variabelen van een klasse ga je op private zetten zodat enkel binnen de klasse met deze variabelen kunnen gewerkt worden. Dit doen we om ongeauthoriseerd gebruik van andere klassen te voorkomen. 
@@ -1865,7 +1870,7 @@ public void gooiPizzaInLucht(Resto restoObject){
 
 # 8. Applicaties testen
 
-# Waarom via Unit-testen?
+## Waarom via Unit-testen?
 
 We kunnen eindeloos applicaties gaan uittesten door deze te laten draaien en vervolgens dan een foute combinatie in te geven om zo een bepaalde fout of error te triggeren. Het nadeel is dat dit proces moeizamer zal verlopen eenmaal we gaan werken aan grote applicaties. Ook voelt het vaak aan door in het wild wat rond te slaan, hopend op een foutmelding of bepaalde exception die wordt gegooid.
 
@@ -1927,7 +1932,7 @@ private boolean controleerPrijs(double prijs){
 ```
 
 
-# Assertions
+## Assertions
 
 We kunnen heel specifiek gaan testen wanneer er een exception wel of niet wordt gegooid binnen ons programma. Hiervoor gaan we assertions gaan gebruiken. Bij een assertion wordt er gevraagd naar een bepaalde boolean als parameter. Als deze boolean niét overeenstemt met de assertion, dan zal er een exception gegooid worden. 
 
@@ -2086,7 +2091,7 @@ boolean result = nieuweFrisco.controleerPrijs(prijs);
 assertTrue(result, "De prijs mag niet kleiner dan nul zijn!"); //Tekst wordt getoond.
 ```
 
- # Before Each
+ ## Before Each
  Je hebt waarschijnlijk al opgemerkt dat we héél vaak het volgende lijntje gebruiken:
  
  ```java
@@ -2111,7 +2116,7 @@ assertTrue(result);
 }
 ```
 
-# Geparameteriseerde testen
+## Geparameteriseerde testen
 
 Hierboven hebben we telkens maar één parameter meegegeven. We kunnen hier verder op in gaan en er voor zorgen dat we één testmethode hebben waar we meerdere parameters kunnen meegeven.
 
@@ -2143,9 +2148,26 @@ Hieronder zie je een herwerkt voorbeeld voor setNaam. We gaan meerdere parameter
  public void setPrijs_ongeldigeParameters_gooitException(double prijs){
  	Assertions.assertThrows(IllegalArgumentException.class, () -> {nieuweFrisco.setPrijs(prijs); } );
  }
- 
- 
 ```
 
+# OOSD2
+
+Alle leerstof die aan bod komt in OOSD1 werd hierboven besproken. Er zijn bepaalde zaken, waaronder polymorfisme en overerving, die opnieuw aan bod komen in OOSD2. Hieronder wordt er dan ook respectievelijk kort nog eens herhaald wat er werd besproken in die bepaalde hoofdstukken, maar de nadruk ligt vooral op de nieuwe theorie.
+
+# 1. [Overerving: Deel twee]
 
 
+
+# 2. [Polymorfisme: Deel twee]
+
+# 3. [Lambda Expressies]
+
+# 4. [Exception Handling]
+
+# 5. [Verzamelingen]
+
+# 6. [Streams]
+
+# 7. [Strings en regex]
+
+# 8. [Bestandsverwerking]
