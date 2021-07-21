@@ -2156,6 +2156,24 @@ Alle leerstof die aan bod komt in OOSD1 werd hierboven besproken. Er zijn bepaal
 
 # 1. [Overerving: Deel twee]
 
+# Wat vooraf ging:
+
+Bij overerving gaan we dus altijd werken met een soortgelijke klassenhiërarchie. Een subklasse gaat altijd één superklasse hebben, maar kan één tot een oneindig aantal verschillende subklassen hebben.
+
+Om te weten of iets van een bepaalde klasse is kunnen we werken met de methode _instanceof_. Deze geeft een boolean terug.
+
+```java
+Auto mercedes = new Auto();
+Fiets giant = new Fiets();
+Fiets specialized = new MountainBike(); //Mountainbike is een subklasse van Fiets
+
+System.out.println(mercedes instanceof Auto); //true
+System.out.println(giant instanceof Fiets); //true
+System.out.println(specialized instanceof Fiets); //true: dit is indirect een object van de klasse Fiets omdat Mountainbike zich onder Fiets bevindt
+
+System.out.println(specialized instanceof Auto); //false: dit is géén object van de klasse Auto
+System.out.println(giant instanceof Mountainbike); //false: Mountainbike is een subklasse van Fiets, maar het object giant is hier enkel en alleen van de superklasse Fiets
+```
 
 
 # 2. [Polymorfisme: Deel twee]
