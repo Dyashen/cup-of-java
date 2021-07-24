@@ -2160,23 +2160,165 @@ Alle leerstof die aan bod komt in OOSD1 werd hierboven besproken. Er zijn bepaal
 
 Bij overerving gaan we dus altijd werken met een soortgelijke klassenhiërarchie. Een subklasse gaat altijd één superklasse hebben, maar kan één tot een oneindig aantal verschillende subklassen hebben.
 
-Om te weten of iets van een bepaalde klasse is kunnen we werken met de methode _instanceof_. Deze geeft een boolean terug.
+Om te weten of iets van een bepaalde klasse is kunnen we werken met de operator _instanceof_. Deze geeft een boolean terug afhankelijk of dat een bepaald object van de meegegeven klasse is. De vraag die letterlijk wordt gesteld is: "Is dit object van de klasse [klassenaam]?" Hieronder zie je enkele voorbeelden: 
 
 ```java
 Auto mercedes = new Auto();
 Fiets giant = new Fiets();
 Fiets specialized = new MountainBike(); //Mountainbike is een subklasse van Fiets
 
-System.out.println(mercedes instanceof Auto); //true
-System.out.println(giant instanceof Fiets); //true
-System.out.println(specialized instanceof Fiets); //true: dit is indirect een object van de klasse Fiets omdat Mountainbike zich onder Fiets bevindt
+System.out.println(mercedes instanceof Auto); //Is mercedes een Auto? --> true
+System.out.println(giant instanceof Fiets); //Is giant een Fiets? --> true
+System.out.println(specialized instanceof Fiets); // Is specialized een fiets? --> true: dit is een object van de klasse Fiets omdat Mountainbike zich onder Fiets bevindt
 
-System.out.println(specialized instanceof Auto); //false: dit is géén object van de klasse Auto
-System.out.println(giant instanceof Mountainbike); //false: Mountainbike is een subklasse van Fiets, maar het object giant is hier enkel en alleen van de superklasse Fiets
+System.out.println(specialized instanceof Auto); //Is specialized een Auto? --> false: dit is géén object van de klasse Auto
+System.out.println(giant instanceof Mountainbike); //Is giant een Mountainbike? --> false: Mountainbike is een subklasse van Fiets, maar het object giant is hier enkel en alleen van de superklasse Fiets
 ```
 
+# Methodes van Objecten
 
-# 2. [Polymorfisme: Deel twee]
+Bij het hoofdstuk van objecten had je waarschijnlijk al gezien dat er enkele methodes waren die standaard al aangemaakt werden. toString() was hier één van en hebben we dan zelf aangepast. Als we dit niet hadden gedaan, dan kregen we nog steeds een String terug, maar enkel een andere tekst.
+
+Er zijn nog talloze standaard ingebouwde methodes die we kunnen gebruiken en indien nodig ook kunnen aanpassen aan bepaalde noden.
+
+
+_getClass()_ gaat de klasse gaan teruggeven waartoe het object behoort. 
+
+_.equals()_ gaat twee objecten met elkaar vergelijken op basis van bepaalde criteria. Hiervoor heb je maar één parameter nodig en dat is een object waarmee je een gekozen object wilt gaan vergelijken. Als deze twee objecten gelijk zijn aan elkaar, dan wordt er een boolean (met als waarde: true) teruggegeven. Zijn deze twee objecten niet met elkaar gelijk, dan wordt er false teruggegeven.
+
+Opmerking: Equals is hoofdlettergevoelig.
+
+```java
+
+String begroetingInNederland = "goeiedag";
+String begroetingInVlaanderen = "goeiedag";
+String begroetingInFrankrijk = "bonjour";
+
+// equals methode: object.equals(objectVergelijken);
+
+System.out.println(begroetingInNederland.equals(begroetingInVlaanderen)); // geeft true terug, want beide objecten hebben de zelfde waarden
+System.out.println(begroetingInFrankrijk.equals(begroetingInNederland)); // geeft false terug, want er zijn twee verschillende waarden opgeslagen
+
+//De constructor van de klasse Motorbike vraag twee parameters: de naam van het merk en het modeltype;
+Motorbike hayabusa = new Motorbike("Suzuki", "GSX1300R");
+Motorbike hayabusaKopie = new Motorbike("Suzuki", "GSX1300R");
+Motorbike r1 = new Motorbike("Yamaha", "YZF-R1");
+
+System.out.println(hayabusa.equals(r1)); // false, want de twee objecten hebben verschillende waarden
+System.out.println(hayabusa.equals(hayabusaKopie)); // true, want de waarden van de twee objecten komen met elkaar overeen
+```
+
+Een methode die kijkt of iets gelijk staat aan een ander object? Waarom zou je dan bijvoorbeeld niet simpelweg gebruik kunnen maken van "==" in plaats van equals?
+Het verschil is dat '**equals**' een methode is die de **waarde** van een object gaat vergelijken, terwijl **'=='** eerder een operator is die gaat kijken naar het **adres** van waar dat object is opgeslagen. We keren even terug naar het hoofdstuk van variabelen waar we praatten over het opslaan en onthouden van variabelen. Onderstaand schema is hoe ons geheugen er uit ziet als we de vijf objecten, van bovenstaande code, hebben aangemaakt.
+
+| Plaats  | Waarde |
+| ------------- | ------------- |
+| 101  |   |
+| 102  |   |
+| 103  | "goeiedag"  |
+| 104  | "goeiedag"  |
+| 105  | "bonjour"  |
+| 106  |   |
+| 107  | ["Suzuki", "GSX1300R"]  |
+| 108  | ["Suzuki", "GSX1300R"]  |
+| 109  | ["Yamaha", "YZF-R1"]  |
+
+
+We zien dat alle variabelen op verschillende plaatsen worden opgeslagen desondanks het feit dat de twee Nederlandstalige begroetingen en de twee Hayabusa-motoren toch de zelfde waarde hebben.
+
+Bij equals worden de waarden met elkaar vergeleken (bvb "goeiedag" & "goeiedag" --> true).
+Bij "==" worden de adressen met elkaar vergeleken (bvb "goeiedag" (103) == "goeiedag" (104) --> false.
+
+We kunnen eveneens de equals methode ook gaan aanpassen naar een specifiekere waarde. Stel dat we een extra motor van Yamaha gaan toevoegen en willen dat de equals methode gaat vergelijken op merk, dan kunnen we dit ook gaan aanpassen. Hiervoor is opnieuw "@Override" nodig, zoals voordien werd gebruikt bij de toString() methode.
+
+Extra: We maken ook gebruik van de methode _hashCode()_. Deze wordt vaak samen met de equals methode gebruikt. De hashcode methode wordt gebruikt om ieder object, zelfs al zijn ze identiek qua waarden, uniek te gaan representeren. Als we de methode gaan oproepen krijgen we eigenlijk de code terug van waar dit object is opgeslagen in ons geheugen.
+
+```java
+Motorbike hayabusa = new Motorbike("Suzuki", "GSX1300R");
+Motorbike hayabusaKopie = new Motorbike("Suzuki", "GSX1300R");
+
+System.out.println(hayabusa.hashCode());
+System.out.println(hayabusaKopie.hashCode());
+```
+
+```java
+public class Motorfiets extends Voertuig{
+
+	private String merk;
+	private String modelNummer;
+	
+	public Motorfiets(String merk, String modelNummer){
+		super();
+		this.merk = merk;
+		this.modelNummer = modelNummer;
+	}
+	
+	public String getMerk(){
+		return this.merk;
+	}
+	
+	@Override
+	public boolean equals(Motorfiets motorFiets){
+	
+		if(this == motorFiets){
+			return true; // zijn deze twee motorfietsen aan elkaar gelijk? equals is true
+		}
+		
+		if(motorFiets == null){
+			return false; // is de meegegeven motorfiets een null-object? equals is false
+		}
+		
+		if(getClass() != motorFiets.getClass()){
+			return false; // is de klasse van de meegegeven object niet hetzelfde als die van het object waar je mee vergelijkt? (bvb een Racefiets vergelijken met een Motorfiets) equals is false
+		}
+		
+		Motorfiets castMotorFiets = (Motorfiets) motorFiets; // we casten het meegegeven object naar een object van de klasse Motorfiets.
+		
+		if(this.merk != castMotorFiets.getMerk()){
+			return false; // is het merk van de gecastte motorfiets niet gelijk aan het merk van deze motorfiets? equals is false
+		} else {
+			return true; // is het merk van de gecastte motorfiets wél gelijk aan het merk van deze motorfiets? equals is true
+		}
+	}
+```
+
+# Scope van een declaratie
+
+De scope betekent eigenlijk de ruimte of gebied binnenin de code waarin een variabele toegankelijk is. We maken het onderscheid tussen een scope op klasseniveau en op methodniveau. Het verschil kan als volgt geïllustreerd worden:
+
+Hieronder hebben wij bijvoorbeeld twee variabelen: merk en modelNummer. Dit zijn twee variabelen op klasseniveau.
+
+Bij onze constructor geven wij twee gelijknamige parameters mee. De bedoeling van onze constructor is de twee klassevariabelen gaan initialiseren en ze een waarde gaan toekennen. We moeten dus het onderscheid maken tussen de twee soorten en dat doen we met het keyword **this**.
+
+Bij de setter geldt hetzelfde principe. We willen de klassevariabele gaan overschrijven met de meegegeven parameter, ofwel de methodvariabele. Hier gebruiken we weer bij enkel de klassevariabele het keyword 'this'. We hoeven niets extras toe te voegen bij de methodvariabele.
+
+```java
+public class Motorfiets extends Voertuig{
+
+	private String merk;
+	private String modelNummer;
+	
+	public Motorfiets(String merk, String modelNummer){
+		super();
+		this.merk = merk;
+		this.modelNummer = modelNummer;
+	} 
+	
+	private setMerk(String merk){
+		this.merk = merk;
+	}
+	
+}
+	
+```
+
+# Abstracte klassen
+
+
+
+
+
+# 2. [Polymorfisme]
 
 # 3. [Lambda Expressies]
 
