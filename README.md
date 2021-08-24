@@ -1,9 +1,12 @@
-# Cup Of Java ☕
+# Java Uitleg ☕
 Hallo! Ik ben Dylan Cluyse. Washed-up student leerkracht secundair onderwijs en nu student Toegepaste Informatica aan Hogeschool Gent. In deze Github repo wil ik vooral de basis voorleggen van programmeren met Java. Deze leerinhoud is gebaseerd op basis van het curriculum 2020-2021 en omvat zowel "OOSD1" als "OOSD2".
 
 Met deze GitHub page wou ik de materie in een andere vorm gieten. Hier worden onder meer andere voorbeelden tonen en een nadruk op aanschouwelijke schema's en structuren. De structuur is ook redelijk anders, maar volgt volledig dezelfde inhoud. 
 
-!! De page is nog volledig work-in-progress. Mocht je vragen of opmerkingen hebben, laat me gerust weten via Discord!
+!! De page is nog volledig work-in-progress. Mocht je vragen of opmerkingen hebben, laat me gerust weten via Discord! -->  username: slicerdyster#0471
+
+Mocht je interesse hebben in andere programeertalen te leren. Hier vind je nog eens een overzicht: https://bit.ly/3gsMtyY 
+
 
 Handige websites:
 - JavaTpoint
@@ -2311,23 +2314,3 @@ public class Motorfiets extends Voertuig{
 }
 	
 ```
-
-# Abstracte klassen
-
-
-
-
-
-# 2. [Polymorfisme]
-
-# 3. [Lambda Expressies]
-
-# 4. [Exception Handling]
-
-# 5. [Verzamelingen]
-
-# 6. [Streams]
-
-# 7. [Strings en regex]
-
-# 8. [Bestandsverwerking]
